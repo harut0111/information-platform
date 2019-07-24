@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/information-platform/static/css/main.2cce8147.chunk.css",
+    "main.js": "/information-platform/static/js/main.33590716.chunk.js",
+    "main.js.map": "/information-platform/static/js/main.33590716.chunk.js.map",
+    "runtime~main.js": "/information-platform/static/js/runtime~main.53dfa125.js",
+    "runtime~main.js.map": "/information-platform/static/js/runtime~main.53dfa125.js.map",
+    "static/js/2.b41502e9.chunk.js": "/information-platform/static/js/2.b41502e9.chunk.js",
+    "static/js/2.b41502e9.chunk.js.map": "/information-platform/static/js/2.b41502e9.chunk.js.map",
+    "index.html": "/information-platform/index.html",
+    "precache-manifest.2bc29fe44a1f82ac2747ce5df4b83ba4.js": "/information-platform/precache-manifest.2bc29fe44a1f82ac2747ce5df4b83ba4.js",
+    "service-worker.js": "/information-platform/service-worker.js",
+    "static/css/main.2cce8147.chunk.css.map": "/information-platform/static/css/main.2cce8147.chunk.css.map",
+    "static/media/logo.svg": "/information-platform/static/media/logo.5d5d9eef.svg"
+  }
+}
