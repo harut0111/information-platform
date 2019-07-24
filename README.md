@@ -1,1 +1,1 @@
-# information-platoform
+# information-platform
