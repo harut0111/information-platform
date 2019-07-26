@@ -4,7 +4,7 @@ import './App.css';
 export default function App() {
   return (
     <div className="App">
-       HEllo World
+      conflict resolved
     </div>
   );
 }
