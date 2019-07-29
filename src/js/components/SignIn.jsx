@@ -24,14 +24,14 @@ function SignIn (props) {
                 <input type="email"
                         placeholder="Email" 
                         value={email}
-                        onChange={e => {setEmailValue(e.target.value)}}>
+                        onChange={e => setEmailValue(e.target.value)}>
                 </input>
             </div>
             <div>
                 <input type="password" 
                        placeholder="Password" 
                        value={password}
-                       onChange={e =>{setPasswordValue(e.target.value)}}>
+                       onChange={e => setPasswordValue(e.target.value)}>
                  </input>
             </div>
             <button type="button" onClick={onSignIn}>SIGN IN</button>
