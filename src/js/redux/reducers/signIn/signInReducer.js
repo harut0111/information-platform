@@ -1,8 +1,9 @@
-import {CHANGE_EMAIL_VALUE, CHANGE_PASSWORD_VALUE} from "../../../constants/signIn";
+import { CHANGE_EMAIL_VALUE, CHANGE_PASSWORD_VALUE, SHOW_PASSWORD_VALUE} from "../../../constants/signIn";
 
 const defaultState = {
     email: "",
-    password: ""
+    password: "",
+    showPassword: false
 };
 
 const signInReducer = (state=defaultState, action) => {
@@ -17,8 +18,12 @@ const signInReducer = (state=defaultState, action) => {
                 ...state,
                 password: action.payload
             }
-        default:
-            return state;
+        case SHOW_PASSWORD_VALUE:
+            return {
+                ...state,
+                showPassword: action.payload
+            }
+        default: return state;
     }
 };
 

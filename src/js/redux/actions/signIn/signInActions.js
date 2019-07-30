@@ -1,4 +1,4 @@
-import {CHANGE_EMAIL_VALUE, CHANGE_PASSWORD_VALUE} from "../../../constants/signIn";
+import { CHANGE_EMAIL_VALUE, CHANGE_PASSWORD_VALUE, SHOW_PASSWORD_VALUE} from "../../../constants/signIn";
 
 export const setEmailValue = email => {
     return {
@@ -13,5 +13,13 @@ export const setPasswordValue = password => {
         payload: password
     }
 }
+
+export const handleClickShowPassword = value => {
+    return {
+        type: SHOW_PASSWORD_VALUE,
+        payload: value
+    }
+};
+
 
 
