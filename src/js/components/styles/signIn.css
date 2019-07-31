@@ -1,0 +1,19 @@
+#signInContainer {
+    border: 1px solid grey;
+    border-radius: 30px;
+    width: max-content;
+    padding: 40px 80px 60px 80px;
+    background-color: #F08080;
+    text-align: center;
+    margin: 5% auto;
+    background-image: linear-gradient(#fff, #D86E7A); 
+}
+
+#signInContainer h1{
+    font-family: cursive, sans-serif;
+    text-decoration-line: underline;
+    text-decoration-style: solid; 
+    text-decoration-color: slategrey;
+    margin-bottom: 10px;
+    color: #CF4554;
+}
