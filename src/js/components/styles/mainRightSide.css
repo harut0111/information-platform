@@ -1,0 +1,11 @@
+.rightSide {
+  background-color: #F08080;
+  width: 38%;
+  border: 10px solid #F08080;
+  border-radius: 25px;
+  margin-left: 2%;
+  height: fit-content;
+  display: table-cell;
+  /* background-image: url("./bg2.jpg");
+  background-repeat: round; */
+}

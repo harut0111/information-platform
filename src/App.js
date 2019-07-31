@@ -1,11 +1,20 @@
 import React from 'react';
 import './App.css';
-import SignIn from "./js/components/SignIn";
+import Header from "./js/components/Header";
+import Footer from "./js/components/Footer";
+import MainLeftSide from "./js/components/MainLeftSide";
+import MainRightSide from "./js/components/MainRightSide";
+
 
 export default function App() {
   return (
     <div className="App">
-      <SignIn />
+      <Header />
+      <main>
+        <MainLeftSide />
+        <MainRightSide />
+      </main>
+      <Footer />
     </div>
   );
 }

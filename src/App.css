@@ -1,14 +1,26 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+body {
+  /* background-image: linear-gradient(#EABF6D, pink); */
+  background-color: #FFD3DB;
+}
+.App {
+  max-width: 90%;
+  margin: 0 auto;
+  font-family: cursive, sans-serif;
+}
+
+
+main {
+  border: 5px solid grey;
+  border-radius: 40px;
+  padding: 2%;
+  display: table;
+  width: 96%;
+  height: -webkit-fill-available;
+  /* background-image: linear-gradient(white, pink); */
+  background-color: #F08080;
 }
