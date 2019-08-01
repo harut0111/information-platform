@@ -5,7 +5,6 @@ import Footer from "./js/components/Footer";
 import MainLeftSide from "./js/components/MainLeftSide";
 import MainRightSide from "./js/components/MainRightSide";
 
-
 export default function App() {
   return (
     <div className="App">
