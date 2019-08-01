@@ -3,13 +3,23 @@ import './App.css';
 import Header from "./js/components/Header";
 import Footer from "./js/components/Footer";
 import Main from "./js/components/Main";
+import { BrowserRouter, Route, Switch} from "react-router-dom";
+import Home from "./js/components/Home";
+// import SignUp from "./js/components/SignUp";
 
 export default function App() {
   return (
-    <div className="App">
-      <Header />
-      <Main />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Main} />
+          <Route path="/Home" component={Home} />
+          {/* <Route path="/SignUp" component={SignUp} /> */}
+          <Route component={Main} />
+        </Switch>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
