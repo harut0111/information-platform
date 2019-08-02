@@ -5,7 +5,7 @@ import Footer from "./js/components/Footer";
 import Main from "./js/components/Main";
 import { BrowserRouter, Route, Switch} from "react-router-dom";
 import Home from "./js/components/Home";
-// import SignUp from "./js/components/SignUp";
+import SignUp from "./js/components/SignUp";
 
 export default function App() {
   return (
@@ -15,7 +15,7 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={Main} />
           <Route path="/Home" component={Home} />
-          {/* <Route path="/SignUp" component={SignUp} /> */}
+          <Route path="/SignUp" component={SignUp} />
           <Route component={Main} />
         </Switch>
         <Footer />

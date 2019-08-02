@@ -52,10 +52,10 @@ export const useStyles = makeStyles(theme => ({
     },
 }));
 
+
 function SignIn (props) {
     const classes = useStyles();
     const {email, password, showPassword, setEmailValue, setPasswordValue, handleClickShowPassword} = props;
-    
     const onSignIn = e => {
         e.preventDefault();
         const emailValue = email,
@@ -67,7 +67,10 @@ function SignIn (props) {
         promise.then(function(val){
             alert("Loged In");
         })
-        promise.catch(e => alert(e.message));
+        promise.catch(e => {
+            //alert(e.message);
+            document.getElementById("errorMsg").style.visibility = "visible";
+        });
     }
     const handleMouseDownPassword = e => {
         e.preventDefault();
@@ -76,6 +79,7 @@ function SignIn (props) {
     return (
         <div id="signInContainer">
             <h1><span style={{ color: "#3F51B5"}}>SIGN</span> IN</h1>
+            <p id="errorMsg">Wrong Email or Password.</p>
             <div>
                 <TextField
                     // id="filled-email-input"

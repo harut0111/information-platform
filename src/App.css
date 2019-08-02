@@ -13,6 +13,7 @@ body {
   font-family: cursive, sans-serif;
 }
 
+
 main {
   border: 5px solid grey;
   border-radius: 40px;
@@ -23,11 +24,3 @@ main {
   /* background-image: linear-gradient(white, pink); */
   background-color: #F08080;
 }
-
-
-
-
-
-
-
-
