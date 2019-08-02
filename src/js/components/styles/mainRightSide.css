@@ -9,3 +9,26 @@
   /* background-image: url("./bg2.jpg");
   background-repeat: round; */
 }
+
+.article {
+  border: 3px solid grey;
+  border-radius: 25px;
+  background-color: #FFDAE0;
+  padding: 5px;
+  text-align: center;
+}
+
+.article h1 {
+  color: #CF4554;;
+  margin: 10px 0 30px 0;
+  text-decoration: underline;
+  text-decoration-color: grey;
+}
+
+.article h3 {
+  color: grey;
+  margin: 10px 0;
+}
+.article p {
+  color: #CF4554;;
+}
