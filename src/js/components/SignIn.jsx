@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {connect} from 'react-redux';
-import { setEmailValue, setPasswordValue, handleClickShowPassword} from "../redux/actions/signIn/signInActions";
 import firebase from "../configs/FireBase";
 import "firebase/auth";
 import "./styles/signIn.css";
+import history from '../routh/history';
+
+import { 
+    setEmailValue, 
+    setPasswordValue, 
+    handleClickShowPassword,
+    checkAuth } from "../redux/actions/signIn/signInActions";
+
 // Material UI packages --------------------------------------
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -54,24 +61,43 @@ export const useStyles = makeStyles(theme => ({
 
 
 function SignIn (props) {
+
     const classes = useStyles();
-    const {email, password, showPassword, setEmailValue, setPasswordValue, handleClickShowPassword} = props;
-    const onSignIn = e => {
-        e.preventDefault();
-        const emailValue = email,
-             passValue = password;
-        setEmailValue("");
-        setPasswordValue("");
-        let auth = firebase.auth(),
-            promise = auth.signInWithEmailAndPassword(emailValue, passValue);
-        promise.then(function(val){
-            alert("Loged In");
+    const {
+        email, 
+        password, 
+        showPassword, 
+        setEmailValue, 
+        setPasswordValue, 
+        handleClickShowPassword,
+        signin } = props;
+
+    useEffect(() => {
+
+        updateAuth();
+        if(signin) {
+            history.push('/Home');
+        }
+        // console.log('did update', signin);
+        // eslint-disable-next-line
+      }, [signin]); 
+
+    function updateAuth() {
+        firebase.auth().onAuthStateChanged(user => {
+            // ---console.log('auth is updated', user);
+            props.checkAuth(user);
         })
-        promise.catch(e => {
-            //alert(e.message);
-            document.getElementById("errorMsg").style.visibility = "visible";
+    }
+
+    function login (e) {
+        e.preventDefault();
+        firebase.auth().signInWithEmailAndPassword(email, password)
+        .catch((error) => {
+            window.alert(error.message);
         });
     }
+
+
     const handleMouseDownPassword = e => {
         e.preventDefault();
     };
@@ -108,7 +134,7 @@ function SignIn (props) {
                                 <IconButton
                                     edge="end"
                                     aria-label="toggle password visibility"
-                                    onClick={e => { handleClickShowPassword(!showPassword)}}
+                                    onClick={() => { handleClickShowPassword(!showPassword)}}
                                     onMouseDown={handleMouseDownPassword}
                                 >
                                 {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -118,11 +144,8 @@ function SignIn (props) {
                     }}
                 />
             </div>
-            <Link to="/Home" style={{ textDecoration: "none" }}>
-                <Button onClick={onSignIn} 
-                        variant="contained" 
-                        color="default" 
-                        className={classes.buttonSignIn}>
+            <Link to='/' onClick={login} style={{ textDecoration: "none" }}>
+                <Button variant="contained" color="default"  className={classes.buttonSignIn}>
                     SIGN IN<Icon className={classes.rightIcon}>send</Icon>
                 </Button>
             </Link>
@@ -141,14 +164,17 @@ const mapStateToProps = state => {
     return {
         email: state.email,
         password: state.password,
-        showPassword: state.showPassword
+        showPassword: state.showPassword,
+        signin: state.signin
     }
 }
 
 const mapDispatchToProps = {
     setEmailValue,
     setPasswordValue,
-    handleClickShowPassword
+    handleClickShowPassword,
+    checkAuth
 }
 
+ // eslint-disable-next-line
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

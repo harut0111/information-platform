@@ -1,6 +1,6 @@
 #register {
   text-align: center;
-  max-width: 50%;
+  max-width: 30%;
   margin: 0 auto;
   color: grey;
   font-family: cursive;
@@ -80,5 +80,4 @@ select {
 select:hover {
   background-color: #FFD3DB;
   color: grey;
-  padding: 25px;
 }

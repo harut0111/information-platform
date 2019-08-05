@@ -1,4 +1,8 @@
-import { CHANGE_EMAIL_VALUE, CHANGE_PASSWORD_VALUE, SHOW_PASSWORD_VALUE} from "../../../constants/signIn";
+import { 
+    CHANGE_EMAIL_VALUE, 
+    CHANGE_PASSWORD_VALUE, 
+    SHOW_PASSWORD_VALUE,  
+    CHECK_AUTH } from "../../../constants/signIn";
 
 export const setEmailValue = email => {
     return {
@@ -20,6 +24,13 @@ export const handleClickShowPassword = value => {
         payload: value
     }
 };
+
+export const checkAuth = user => {
+    return {
+        type: CHECK_AUTH,
+        payload: user
+    }
+  }
 
 
 
