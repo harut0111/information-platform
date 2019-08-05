@@ -13,6 +13,8 @@ module.exports = {
         "SharedArrayBuffer": "readonly"
     },
     "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
         "ecmaFeatures": {
             "jsx": true
         },
@@ -23,6 +25,7 @@ module.exports = {
         "react",
         "react-redux"
     ],
+    "parser": "babel-eslint",
     "rules": {
         "react/jsx-uses-react": "error",
         "react/jsx-uses-vars": "error",

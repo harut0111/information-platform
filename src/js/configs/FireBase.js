@@ -1,7 +1,7 @@
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
+// import "firebase/auth";
+// import "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyD4y4NXU_iYEokPKRcW-0oHku7hKEKUeME",
@@ -15,5 +15,5 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const fire = firebase.initializeApp(firebaseConfig);
-// fire.firestore().settings({timestampsInSnapshots:true});
+
 export default fire;
