@@ -17,11 +17,8 @@ function Home() {
     }
 
     useEffect(() => {
-
         firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                setSignin(user.uid)
-            }
+            if (user) setSignin(user.uid);
           });
     },[null])
 
