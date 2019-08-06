@@ -21,8 +21,11 @@ function Home() {
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 setSignin(user.uid)
+            } else {
+                history.push('/');
             }
           });
+          // eslint-disable-next-line
     },[null])
 
 
