@@ -33,7 +33,6 @@ class SignUp extends React.Component {
       e.preventDefault();
       if (this.validateForm()) {
         // ================== Call to FireBase =======================
-        
         let auth = fire.auth();
         let userId;
         let promise = auth.createUserWithEmailAndPassword(this.state.fields.emailid, this.state.fields.password);
@@ -41,9 +40,8 @@ class SignUp extends React.Component {
           //console.log(val);
           userId = val.user.uid;
           console.log(userId, this.state.fields);
-          let db = fire.firestore();
+          //let db = fire.firestore();
           
-
           this.setState({
             fields: {...fieldValues}
           });

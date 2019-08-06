@@ -13,10 +13,10 @@ export default function App() {
       <div className="App">
         <Header />
         <Switch>
-          <Route exact path="/" component={Main} />
           <Route path="/Home" component={Home} />
           <Route path="/SignUp" component={SignUp} />
-          <Route component={Main} />
+          <Route path="/" component={Main} />
+          {/* <Route component={Main} /> */}
         </Switch>
         <Footer />
       </div>

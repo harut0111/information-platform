@@ -15,7 +15,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 // ------------------------------------------------------------
-// import { Route, Redirect } from 'react-router'
+//  import { Route, Redirect } from 'react-router'
 import {Link} from "react-router-dom";
 
 export const useStyles = makeStyles(theme => ({
@@ -52,7 +52,6 @@ export const useStyles = makeStyles(theme => ({
     },
 }));
 
-
 function SignIn (props) {
     const classes = useStyles();
     const {email, password, showPassword, setEmailValue, setPasswordValue, handleClickShowPassword} = props;
@@ -65,7 +64,10 @@ function SignIn (props) {
         let auth = firebase.auth(),
             promise = auth.signInWithEmailAndPassword(emailValue, passValue);
         promise.then(function(val){
-            alert("Loged In");
+            alert("Signed In");
+            //currentProfileEmail = val.user.email;
+            //currentUserId = val.user.uid;
+            //console.log(currentProfileEmail, currentUserId);
         })
         promise.catch(e => {
             //alert(e.message);
@@ -150,5 +152,7 @@ const mapDispatchToProps = {
     setPasswordValue,
     handleClickShowPassword
 }
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
