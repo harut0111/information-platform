@@ -9,6 +9,7 @@ import Home from "./js/components/Home";
 import SignUp from "./js/components/SignUp";
 
 export default function App() {
+
   return (
     <Router history={history}>
       <div className="App">

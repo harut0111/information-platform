@@ -7,8 +7,8 @@ function Home() {
 
     const [signin, setSignin] = useState("");
 
-    function logout() {
-        // e.preventDefault();
+    function logout(e) {
+        e.preventDefault();
         firebase.auth().signOut().then(() => {
             history.push('/');
         }).catch((e) => {
@@ -17,16 +17,16 @@ function Home() {
     }
 
     useEffect(() => {
-
-        firebase.auth().onAuthStateChanged(function(user) {
+        firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 setSignin(user.uid)
+            } else {
+                history.push('/');
             }
-          });
+        });
+    // eslint-disable-next-line
     },[null])
 
-
-    // console.log(props.signin.uid)
     return (
        <div>
            <h1>Home</h1>
@@ -35,7 +35,6 @@ function Home() {
         <Link to = '/' onClick={logout}>
             <button >Log Out</button>
         </Link>
-           
        </div>     
     );
 }

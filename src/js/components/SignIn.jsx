@@ -8,8 +8,7 @@ import history from '../routh/history';
 import { 
     setEmailValue, 
     setPasswordValue, 
-    handleClickShowPassword,
-    checkAuth } from "../redux/actions/signIn/signInActions";
+    handleClickShowPassword } from "../redux/actions/signIn/signInActions";
 
 // Material UI packages --------------------------------------
 import clsx from 'clsx';
@@ -69,29 +68,29 @@ function SignIn (props) {
         showPassword, 
         setEmailValue, 
         setPasswordValue, 
-        handleClickShowPassword,
-        signin } = props;
-
-    useEffect(() => {
-
-        updateAuth();
-        if(signin) {
-            history.push('/Home');
-        }
-        // console.log('did update', signin);
-        // eslint-disable-next-line
-      }, [signin]); 
+        handleClickShowPassword } = props;
 
     function updateAuth() {
-        firebase.auth().onAuthStateChanged(user => {
-            // ---console.log('auth is updated', user);
-            props.checkAuth(user);
-        })
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+            //   console.log("User is signed in", user);
+              history.push('/Home');
+            } else {
+            //   console.log("No user is signed in.", user);
+            }
+          });
     }
+    
+    useEffect(() => {
+        updateAuth();
+         // eslint-disable-next-line
+    }, [null]);
 
     function login (e) {
         e.preventDefault();
-        firebase.auth().signInWithEmailAndPassword(email, password)
+        firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+            // updateAuth();
+        })
         .catch((error) => {
             window.alert(error.message);
         });
@@ -173,7 +172,6 @@ const mapDispatchToProps = {
     setEmailValue,
     setPasswordValue,
     handleClickShowPassword,
-    checkAuth
 }
 
  // eslint-disable-next-line
