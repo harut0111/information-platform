@@ -16,7 +16,6 @@ export default function App() {
         <Header />
         <Switch>
             <Route path="/Home" component={Home} />
-            {/* <Route path="/Home" render={() => loggedIn ? <Home/> : <Redirect to="/"/> }/>  */}
             <Route path="/SignUp" component={SignUp} />
             <Route path="/" component={Main} />
         </Switch>
