@@ -8,6 +8,7 @@
   display: table-cell;
   font-family: cursive;
   color: slategrey;
+  
   /* background-image: url("./bg2.jpg");
   background-repeat: round; */
 }
@@ -44,10 +45,10 @@
     border: 3px solid slategrey;
     border-radius: 25px;
     margin: 5px;
-    padding: 40px;
-    /* background-image: linear-gradient(white, #F08080);  */
-    /* background-color: #F08080; */
+    padding: 20px;
+     /*background-image: linear-gradient(white, #F08080); */
+     /*background-color: #F08080;*/
     background-image:url("../../../img/bg5.jpg");
-    font-size: 36px;
+    font-size: 20px;
     color: #fff;
 }
