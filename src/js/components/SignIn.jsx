@@ -24,8 +24,6 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 // ------------------------------------------------------------
 
-
-
 export const useStyles = makeStyles(theme => ({
     margin: {
         margin: theme.spacing(1),
@@ -59,7 +57,6 @@ export const useStyles = makeStyles(theme => ({
         width: 140,
     },
 }));
-
 
 function SignIn (props) {
 
@@ -176,6 +173,7 @@ const mapDispatchToProps = {
     setPasswordValue,
     handleClickShowPassword,
 }
+
 
  // eslint-disable-next-line
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
