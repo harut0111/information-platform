@@ -67,12 +67,9 @@ class SignUp extends React.Component {
         .catch((error) => {
             window.alert(error.message);
         });
-    } else {
-      window.alert("please select group type !");
     }
   }
   
-
     // ================================ validateForm ================================
     validateForm() {
       let fields = this.state.fields;

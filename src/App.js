@@ -9,12 +9,14 @@ import Home from "./js/components/Home";
 import SignUp from "./js/components/SignUp";
 
 export default function App() {
+
   return (
     <Router history={history}>
       <div className="App">
         <Header />
         <Switch>
             <Route path="/Home" component={Home} />
+            {/* <Route path="/Home" render={() => loggedIn ? <Home/> : <Redirect to="/"/> }/>  */}
             <Route path="/SignUp" component={SignUp} />
             <Route path="/" component={Main} />
         </Switch>
