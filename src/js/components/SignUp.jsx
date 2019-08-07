@@ -42,7 +42,7 @@ class SignUp extends React.Component {
         age,
         group } = this.state.fields;
 
-      if (this.validateForm()) {
+      if (this.validateForm() && group) {
        firebase.auth().createUserWithEmailAndPassword(emailid, password).then(p => {
           // console.log(p.user.uid);
           this.db.collection("User").doc(p.user.uid).set({
@@ -68,7 +68,6 @@ class SignUp extends React.Component {
     }
   }
   
-
     // ================================ validateForm ================================
     validateForm() {
       let fields = this.state.fields;
