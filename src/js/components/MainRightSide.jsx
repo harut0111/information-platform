@@ -2,7 +2,7 @@ import React from "react";
 import "./styles/mainRightSide.css";
 import SignIn from "./SignIn";
 
-export default function MainRightSide() {
+export default function MainRightSide(props) {
     return (
         <div className="rightSide">
             <SignIn />

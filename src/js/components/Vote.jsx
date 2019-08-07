@@ -1,5 +1,5 @@
 import React from 'react';
-import fire from "../configs/FireBase";
+//import fire from "../configs/FireBase";
 import "./styles/home.css";
 
 class Vote extends React.Component {

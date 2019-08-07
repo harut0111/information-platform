@@ -10,6 +10,10 @@
     color: #333;
 }
 
+#homeWrapper a{
+    text-decoration: none;
+}
+
 #refSection {
     display: flex;
     justify-content: space-evenly;
@@ -17,7 +21,7 @@
 
 #welcomeSection {
     background-color: beige;
-    padding: 20px;
+    padding: 10px;
     max-width: 80%;
     margin: 0 auto 40px auto;
     border: 3px solid grey;
@@ -25,6 +29,22 @@
 }
 #welcomeSection h1 {
     margin-top: -40px;
+}
+
+#welcomeSection #userInfo {  
+    border: 3px solid grey;
+    width: max-content;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 20px;
+    display: none;
+    background-color: #155E80;
+    color: #F5F5DC;
+}
+
+#welcomeSection #userInfo:hover {
+    background-color: #fff;
+    color: #333;
 }
 
 #refSection a {
@@ -53,11 +73,13 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #222;
 }
 
 #toReferPage h1{
-    padding: 10px;
-    margin-bottom: 50px;
+    padding: 5px;
+    margin-bottom: 40px;
 }
 
 #toReferPage select {
@@ -74,15 +96,48 @@
 }
 
 #toReferPage select:hover {
-  border-color: #155e80;
+  border-color: #1453A1;
 }
 
-#textarea {
+textarea {
   width: 50%;
   margin: 20px auto;
   border: 3px solid grey;
   border-radius: 20px;
   padding: 10px;
   font-size: 16px;
-  font-family: Helvetica, sans-serif;
 }
+
+textarea:hover {
+    border: 3px solid #155e80;
+}
+
+#messages {
+    background-color: #155E80;
+    color: #F5F5DC;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    border: 3px solid grey;
+}
+
+#messages:hover {
+    background-color: #1A76A0;
+}
+
+#messages p {  
+    padding: 10px;
+    border: 3px solid grey;
+    border-radius: 10px;
+    margin: 20px;
+    background-color: #fff;
+    font-weight: bold;
+    color: #222;
+    line-height: 20px;
+    cursor: pointer;
+    word-wrap: break-word;
+ }
+
+ #messages hr {
+     margin: 10px 0;
+ }

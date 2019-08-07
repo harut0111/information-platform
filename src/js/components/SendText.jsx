@@ -3,18 +3,25 @@ import fire from "../configs/FireBase";
 import "./styles/home.css";
 import Button from '@material-ui/core/Button';
 
-export default function SendText() {
+export default function SendText(props) {
     let [data, setData] = useState(""),
         [isLoaded, setIsLoaded] = useState(false),
+        [userId, setUserId] = useState(""),
         [aboutUserId, setAboutUserId] = useState(""),
         [text, setText] = useState("");
     
+    useEffect(() => {
+        fire.auth().onAuthStateChanged(user => {
+            if (user) setUserId(user.uid);
+        });
+    })
+
     useEffect(() => {
         fire.firestore().collection("User").get()
         .then(querySnapshot => {
             let arrTemp = [];
             querySnapshot.forEach(function (doc) {
-                if (doc.id !== "PMXDx8G2cYblbGvEywIgNdSYkQr1") {
+                if (doc.id !== userId) {
                     let objTemp = { ...doc.data() };
                     objTemp.id = doc.id;
                     arrTemp.push(objTemp); 
@@ -23,8 +30,8 @@ export default function SendText() {
             setData([...arrTemp]);
             setIsLoaded(true);
         })
-        .catch(e => {console.log(e.message, "Catch error.")})        
-    })
+        .catch(e => {console.log(e.message, "Catch error.")});
+    },()=>{return true})
 
     const onSelectChange = e => {
         e.preventDefault();
@@ -40,7 +47,7 @@ export default function SendText() {
         e.preventDefault();
         // Call to Firestore (DataBase)
         fire.firestore().collection("User_text").doc().set({
-            creatorUserId: "PMXDx8G2cYblbGvEywIgNdSYkQr1",
+            creatorUserId: userId,
             aboutUserId: aboutUserId,
             theText: text,
             dateCreated: new Date()
@@ -52,7 +59,6 @@ export default function SendText() {
         .catch(e => {
             console.log("Error writing document: ", e);
         });
-
         setText("");
     }
 
@@ -68,7 +74,7 @@ export default function SendText() {
                 <select required onChange={onSelectChange} name="aboutUserId">
                     {data.map(item => (
                         <option key={item.id} value={item.id}>
-                            {`${item.name} ${item.surname} (age: ${item.age} )`}
+                            {`${item.name} ${item.surname} (Group: ${item.group}, Age: ${item.age})`}
                         </option>
                     ))}
                 </select>
