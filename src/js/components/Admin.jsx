@@ -2,9 +2,8 @@ import React, { useState, useEffect  } from 'react';
 import { Link } from "react-router-dom";
 import firebase from '../configs/FireBase';
 import history from '../routh/history';
-import { ADMIN_ID } from "../constants/signIn";
 
-function Home() {
+function Admin() {
 
     const [signin, setSignin] = useState("");
 
@@ -19,7 +18,7 @@ function Home() {
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(user => {
-            if (user && user.uid !== ADMIN_ID) {
+            if (user) {
                 setSignin(user.uid)
             } else {
                 history.push('/');
@@ -29,9 +28,9 @@ function Home() {
     },[null])
 
     return (
-       <div>
-           <h1>Home</h1>
-           <h1>Current user id {signin} </h1>
+       <div style={{textAlign: "center"}}>
+           <h1 >Admin</h1>
+           <h3>Admin id is {signin} </h3>
 
         <Link to = '/' onClick={logout}>
             <button >Log Out</button>
@@ -41,4 +40,4 @@ function Home() {
 }
 
 
-export default Home;
+export default Admin;

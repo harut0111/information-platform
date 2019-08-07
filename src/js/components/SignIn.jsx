@@ -1,9 +1,11 @@
+import "firebase/auth";
+import "./styles/signIn.css";
 import React, { useEffect } from "react";
 import {connect} from 'react-redux';
 import firebase from "../configs/FireBase";
-import "firebase/auth";
-import "./styles/signIn.css";
 import history from '../routh/history';
+import {Link} from "react-router-dom";
+import { ADMIN_ID } from "../constants/signIn";
 
 import { 
     setEmailValue, 
@@ -21,8 +23,8 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 // ------------------------------------------------------------
-// import { Route, Redirect } from 'react-router'
-import {Link} from "react-router-dom";
+
+
 
 export const useStyles = makeStyles(theme => ({
     margin: {
@@ -72,11 +74,12 @@ function SignIn (props) {
 
     function updateAuth() {
         firebase.auth().onAuthStateChanged(function(user) {
+           
             if (user) {
-            //   console.log("User is signed in", user);
-              history.push('/Home');
+                user.uid === ADMIN_ID ? 
+                history.push('/Admin') : history.push('/Home');
             } else {
-            //   console.log("No user is signed in.", user);
+                //console.log("No user is signed in.", user);
             }
           });
     }
