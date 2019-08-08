@@ -87,7 +87,6 @@ function Admin() {
                 even derogatory.
            </h4>
 
-
         <Link to = '/' onClick={logout}>
             <button >Log Out</button>
         </Link>
