@@ -2,6 +2,7 @@
     font-size: 30px;
     border: 1px solid slateblue;
     border-radius: 12px;
+    padding: 5px;
     background-color: rgb(255, 255, 255);
     justify-content: flex-end;
 }
