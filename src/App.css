@@ -5,22 +5,19 @@
 
 body {
   /* background-image: linear-gradient(#EABF6D, pink); */
-  background-color: #F5F5DC;
+  background-color: #dfe3ee;
 }
 .App {
-  max-width: 90%;
+  max-width: 100%;
   margin: 0 auto;
   font-family: cursive, sans-serif;
 }
 
-
 main {
-  border: 5px solid grey;
-  border-radius: 40px;
   padding: 2%;
   display: table;
   width: 96%;
   height: -webkit-fill-available;
   /* background-image: linear-gradient(white, pink); */
-  background-color: #F08080;
+  background-color: #dfe3ee
 }

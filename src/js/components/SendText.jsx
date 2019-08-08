@@ -3,7 +3,7 @@ import fire from "../configs/FireBase";
 import "./styles/home.css";
 import Button from '@material-ui/core/Button';
 
-export default function SendText(props) {
+export default function SendText() {
     let [data, setData] = useState(""),
         [isLoaded, setIsLoaded] = useState(false),
         [userId, setUserId] = useState(""),
@@ -31,6 +31,7 @@ export default function SendText(props) {
             setIsLoaded(true);
         })
         .catch(e => {console.log(e.message, "Catch error.")});
+        // eslint-disable-next-line
     },()=>{return true})
 
     const onSelectChange = e => {
