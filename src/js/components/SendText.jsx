@@ -3,7 +3,7 @@ import fire from "../configs/FireBase";
 import "./styles/home.css";
 import Button from '@material-ui/core/Button';
 
-export default function SendText(props) {
+export default function SendText() {
     let [data, setData] = useState(""),
         [isLoaded, setIsLoaded] = useState(false),
         [userId, setUserId] = useState(""),
@@ -14,7 +14,8 @@ export default function SendText(props) {
         fire.auth().onAuthStateChanged(user => {
             if (user) setUserId(user.uid);
         });
-    });
+     // eslint-disable-next-line
+    }, [null]);
 
     useEffect(() => {
         fire.firestore().collection("User").get()

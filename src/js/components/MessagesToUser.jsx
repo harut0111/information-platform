@@ -4,7 +4,6 @@ import "./styles/home.css";
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import "firebase/firestore";
 
 export default function MessagesToUser() {
     const [userId, setUserId] = useState(""),
@@ -15,7 +14,8 @@ export default function MessagesToUser() {
         fire.auth().onAuthStateChanged(user => {
             if (user) setUserId(user.uid);
         });
-    })
+    // eslint-disable-next-line
+    }, [null])
 
     useEffect(()=> {
         // Getting all users from database 
@@ -35,7 +35,6 @@ export default function MessagesToUser() {
         }))
         .then((arrAllUsers => {
             if(arrAllUsers.length) {
-
                 // Getting all messages to user from database 
                 fire.firestore().collection("User_text").where("aboutUserId", "==", userId).get()
                 .then(docRef => {
@@ -46,12 +45,12 @@ export default function MessagesToUser() {
                         tempObj.id = doc.data().creatorUserId;
                         tempObj.text = doc.data().theText;
                         tempObj.date = new Date(doc.data().dateCreated.seconds * 1000).toLocaleDateString() + " - " + new Date(doc.data().dateCreated.seconds*1000).toLocaleTimeString();
-                        console.log(tempObj.date);
+                        //console.log(tempObj.date);
                         tempArr.push(tempObj);
                     });
                     return tempArr;
                 })
-                .then((allSenders) => {  
+                .then((allSenders) => {
                     if (allSenders.length) {
                         let tempArr = [];
                         for (let elem of allSenders) {
@@ -125,7 +124,7 @@ export default function MessagesToUser() {
                         <div id="messages" key={val.evenId}>
                             <h2>{`${val.name} ${val.surname}`}</h2>
                             <h4>{`(Group: ${val.group}, Age: ${val.age})`}</h4>
-                            <hr/>
+                            <hr />
                             <h4>{`${val.date}`}</h4>
                             <div id="paragWrapper">
                                 <p>
