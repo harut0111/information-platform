@@ -2,6 +2,7 @@ import React, { useState, useEffect  } from 'react';
 import { Link } from "react-router-dom";
 import firebase from '../configs/FireBase';
 import history from '../routh/history';
+import { ADMIN_ID } from "../constants/signIn";
 
 function Admin() {
 
@@ -18,7 +19,7 @@ function Admin() {
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(user => {
-            if (user) {
+            if (user && user.uid === ADMIN_ID) {
                 setSignin(user.uid)
             } else {
                 history.push('/');

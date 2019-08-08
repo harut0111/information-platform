@@ -1,48 +1,24 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./styles/clock.css";
 
-class Clock extends Component {
+export default function Clock() {
 
-  constructor() {
-    super()
-    this.state={
-      time:new Date(),
-      asd: ""
-    }
-  }
-
-  currentTime() {
-    this.setState({
-      time: new Date()
-    })
-  }
-
-  componentWillMount() {
-    this.asd = setInterval(()=>this.currentTime(),1000)
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.asd, 1000)
-  }
-
-
-  render() {
-    
-  setInterval(
-   function colorGen() {
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    
-    document.getElementById("clock").style.color = "rgb(" + r + "," + g + "," + 0 + ")";
-  }, 1000);
-    
-    return (
-      <div id='clock'>
-        {this.state.time.toLocaleTimeString()}
-      </div>
-    )
-  }
+  const [time, setTime] = useState(new Date());
   
-}
+  useEffect(() => {
+    const id = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(id);
+  })
 
-export default Clock;
+  const color = `rgb(
+            ${Math.floor((Math.random() * 106) + 100)}, 
+            ${Math.floor((Math.random() * 106) + 100)}, 
+            ${Math.floor((Math.random() * 106) + 100)}
+        )`;
+
+  return (
+      <div id='clock' style={{color: color}}>
+        {time.toLocaleTimeString()}
+      </div>
+  )
+}

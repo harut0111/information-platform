@@ -8,5 +8,4 @@ export default function Header() {
             <Clock/> 
         </header>
     )
-   
 }

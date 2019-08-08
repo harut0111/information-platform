@@ -1,8 +1,6 @@
 .leftSide {
-  background-color: #F08080;
   width: auto;
-  border: 10px solid #F08080;
-  border-radius: 25px;
+  padding: 10px;
   margin-right: 2%;
   text-align: center;
   display: table-cell;
@@ -18,14 +16,12 @@
 }
 
 .leftSideWrapper h1{
-  border: 6px solid grey;
+  /* border: 6px solid grey; */
   /* background-image: linear-gradient(rgb(236, 218, 218), pink); */
-  background-color: #FFDAE0; 
-  border-radius: 50px;
+  /* background-color: #FFDAE0;  */
   padding: 40px;
   margin-top: -20px;
   color: #CF4554;
-  text-decoration-line: underline;
   text-decoration-style: solid; 
   text-decoration-color: slategrey;
 }
@@ -44,7 +40,7 @@
     border: 3px solid slategrey;
     border-radius: 25px;
     margin: 5px;
-    padding: 40px;
+    padding: 20px;
     /* background-image: linear-gradient(white, #F08080);  */
     /* background-color: #F08080; */
     background-image:url("../../../img/bg5.jpg");
