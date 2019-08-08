@@ -71,6 +71,7 @@ function SignIn (props) {
 
     function updateAuth() {
         firebase.auth().onAuthStateChanged(function(user) {
+
            
             if (user) {
                 user.uid === ADMIN_ID ? 
