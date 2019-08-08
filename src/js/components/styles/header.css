@@ -2,8 +2,14 @@ header {
   text-align: center;
   border: 1px solid grey;
   background-color: #3b5998;
-  padding: 1.5%;
+  padding: 1%;
   color: #fff;
   display: flex;
   justify-content: space-between;
 }
+
+header img {
+  width: 60px;
+  margin: 0;
+}
+

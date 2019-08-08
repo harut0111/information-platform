@@ -4,4 +4,18 @@ footer {
   background-color: #3b5998;
   padding: 1.5%;
   color: #fff;
+  text-align: center;
+}
+footer img {
+  width: 30px;
+  padding: 5px;
+}
+
+.info div {
+display: inline-block;
+
+}
+footer p {
+  display: inline-block;
+  
 }
