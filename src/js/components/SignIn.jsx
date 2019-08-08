@@ -1,9 +1,17 @@
-import React from "react";
-import {connect} from 'react-redux';
-import { setEmailValue, setPasswordValue, handleClickShowPassword} from "../redux/actions/signIn/signInActions";
-import firebase from "../configs/FireBase";
 import "firebase/auth";
 import "./styles/signIn.css";
+import React, { useEffect } from "react";
+import {connect} from 'react-redux';
+import firebase from "../configs/FireBase";
+import history from '../routh/history';
+import {Link} from "react-router-dom";
+import { ADMIN_ID } from "../constants/signIn";
+
+import { 
+    setEmailValue, 
+    setPasswordValue, 
+    handleClickShowPassword } from "../redux/actions/signIn/signInActions";
+
 // Material UI packages --------------------------------------
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,8 +23,6 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 // ------------------------------------------------------------
-// import { Route, Redirect } from 'react-router'
-import {Link} from "react-router-dom";
 
 export const useStyles = makeStyles(theme => ({
     margin: {
@@ -52,26 +58,46 @@ export const useStyles = makeStyles(theme => ({
     },
 }));
 
-
 function SignIn (props) {
+
     const classes = useStyles();
-    const {email, password, showPassword, setEmailValue, setPasswordValue, handleClickShowPassword} = props;
-    const onSignIn = e => {
+    const {
+        email, 
+        password, 
+        showPassword, 
+        setEmailValue, 
+        setPasswordValue, 
+        handleClickShowPassword } = props;
+
+    function updateAuth() {
+        firebase.auth().onAuthStateChanged(function(user) {
+
+           
+            if (user) {
+                user.uid === ADMIN_ID ? 
+                history.push('/Admin') : history.push('/Home');
+            } else {
+                //console.log("No user is signed in.", user);
+            }
+          });
+    }
+    
+    useEffect(() => {
+        updateAuth();
+         // eslint-disable-next-line
+    }, [null]);
+
+    function login (e) {
         e.preventDefault();
-        const emailValue = email,
-             passValue = password;
-        setEmailValue("");
-        setPasswordValue("");
-        let auth = firebase.auth(),
-            promise = auth.signInWithEmailAndPassword(emailValue, passValue);
-        promise.then(function(val){
-            alert("Loged In");
+        firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+            // updateAuth();
         })
-        promise.catch(e => {
-            //alert(e.message);
-            document.getElementById("errorMsg").style.visibility = "visible";
+        .catch((error) => {
+            window.alert(error.message);
         });
     }
+
+
     const handleMouseDownPassword = e => {
         e.preventDefault();
     };
@@ -108,7 +134,7 @@ function SignIn (props) {
                                 <IconButton
                                     edge="end"
                                     aria-label="toggle password visibility"
-                                    onClick={e => { handleClickShowPassword(!showPassword)}}
+                                    onClick={() => { handleClickShowPassword(!showPassword)}}
                                     onMouseDown={handleMouseDownPassword}
                                 >
                                 {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -118,11 +144,8 @@ function SignIn (props) {
                     }}
                 />
             </div>
-            <Link to="/Home" style={{ textDecoration: "none" }}>
-                <Button onClick={onSignIn} 
-                        variant="contained" 
-                        color="default" 
-                        className={classes.buttonSignIn}>
+            <Link to='/' onClick={login} style={{ textDecoration: "none" }}>
+                <Button variant="contained" color="default"  className={classes.buttonSignIn}>
                     SIGN IN<Icon className={classes.rightIcon}>send</Icon>
                 </Button>
             </Link>
@@ -141,14 +164,17 @@ const mapStateToProps = state => {
     return {
         email: state.email,
         password: state.password,
-        showPassword: state.showPassword
+        showPassword: state.showPassword,
+        signin: state.signin
     }
 }
 
 const mapDispatchToProps = {
     setEmailValue,
     setPasswordValue,
-    handleClickShowPassword
+    handleClickShowPassword,
 }
 
+
+ // eslint-disable-next-line
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
