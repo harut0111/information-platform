@@ -1,8 +1,7 @@
 import { 
     CHANGE_EMAIL_VALUE, 
     CHANGE_PASSWORD_VALUE, 
-    SHOW_PASSWORD_VALUE, 
-    CHECK_AUTH } from "../../../constants/signIn";
+    SHOW_PASSWORD_VALUE } from "../../../constants/signIn";
 
 const defaultState = {
     email: "",
@@ -28,10 +27,6 @@ const signInReducer = (state = defaultState, action) => {
                 ...state,
                 showPassword: action.payload
             }
-        case CHECK_AUTH:
-            return Object.assign({}, state, {
-                signin: action.payload
-            });
         default: 
             return state;
     }

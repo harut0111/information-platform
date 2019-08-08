@@ -14,13 +14,13 @@ export default function SendText(props) {
         fire.auth().onAuthStateChanged(user => {
             if (user) setUserId(user.uid);
         });
-    })
+    });
 
     useEffect(() => {
         fire.firestore().collection("User").get()
         .then(querySnapshot => {
             let arrTemp = [];
-            querySnapshot.forEach(function (doc) {
+            querySnapshot.forEach( doc => {
                 if (doc.id !== userId) {
                     let objTemp = { ...doc.data() };
                     objTemp.id = doc.id;
@@ -31,7 +31,7 @@ export default function SendText(props) {
             setIsLoaded(true);
         })
         .catch(e => {console.log(e.message, "Catch error.")});
-    },()=>{return true})
+    }, [userId]);
 
     const onSelectChange = e => {
         e.preventDefault();
@@ -44,6 +44,10 @@ export default function SendText(props) {
     };
     
     const onSendClick = e => {
+        if(!text)  {
+            document.getElementById("textarea").style.border = "3px solid red";
+            return false;
+        }
         e.preventDefault();
         // Call to Firestore (DataBase)
         fire.firestore().collection("User_text").doc().set({
@@ -81,8 +85,11 @@ export default function SendText(props) {
                 <textarea id="textarea"
                     rows="5"
                     cols="25"
-                    required placeholder="Write text to selected user."
+                    required 
+                    placeholder="Write text to selected user."
                     onChange={onTextChange}
+                    onMouseOver={(e) => e.target.style.border = "3px solid #155e80"}
+                    onMouseOut={(e) => e.target.style.border = "3px solid grey"}
                     value={text}
                     name="text">
                 </textarea>

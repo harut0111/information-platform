@@ -108,10 +108,6 @@ textarea {
   font-size: 16px;
 }
 
-textarea:hover {
-    border: 3px solid #155e80;
-}
-
 #messages {
     background-color: #155E80;
     color: #F5F5DC;
@@ -119,6 +115,7 @@ textarea:hover {
     margin: 10px;
     border-radius: 10px;
     border: 3px solid grey;
+    display: grid;
 }
 
 #messages:hover {
@@ -140,4 +137,10 @@ textarea:hover {
 
  #messages hr {
      margin: 10px 0;
+ }
+
+ #paragWrapper {
+     max-width: 100%;
+     overflow: hidden;
+     word-wrap: break-word;
  }

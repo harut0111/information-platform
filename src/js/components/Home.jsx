@@ -6,8 +6,8 @@ import Vote from "./Vote";
 import SendText from "./SendText";
 import MessagesToYou from "./MessagesToUser";
 
-export default function Home() {
 
+export default function Home() {
     return (
         <Router>
             <div id="homeWrapper">
@@ -17,7 +17,7 @@ export default function Home() {
                         <h2>Send Text</h2>
                     </Link>
                     <Link to="/Home/MessagesToYou">
-                        <h2>Messages To You</h2>
+                        <h2>Messages To ME</h2>
                     </Link>
                     <Link to="/Home/Vote">
                         <h2>Vote</h2>

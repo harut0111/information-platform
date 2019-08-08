@@ -1,15 +1,16 @@
+import "firebase/auth";
+import "./styles/signIn.css";
 import React, { useEffect } from "react";
 import {connect} from 'react-redux';
 import firebase from "../configs/FireBase";
-import "firebase/auth";
-import "./styles/signIn.css";
 import history from '../routh/history';
+import {Link} from "react-router-dom";
+import { ADMIN_ID } from "../constants/signIn";
 
 import { 
     setEmailValue, 
     setPasswordValue, 
-    handleClickShowPassword,
-    checkAuth } from "../redux/actions/signIn/signInActions";
+    handleClickShowPassword } from "../redux/actions/signIn/signInActions";
 
 // Material UI packages --------------------------------------
 import clsx from 'clsx';
@@ -22,8 +23,6 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 // ------------------------------------------------------------
-//  import { Route, Redirect } from 'react-router'
-import {Link} from "react-router-dom";
 
 export const useStyles = makeStyles(theme => ({
     margin: {
@@ -68,29 +67,30 @@ function SignIn (props) {
         showPassword, 
         setEmailValue, 
         setPasswordValue, 
-        handleClickShowPassword,
-        signin } = props;
-
-    useEffect(() => {
-
-        updateAuth();
-        if(signin) {
-            history.push('/Home');
-        }
-        // console.log('did update', signin);
-        // eslint-disable-next-line
-      }, [signin]); 
+        handleClickShowPassword } = props;
 
     function updateAuth() {
-        firebase.auth().onAuthStateChanged(user => {
-            // ---console.log('auth is updated', user);
-            props.checkAuth(user);
-        })
+        firebase.auth().onAuthStateChanged(function(user) {
+
+            if (user) {
+                user.uid === ADMIN_ID ? 
+                history.push('/Admin') : history.push('/Home');
+            } else {
+                //console.log("No user is signed in.", user);
+            }
+          });
     }
+    
+    useEffect(() => {
+        updateAuth();
+         // eslint-disable-next-line
+    }, [null]);
 
     function login (e) {
         e.preventDefault();
-        firebase.auth().signInWithEmailAndPassword(email, password)
+        firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+            // updateAuth();
+        })
         .catch((error) => {
             window.alert(error.message);
         });
@@ -172,7 +172,6 @@ const mapDispatchToProps = {
     setEmailValue,
     setPasswordValue,
     handleClickShowPassword,
-    checkAuth
 }
 
 
