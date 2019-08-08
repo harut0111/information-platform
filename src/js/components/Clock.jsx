@@ -17,7 +17,7 @@ export default function Clock() {
         )`;
 
   return (
-      <div id='clock' style={{color: color}}>
+      <div className='clock' style={{color: color}}>
         {time.toLocaleTimeString()}
       </div>
   )

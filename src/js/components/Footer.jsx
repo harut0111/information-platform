@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles/footer.css"; 
-import {NavLink} from "react-router-dom";
+/*eslint-disable*/
 
 export default function Footer() {
     return (
@@ -12,13 +12,13 @@ export default function Footer() {
                 <p>Site. hhae.com </p>
                 <p>Address. 3, Komitas str., Yerevan, Armenia </p><br/>
                 <div><h4>OUR PAGES</h4>
-                   <NavLink to='/fb'><img src="https://image.flaticon.com/icons/png/512/124/124010.png"/></NavLink>
-                   <NavLink to='/tvit'><img src="https://image.flaticon.com/icons/png/512/124/124021.png"/></NavLink>
-                   <NavLink to='/insta'><img src="https://image.flaticon.com/icons/png/512/124/124032.png"/></NavLink>
-                   <NavLink to='/tel'><img src="https://image.flaticon.com/icons/png/512/124/124019.png"/></NavLink>
-                   <NavLink to='/vk'><img src="https://image.flaticon.com/icons/png/512/124/124029.png"/></NavLink>
-                   <NavLink to='/wiber'><img src="https://image.flaticon.com/icons/png/512/124/124016.png"/></NavLink>
-                   <NavLink to='/Wats'><img src="https://image.flaticon.com/icons/png/512/124/124034.png"/></NavLink>
+                   <a href='#'><img src="https://image.flaticon.com/icons/png/512/124/124010.png"/></a>
+                   <a href='#'><img src="https://image.flaticon.com/icons/png/512/124/124021.png"/></a>
+                   <a href='#'><img src="https://image.flaticon.com/icons/png/512/124/124032.png"/></a>
+                   <a href='#'><img src="https://image.flaticon.com/icons/png/512/124/124019.png"/></a>
+                   <a href='#'><img src="https://image.flaticon.com/icons/png/512/124/124029.png"/></a>
+                   <a href='#'><img src="https://image.flaticon.com/icons/png/512/124/124016.png"/></a>
+                   <a href='#'><img src="https://image.flaticon.com/icons/png/512/124/124034.png"/></a>
                    </div>
             </div>
             
