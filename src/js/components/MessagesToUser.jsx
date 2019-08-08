@@ -4,7 +4,6 @@ import "./styles/home.css";
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import "firebase/firestore";
 
 export default function MessagesToUser() {
     const [userId, setUserId] = useState(""),
@@ -15,7 +14,8 @@ export default function MessagesToUser() {
         fire.auth().onAuthStateChanged(user => {
             if (user) setUserId(user.uid);
         });
-    })
+    // eslint-disable-next-line
+    }, [null])
 
     useEffect(()=> {
         // Getting all users from database 
@@ -35,8 +35,6 @@ export default function MessagesToUser() {
         }))
         .then((arrAllUsers => {
             if(arrAllUsers.length) {
-               //console.log(arrAllUsers);
-
                 // Getting all messages to user from database 
                 fire.firestore().collection("User_text").where("aboutUserId", "==", userId).get()
                 .then(docRef => {
@@ -46,12 +44,13 @@ export default function MessagesToUser() {
                         tempObj.evenId = doc.id;
                         tempObj.id = doc.data().creatorUserId;
                         tempObj.text = doc.data().theText;
-                        //tempObj.date = doc.data().dateCreated;
+                        tempObj.date = new Date(doc.data().dateCreated.seconds * 1000).toLocaleDateString() + " - " + new Date(doc.data().dateCreated.seconds*1000).toLocaleTimeString();
+                        //console.log(tempObj.date);
                         tempArr.push(tempObj);
                     });
                     return tempArr;
                 })
-                .then((allSenders) => {   
+                .then((allSenders) => {
                     if (allSenders.length) {
                         let tempArr = [];
                         for (let elem of allSenders) {
@@ -61,8 +60,8 @@ export default function MessagesToUser() {
                                     tempObj = {...user};
                                     delete tempObj.id;
                                     tempObj.text = elem.text;
+                                    tempObj.date = elem.date;
                                     tempObj.evenId = elem.evenId;
-                                    //console.log(tempObj.evenId);
                                     tempArr.push(tempObj)
                                     break;
                                 }
@@ -70,32 +69,39 @@ export default function MessagesToUser() {
                         }
                         //console.log(tempArr);
                         if (JSON.stringify(data) !== JSON.stringify(tempArr)) {
-                            setData(tempArr);
+                            setData([...tempArr]);
                             setIsLoaded(true);
                         }  
                     }
                 })
             }
         }))
-        .catch((e)=>{console.log(e.message)})
-        // eslint-disable-next-line
+        .catch((e)=>{console.log(e.message)});
+         // eslint-disable-next-line
     }, [userId])
 
     const onRemMsg = e => {
         e.preventDefault();
-        //e.target.parentNode.style.color = "red";
-        let eventNode = e.target.parentNode;
-        let id = e.target.parentNode.parentNode.parentNode.parentNode.id;
-        if(id) {
-            fire.firestore().collection("User_text").doc(id).delete()
-            .then((() => {
-                eventNode.style.color = "red";
-                console.log("Successfully removed !");
-            }), e => {
-                console.log(e.message);
-            })
+        let id = e.target.getAttribute("data-id") || e.target.parentNode.getAttribute("data-id"),
+            tempArr = [...data],
+            index,
+            i = 0;
+
+        for(let el of tempArr) {
+            if(el.evenId === id) {
+                index = i;
+                tempArr.splice(index, 1);
+                setData([...tempArr]);
+                break;
+            }
+            i += 1;
         }
 
+        fire.firestore().collection("User_text").doc(id).delete()
+        .then(() => {
+            console.log("Successfully removed !");
+        })
+        .catch(e => {console.log(e.message)});
     }
 
     const useStyles = makeStyles(theme => ({
@@ -107,7 +113,7 @@ export default function MessagesToUser() {
     const classes = useStyles();
 
     return (
-        isLoaded === false ? (
+        !isLoaded ? (
             <div id="toReferPage">
                 <h1>You havn't messages !</h1>
             </div>
@@ -116,14 +122,18 @@ export default function MessagesToUser() {
                 <h1>Аll letters sent to you !</h1>
                     {data.map( val => (
                         <div id="messages" key={val.evenId}>
-                            <h3>{`${val.name} ${val.surname}`}</h3>
-                            <h5>{`(Group: ${val.group}, Age: ${val.age})`}</h5><hr/>
-                            <div>
-                                <p id={val.evenId}>
+                            <h2>{`${val.name} ${val.surname}`}</h2>
+                            <h4>{`(Group: ${val.group}, Age: ${val.age})`}</h4>
+                            <hr />
+                            <h4>{`${val.date}`}</h4>
+                            <div id="paragWrapper">
+                                <p>
                                     {val.text}
                                     <IconButton className={classes.button} 
-                                                aria-label="delete" onClick={onRemMsg}>
-                                        <DeleteIcon color="primary"/>
+                                                aria-label="delete"
+                                                onClick={onRemMsg}
+                                                data-id = {val.evenId}>
+                                        <DeleteIcon color="secondary" data-id={val.evenId} />
                                     </IconButton>
                                 </p>
                             </div>
@@ -131,7 +141,6 @@ export default function MessagesToUser() {
                     ))}
             </div> 
         )
-       
     )  
 }
 

@@ -25,15 +25,15 @@ export default function UserWelcome(props) {
     useEffect(() => {
         if (userId) {
             fire.firestore().collection("User").doc(userId).get()
-                .then(docRef => {
-                    setName(docRef.data().name);
-                    setSurname(docRef.data().surname);
-                    setAge(docRef.data().age);
-                    setGroup(docRef.data().group);
-                    setEmail(docRef.data().email);
-                    setIsLoaded(true);
-                })
-                .catch(e => { console.log(e.message) })
+            .then(docRef => {
+                setName(docRef.data().name);
+                setSurname(docRef.data().surname);
+                setAge(docRef.data().age);
+                setGroup(docRef.data().group);
+                setEmail(docRef.data().email);
+                setIsLoaded(true);
+            })
+            .catch(e => { console.log(e.message) })
         }
     })
     
@@ -47,6 +47,7 @@ export default function UserWelcome(props) {
             console.log(e.message);
         })
     }
+    
     const onUserInfo = e => {
         e.preventDefault();
         let temp = document.getElementById("userInfo").style;
