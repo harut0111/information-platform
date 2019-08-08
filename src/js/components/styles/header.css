@@ -4,4 +4,6 @@ header {
   background-color: #3b5998;
   padding: 1.5%;
   color: #fff;
+  display: flex;
+  justify-content: space-between;
 }
