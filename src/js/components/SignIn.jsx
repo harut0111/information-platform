@@ -24,8 +24,6 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 // ------------------------------------------------------------
 
-
-
 export const useStyles = makeStyles(theme => ({
     margin: {
         margin: theme.spacing(1),
@@ -60,7 +58,6 @@ export const useStyles = makeStyles(theme => ({
     },
 }));
 
-
 function SignIn (props) {
 
     const classes = useStyles();
@@ -74,6 +71,7 @@ function SignIn (props) {
 
     function updateAuth() {
         firebase.auth().onAuthStateChanged(function(user) {
+
            
             if (user) {
                 user.uid === ADMIN_ID ? 
@@ -176,6 +174,7 @@ const mapDispatchToProps = {
     setPasswordValue,
     handleClickShowPassword,
 }
+
 
  // eslint-disable-next-line
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

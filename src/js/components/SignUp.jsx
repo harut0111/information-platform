@@ -23,7 +23,6 @@ class SignUp extends React.Component {
       }
     }
 
-
     handleChange = e => {
       let fields = this.state.fields;
       fields[e.target.name] = e.target.value;
@@ -31,7 +30,6 @@ class SignUp extends React.Component {
         fields
       });
     }
-
 
     submituserRegistrationForm = e => {
       e.preventDefault();
