@@ -1,8 +1,6 @@
-
 import "./styles/mainLeftSide.css";
 import firebase from "../configs/FireBase";
-import "firebase/firestore";
- 
+import "firebase/firestore"; 
 import React, { Component } from 'react';
 
 export class MainLeftSide extends Component {

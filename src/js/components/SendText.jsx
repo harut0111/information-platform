@@ -45,11 +45,11 @@ export default function SendText() {
     };
     
     const onSendClick = e => {
+        e.preventDefault();
         if(!text)  {
             document.getElementById("textarea").style.border = "3px solid red";
             return false;
         }
-        e.preventDefault();
         // Call to Firestore (DataBase)
         fire.firestore().collection("User_text").doc().set({
             creatorUserId: userId,
@@ -60,6 +60,7 @@ export default function SendText() {
         .then(() => {
             alert("Text successfully sended!");
             console.log("Document successfully written!");
+            console.log(data);
         })
         .catch(e => {
             console.log("Error writing document: ", e);

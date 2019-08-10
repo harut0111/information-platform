@@ -1,13 +1,25 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import "./styles/home.css";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import UserWelcome from "./UserWelcome";
 import Vote from "./Vote";
 import SendText from "./SendText";
 import MessagesToYou from "./MessagesToUser";
+import fire from "../configs/FireBase";
+import history from "../routh/history";
 
 
 export default function Home() {
+    useEffect(() => {
+        fire.auth().onAuthStateChanged((user) => {
+            if (!user) {
+                console.log("user doesn't exist !");
+                return history.push("/");
+            }
+            console.log("user exist !");
+        });
+    },[null]);
+
     return (
         <Router>
             <div id="homeWrapper">
@@ -28,5 +40,5 @@ export default function Home() {
                 <Route path="/Home/Vote" component={Vote} />  
             </div>
         </Router>
-    )
+        )    
 }
