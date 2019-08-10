@@ -58,6 +58,7 @@ export default function UserWelcome(props) {
         <div id="welcomeSection">
             <Link to="/">
                 <Button onClick={handleLogOut}
+                        size="small"
                         variant="contained" 
                         style={{ marginLeft: "80%"}}>
                 LOG OUT
@@ -65,10 +66,11 @@ export default function UserWelcome(props) {
             </Link>
             {isLoaded ? (
                 <div>
-                    <h1>Welcome {name + " " + surname}</h1>
+                    <h2>Welcome {name + " " + surname}</h2>
                     <Button onClick={onUserInfo}
                         variant="contained"
-                        style={{ margin: "15px 0" }}>
+                        size="small"
+                        style={{ margin: "10px 0"}}>
                         INFO
                     </Button>
                     <div id="userInfo">

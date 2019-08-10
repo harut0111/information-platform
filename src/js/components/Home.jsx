@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import "./styles/home.css";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import UserWelcome from "./UserWelcome";
@@ -18,6 +18,7 @@ export default function Home() {
             }
             console.log("user exist !");
         });
+    // eslint-disable-next-line
     },[null]);
 
     return (
@@ -29,7 +30,7 @@ export default function Home() {
                         <h2>Send Text</h2>
                     </Link>
                     <Link to="/Home/MessagesToYou">
-                        <h2>Messages To ME</h2>
+                        <h2>Message To ME</h2>
                     </Link>
                     <Link to="/Home/Vote">
                         <h2>Vote</h2>

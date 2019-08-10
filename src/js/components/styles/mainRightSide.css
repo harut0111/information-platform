@@ -1,16 +1,15 @@
 .rightSide {
-  width: 38%;
-  padding: 10px;
+  width: 34%;
+  padding: 5px;
   margin-left: 2%;
   height: fit-content;
   display: table-cell;
-  /* background-image: url("./bg2.jpg");
-  background-repeat: round; */
 }
 
 .article {
+  margin-top: 40px;
   border: 1px solid grey;
-  border-radius: 25px;
+  border-radius: 20px;
   padding: 5px;
   text-align: center;
 }

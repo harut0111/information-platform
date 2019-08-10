@@ -47,7 +47,7 @@ export const useStyles = makeStyles(theme => ({
         width: 200,
         marginTop: 10,
         fontWeight: "bold",
-        color: "#CF4554"
+        color: "#3B5998"
     },
     buttonSignUp: {
         fontSize: 18,
@@ -72,7 +72,6 @@ function SignIn (props) {
     function updateAuth() {
         firebase.auth().onAuthStateChanged(function(user) {
 
-           
             if (user) {
                 user.uid === ADMIN_ID ? 
                 history.push('/Admin') : history.push('/Home');
@@ -104,7 +103,7 @@ function SignIn (props) {
 
     return (
         <div id="signInContainer">
-            <h1><span style={{ color: "#3F51B5"}}>SIGN</span> IN</h1>
+            <h1>SIGN IN</h1>
             <p id="errorMsg">Wrong Email or Password.</p>
             <div>
                 <TextField

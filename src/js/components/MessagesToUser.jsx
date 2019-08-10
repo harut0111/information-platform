@@ -24,11 +24,8 @@ export default function MessagesToUser() {
             let tempArr = [];
             snapshot.forEach((doc) => {
                 let tempObj = {};
+                tempObj = {...doc.data()};
                 tempObj.id = doc.id;
-                tempObj.name = doc.data().name;
-                tempObj.surname = doc.data().surname;
-                tempObj.group = doc.data().group;
-                tempObj.age = doc.data().age;
                 tempArr.push(tempObj);
             })
             return tempArr;
@@ -44,11 +41,11 @@ export default function MessagesToUser() {
                         tempObj.evenId = doc.id;
                         tempObj.id = doc.data().creatorUserId;
                         tempObj.text = doc.data().theText;
-                        tempObj.date = new Date(doc.data().dateCreated.seconds * 1000).toLocaleDateString() + " - " + new Date(doc.data().dateCreated.seconds*1000).toLocaleTimeString();
-                        //console.log(tempObj.date);
+                        //tempObj.date = new Date(doc.data().dateCreated.seconds * 1000).toLocaleDateString() + " - " + new Date(doc.data().dateCreated.seconds*1000).toLocaleTimeString();
+                        tempObj.date = doc.data().dateCreated.seconds;
                         tempArr.push(tempObj);
                     });
-                    return tempArr;
+                    return tempArr.sort((a, b) => b.date - a.date);
                 })
                 .then((allSenders) => {
                     if (allSenders.length) {
@@ -60,7 +57,7 @@ export default function MessagesToUser() {
                                     tempObj = {...user};
                                     delete tempObj.id;
                                     tempObj.text = elem.text;
-                                    tempObj.date = elem.date;
+                                    tempObj.date = new Date(elem.date * 1000).toLocaleDateString() + " - " + new Date(elem.date * 1000).toLocaleTimeString();
                                     tempObj.evenId = elem.evenId;
                                     tempArr.push(tempObj)
                                     break;
@@ -115,7 +112,7 @@ export default function MessagesToUser() {
     return (
         !isLoaded ? (
             <div id="toReferPage">
-                <h1>You havn't messages !</h1>
+                <h2 style={{marginTop: 20}}>You havn't messages !</h2>
             </div>
         ) : (
              <div id="toReferPage">
