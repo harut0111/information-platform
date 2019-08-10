@@ -1,0 +1,139 @@
+.adminCont {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.adminCont form input {
+    width: 80%;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 0;
+}
+
+.adminCont button {
+    padding: 5px;
+    cursor: pointer;
+    margin: 5px 0;
+    display: block;
+    width: 50%;
+}
+
+.adminCont span {
+    padding: 2px;
+    background: forestgreen;
+    margin: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+
+/* --------- */
+.adminNavbar ul{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    background: #4CAF50;
+    font-size: 20px;
+}
+
+.adminNavbar ul::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.adminNavbar li {
+    display: block;
+    text-decoration: none;
+    padding: 14px 16px;
+    color: white;
+    float: left;
+    cursor: pointer;
+}
+
+.adminNavbar li:hover {
+    background: #127215;
+}
+
+.adminNavbar li:last-child {
+    float: right;
+    padding: 14px 40px;
+}
+/* ------- */
+
+
+
+.adminMainCont {
+    min-height: 600px;
+    border: 3px dotted red;
+    display: flex;
+}
+
+.adminUserItems {
+    border: 1px solid red;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.adminGroupItems {
+    border: 1px solid red;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 10px;
+
+}
+
+.adminGroupItems div {
+    display: inline-block;
+}
+
+.adminMainCont > div {
+    border: 2px dotted black;
+    height: fit-content;
+    width: 30%;
+    display: inline-block;
+    margin: 10px;
+}
+
+.adminGroupItems h4 {
+    color: red;
+}
+
+.adminGroupsCont {
+    padding: 5px;
+    font-size: 15px;
+}
+
+.groupPopupForm {
+    border: 1px dotted blue;
+    padding: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+/* @media screen and (max-width: 850px){
+    div ul{
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    div ul li{
+        float: left;
+    }
+    div.content{
+        margin-left: 2px;
+    }
+    @media screen and (max-width: 520px){
+        div ul li{
+            float: none;
+            text-align: center;
+        }
+    }
+} */

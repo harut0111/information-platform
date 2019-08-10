@@ -12,7 +12,7 @@
   margin-left: 5px;
 }
 
-form label {
+#register form label {
   font-size: 18px;
   display: block;
   width: 100%;
@@ -20,7 +20,7 @@ form label {
   font-weight: bold;
 }
 
-form input {
+#register form input {
   display: block;
   width: 100%;
   font-size: 18px;
