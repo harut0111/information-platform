@@ -12,6 +12,7 @@ export class MainLeftSide extends Component {
           groupList: [],
         }
       }
+
       componentDidMount() {
     
         this.db = firebase.firestore();
@@ -45,7 +46,7 @@ export class MainLeftSide extends Component {
             </div>
             </div>
     )
-}
+  }
 }
 
-export default MainLeftSide
+export default MainLeftSide;
