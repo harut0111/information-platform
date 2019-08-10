@@ -18,11 +18,12 @@
 }
 
 #welcomeSection {
-    background-color: beige;
+    background-color: #3B5998;
+    color: #fff;
     padding: 10px;
     max-width: 90%;
     margin: -20px auto 60px auto;
-    border: 3px solid grey;
+    border: 1px solid grey;
     border-radius: 20px;
 }
 #welcomeSection h1 {
@@ -36,8 +37,8 @@
     padding: 10px;
     border-radius: 20px;
     display: none;
-    background-color: #155E80;
-    color: #F5F5DC;
+    background-color: #3B597F;
+    color: #fff;
 }
 
 #welcomeSection #userInfo:hover {
@@ -56,7 +57,7 @@
 }
 
 #refSection a:hover {
-    background-color: #3F51B5;
+    background-color: #3B5998;
     border-color: #fff;
     color: #F5F5DC;
 }
@@ -107,7 +108,7 @@ textarea {
 }
 
 #messages {
-    background-color: #155E80;
+    background-color: #3B597F;
     color: #F5F5DC;
     padding: 10px;
     margin: 10px;
@@ -117,7 +118,7 @@ textarea {
 }
 
 #messages:hover {
-    background-color: #1A76A0;
+    background-color: #3B5998;
 }
 
 #messages p {
@@ -131,11 +132,17 @@ textarea {
     line-height: 20px;
     cursor: pointer;
     word-wrap: break-word;
+    font-size: 16px;
+    font-weight: normal;
  }
 
  #messages hr {
      margin: 10px 0;
  }
+
+#messages h4, #messages h5 {
+    margin: 5px;
+}
 
  #paragWrapper {
      max-width: 100%;
@@ -145,4 +152,36 @@ textarea {
 
 /* ---------------------- vote  -----------------------*/
 
+.inputTypography {
+    padding: 10px;
+    margin: 10px;
+    border: 3px solid grey;
+    border-radius: 10px;
+}
 
+#buttonTypography {
+    padding: 10px;
+    margin-left: 40%;
+    border: 3px solid grey;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#like_unlike_container {
+    display: flex;
+    justify-content: space-around;
+}
+
+#like_unlike_container img {
+    width: 40px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#like_unlike_container img:hover {
+   opacity: 0.5;
+}
+
+#like_unlike_container img:active {
+    opacity: 0.9;
+}

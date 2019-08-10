@@ -58,7 +58,6 @@ export default function UserWelcome(props) {
         <div id="welcomeSection">
             <Link to="/">
                 <Button onClick={handleLogOut}
-                        color="primary" 
                         variant="contained" 
                         style={{ marginLeft: "80%"}}>
                 LOG OUT
