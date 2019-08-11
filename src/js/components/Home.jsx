@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import "./styles/home.css";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import UserWelcome from "./UserWelcome";
@@ -7,7 +7,7 @@ import SendText from "./SendText";
 import MessagesToYou from "./MessagesToUser";
 import fire from "../configs/FireBase";
 import history from "../routh/history";
-
+/*eslint-disable*/
 
 export default function Home() {
     useEffect(() => {
