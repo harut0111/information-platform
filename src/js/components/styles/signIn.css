@@ -2,7 +2,6 @@
     border: 1px solid grey;
     border-radius: 20px;
     width: max-content;
-    /* padding: 40px 80px 60px 80px; */
     padding: 10px 40px 30px 40px;
     background-color: #8b9dc3;
     text-align: center;
@@ -25,4 +24,3 @@
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
-
