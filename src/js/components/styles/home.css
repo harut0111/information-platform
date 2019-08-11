@@ -21,24 +21,24 @@
     background-color: #3B5998;
     color: #fff;
     padding: 10px;
-    max-width: 90%;
+    max-width: 80%;
     margin: -20px auto 60px auto;
     border: 1px solid grey;
-    border-radius: 20px;
+    border-radius: 10px;
 }
-#welcomeSection h1 {
+#welcomeSection h2 {
     margin-top: -40px;
 }
 
 #welcomeSection #userInfo {  
-    border: 3px solid grey;
+    border: 1px solid grey;
     width: max-content;
     margin: 10px auto;
-    padding: 10px;
-    border-radius: 20px;
+    padding: 5px;
+    border-radius: 10px;
     display: none;
     background-color: #3B597F;
-    color: #fff;
+    font-size: 14px;
 }
 
 #welcomeSection #userInfo:hover {
@@ -47,13 +47,13 @@
 }
 
 #refSection a {
-    padding: 40px;
+    padding: 20px;
     background-color: beige;
-    border: 3px solid grey;
-    border-radius: 20px;
+    border: 1px solid grey;
+    border-radius: 10px;
     text-decoration: none;
     color: #333;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 #refSection a:hover {
@@ -63,11 +63,11 @@
 }
 
 #toReferPage {
-    padding: 50px; 
+    padding: 10px 10px 25px 10px;
     background-color: beige; 
     border: 3px solid grey;
-    border-radius: 20px;
-    max-width: 70%;
+    border-radius: 10px;
+    max-width: 60%;
     margin: 50px auto;
     text-align: center;
     display: flex;
@@ -78,20 +78,20 @@
 
 #toReferPage h1{
     padding: 5px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 #toReferPage select {
-    padding: 16px;
-    font-size: 18px;
+    padding: 10px;
+    font-size: 16px;
     cursor: pointer;
     font-weight: bold;
     background-color: #fff;
-    color: #444;
-    text-align: center;
+    color: #333;
     border: 3px solid grey;
     border-radius: 10px;
-    margin-left: 10px;
+    width: max-content;
+    margin: 0 auto;
 }
 
 #toReferPage select:hover {
@@ -99,41 +99,46 @@
 }
 
 textarea {
-  width: 50%;
+  width: 40%;
   margin: 20px auto;
   border: 3px solid grey;
-  border-radius: 20px;
-  padding: 10px;
+  border-radius: 10px;
+  padding: 5px;
   font-size: 16px;
 }
-
+/* ===================  Messages to user  ========================= */
 #messages {
     background-color: #3B597F;
     color: #F5F5DC;
     padding: 10px;
-    margin: 10px;
     border-radius: 10px;
     border: 3px solid grey;
     display: grid;
+    width: 70%;
+    margin: 10px auto;
 }
 
 #messages:hover {
     background-color: #3B5998;
 }
 
+#paragWrapper {
+    overflow: hidden;
+}
+
 #messages p {
-    padding: 10px;
-    border: 3px solid grey;
-    border-radius: 10px;
-    margin: 20px;
+    padding: 5px;
+    border: 1px solid grey;
+    border-radius: 5px;
     background-color: #fff;
     font-weight: bold;
     color: #222;
     line-height: 20px;
-    cursor: pointer;
     word-wrap: break-word;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: normal;
+    max-width: 60%;
+    margin: 10px auto;
  }
 
  #messages hr {
@@ -144,13 +149,12 @@ textarea {
     margin: 5px;
 }
 
- #paragWrapper {
-     max-width: 100%;
-     overflow: hidden;
-     word-wrap: break-word;
- }
 
 /* ---------------------- vote  -----------------------*/
+
+#voteHead {
+   margin: 10px 0 10px 30px;
+}
 
 .inputTypography {
     padding: 10px;
@@ -173,9 +177,9 @@ textarea {
 }
 
 #like_unlike_container img {
-    width: 40px;
+    width: 30px;
     cursor: pointer;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 #like_unlike_container img:hover {
