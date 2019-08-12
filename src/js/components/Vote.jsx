@@ -34,11 +34,8 @@ export default function Vote () {
                 let tempAllUsersArr = [];
                 snapshot.forEach((doc) => {
                     let tempObj = {};
+                    tempObj = {...doc.data()};
                     tempObj.id = doc.id;
-                    tempObj.name = doc.data().name;
-                    tempObj.surname = doc.data().surname;
-                    tempObj.group = doc.data().group;
-                    tempObj.age = doc.data().age;
                     tempAllUsersArr.push(tempObj);
                 })
                 return tempAllUsersArr;
@@ -51,7 +48,6 @@ export default function Vote () {
                             let tempObj = {...doc.data()};
                             tempObj.date = doc.data().dateCreated.seconds;
                             tempObj.docId = doc.id;
-                            //tempObj.voted = false;
                             tempObj.voted = [];
                             tempVotesArr.push(tempObj);
                         });
@@ -69,14 +65,10 @@ export default function Vote () {
                                     tempObj.docId = doc.id;
                                     voteResultArr.push(tempObj);
                                 });
-                                console.log("asd");
-                                console.log(tempVotesArr);
-                                console.log(voteResultArr);
-
+                
                                 for(let vote of tempVotesArr) {
                                     for (let voteRes of voteResultArr) {
                                         if(voteRes.voteId === vote.docId) {
-                                            //vote.voted = true;
                                             vote.voted.push(voteRes.voteUserId);
                                             //break;
                                         }
@@ -91,11 +83,7 @@ export default function Vote () {
                                     let tempObj = {};
                                     for (let user of tempAllUsersArr) {
                                         if (user.id === vote.creatorVoteId) {
-                                            tempObj = { ...user };
-                                            tempObj.title = vote.title;
-                                            tempObj.description = vote.description;
-                                            tempObj.voteGood = vote.voteGood;
-                                            tempObj.voteBad = vote.voteBad;
+                                            tempObj = { ...user, ...vote };
                                             tempObj.voted = [...vote.voted];
                                             tempObj.date = new Date(vote.date * 1000).toLocaleDateString() + " - " + new Date(vote.date * 1000).toLocaleTimeString();
                                             tempObj.docId = vote.docId;
@@ -105,8 +93,7 @@ export default function Vote () {
                                     }
                                 }
                                 if (JSON.stringify(allVotes) !== JSON.stringify(finalDateVotes)) {
-                                    console.log(finalDateVotes);
-                                    //setWhoWasVoted(whoWasVo)
+                                    //console.log(finalDateVotes);
                                     setAllVotes([...finalDateVotes]);
                                     setIsLoaded(true);
                                 }
@@ -236,6 +223,7 @@ export default function Vote () {
                     <div>
                         <CircularProgress className={classes.progress} />
                         <CircularProgress className={classes.progress} color="secondary" />
+                        <CircularProgress className={classes.progress} />
                     </div>
                 </div>
         ) : (
@@ -247,8 +235,8 @@ export default function Vote () {
                             variant="contained" 
                             onClick={handleClick}
                             color="primary" 
-                            style={{fontSize: 50, 
-                                    margin: "-10px 0px -10px 30px", 
+                            style={{fontSize: 45, 
+                                    margin: "-10px 0px -10px 20px", 
                                     cursor: "pointer"}}>add_circle
                     </Icon>
                         <div>
@@ -283,8 +271,7 @@ export default function Vote () {
                             <h3 style={{textDecoration: "underline"}}>{val.title}</h3>
                             <p>{val.description}</p>
                             <div id="like_unlike_container">
-
-                            {val.voted.indexOf(userId) == -1 ? (
+                            {val.voted.indexOf(userId) === -1 ? (
                                 <>
                                     <span>
                                         <img src={like}
