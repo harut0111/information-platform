@@ -12,7 +12,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 // --------------------------------------------------------------
-
+/*eslint-disable*/
 export default function Vote () {
     const [userId, setUserId] = useState(""),
         [allVotes, setAllVotes] = useState([]),

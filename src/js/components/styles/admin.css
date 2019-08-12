@@ -1,11 +1,19 @@
+* {
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
 .adminCont {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .adminCont form input {
-    width: 80%;
     padding: 5px;
     border: 1px solid black;
+    width: 70%;
     border-radius: 0;
 }
 
@@ -26,7 +34,7 @@
 }
 
 
-/* --------- */
+/* ----Navbar----- */
 .adminNavbar ul{
     padding: 0;
     margin: 0;
@@ -54,10 +62,14 @@
     background: #127215;
 }
 
-.adminNavbar li:last-child {
-    float: right;
-    padding: 14px 40px;
+.NavLeftSide {
+    float: left;
 }
+
+.NavRightSide {
+    float: right;
+}
+
 /* ------- */
 
 
@@ -66,6 +78,11 @@
     min-height: 600px;
     border: 3px dotted red;
     display: flex;
+}
+
+.adminProfile {
+    width: 30%;
+    /* text-align: center; */
 }
 
 .adminUserItems {
@@ -78,19 +95,15 @@
 .adminGroupItems {
     border: 1px solid red;
     border-radius: 20px;
+    width: 370px;
     margin: 10px;
     padding: 10px;
 
 }
 
-.adminGroupItems div {
-    display: inline-block;
-}
-
 .adminMainCont > div {
     border: 2px dotted black;
     height: fit-content;
-    width: 30%;
     display: inline-block;
     margin: 10px;
 }
@@ -107,6 +120,21 @@
 .groupPopupForm {
     border: 1px dotted blue;
     padding: 5px;
+}
+
+.groupItemData {
+    display: inline-block;
+}
+
+.groupItemTools {
+    border: 1px solid green;
+    margin: 0px 10px;
+    float: right;
+
+}
+
+.groupPopupForm label {
+    display: block;
 }
 
 

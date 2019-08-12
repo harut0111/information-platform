@@ -7,7 +7,7 @@ import SendText from "./SendText";
 import MessagesToYou from "./MessagesToUser";
 import fire from "../configs/FireBase";
 import history from "../routh/history";
-
+/*eslint-disable*/
 
 export default function Home() {
     useEffect(() => {
