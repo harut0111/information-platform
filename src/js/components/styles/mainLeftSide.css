@@ -6,9 +6,6 @@
   display: table-cell;
   font-family: cursive;
   color: slategrey;
-  
-  /* background-image: url("./bg2.jpg");
-  background-repeat: round; */
 }
 
 .leftSideWrapper {
@@ -19,7 +16,7 @@
 .leftSideWrapper h1{
   padding: 40px;
   margin-top: -20px;
-  color: #CF4554;
+  color: #3B5998;
   text-decoration-style: solid; 
   text-decoration-color: slategrey;
 }
@@ -36,10 +33,10 @@
 
 .groups h2 {
     border: 3px solid slategrey;
-    border-radius: 25px;
+    border-radius: 10px;
     margin: 5px;
-    padding: 15px;
-    background-image:url("../../../img/bg5.jpg");
-    font-size: 15px;
-    color: #fff;
+    padding: 30px;
+    background-image:url("../../../img/bg.jpg");
+    font-size: 20px;
+    color: floralwhite;
 }

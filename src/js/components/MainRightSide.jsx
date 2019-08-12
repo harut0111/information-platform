@@ -7,7 +7,7 @@ export default function MainRightSide(props) {
         <div className="rightSide">
             <SignIn />
             <div className="article">
-                <h1>ABOUT OUR COMPANY</h1>
+                <h1>Articles</h1>
                 <h3><i>Software</i></h3>
                 <p>
                    A computer programmer, sometimes called more recently a coder (especially in more informal contexts), is a person who creates computer software. The term computer programmer can refer to a specialist in one area of computers, or to a generalist who writes code for many kinds of software.

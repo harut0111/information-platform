@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import fire from "../configs/FireBase";
 import "./styles/home.css";
+
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { makeStyles } from '@material-ui/core/styles';
 
 export default function SendText() {
     let [data, setData] = useState(""),
@@ -68,10 +71,19 @@ export default function SendText() {
         setText("");
     }
 
+    const useStyles = makeStyles(theme => ({
+        progress: {margin: theme.spacing(2),}
+    }));
+    const classes = useStyles();
+
     return (
         !isLoaded ? (
             <div id="toReferPage">
-                <h1>LOADING . . .</h1>
+                <div>
+                    <CircularProgress className={classes.progress} />
+                    <CircularProgress className={classes.progress} color="secondary" />
+                    <CircularProgress className={classes.progress} />
+                </div>
             </div>
         ) : (
             <div id="toReferPage">
@@ -98,8 +110,9 @@ export default function SendText() {
                 <Button
                     onClick={onSendClick}
                     variant="contained"
-                    color= "primary"
-                    style={{ width: "max-content", margin: "0 auto", padding: 10 }}>
+                    size="small"
+                    color="primary"
+                    style={{ width: "max-content", margin: "0 auto", padding: 5 }}>
                     SEND TEXT
                 </Button>
             </div>
