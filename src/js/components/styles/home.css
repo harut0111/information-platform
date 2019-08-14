@@ -98,7 +98,7 @@
   border-color: #1453A1;
 }
 
-textarea {
+#textarea {
   width: 40%;
   margin: 20px auto;
   border: 3px solid grey;

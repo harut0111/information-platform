@@ -11,7 +11,8 @@ export default function AdminGroup() {
     const [groupName, setGroupName] = useState('');
     //toggle and vis.
     const [groupSwitch, setGroupSwitch] = useState(false);
-    // const [groupFormVisState, setGroupFormVisState] = useState(true);
+    const [popVisib, setPopVisib] = useState("");
+    
     // edit part
     const [groupEditName, setGroupEditName] = useState("")
     const [groupEditDate, setGroupEditDate] = useState("");
@@ -81,12 +82,35 @@ export default function AdminGroup() {
         if(groupEditName.trim() && groupEditDate) {
             
             const currentGroupId = e.currentTarget.parentNode.parentNode.id;
-            e.currentTarget.parentNode.style.display = !groupSwitch ? "block": "none";
+            e.currentTarget.parentNode.style.display = "none";
             setGroupSwitch(!groupSwitch);
+            setPopVisib("");
 
             DB.collection("Group").doc(currentGroupId).set({
                 name: groupEditName,
                 createdDate: new Date(groupEditDate).toLocaleString()
+            })
+            .then(function() {//also make chanages on users
+              
+                DB.collection("User_to_group").get().then(querySnapshot => {
+                    const UserToGroup = [];
+                    querySnapshot.forEach(doc => {
+                        UserToGroup.push(doc.data());
+                    });
+
+                    let users = UserToGroup.filter(item => { 
+                        return item.groupId === currentGroupId;
+                    })
+
+                    // get the users Id that belong to current group
+                    users.forEach(item => (
+                        DB.collection("User").doc(item.userId).update({
+                            group: groupEditName,
+                        })
+                    ))
+
+                });
+                
             })
             .then(function() {
                 const tempGroups = [...groups];
@@ -103,12 +127,13 @@ export default function AdminGroup() {
             .catch(function(error) {
                 window.alert(error.message);
             });
+
         } else {
             window.alert("please write group name");
         }
     }
 
-    
+
     function handleOnGroupToolClick(e) {
 
         if(e.target.className === "remove") {
@@ -122,18 +147,36 @@ export default function AdminGroup() {
             DB.collection("Group").doc(id).delete().then(() => {
                 setGroups(newGroupList);
             })
+            .then(() => {
+
+                //delete users in current group
+                DB.collection("User_to_group").get().then(querySnapshot => {
+                    const UserToGroup = [];
+                    querySnapshot.forEach(doc => {
+                        UserToGroup.push(doc.data());
+                    });
+
+                    let users = UserToGroup.filter(item => { 
+                        return item.groupId === id;
+                    })
+                    // get the users Id that belcongs to current group
+                    users.forEach(item => (
+                        DB.collection("User").doc(item.userId).delete()
+                    ))
+                });
+                
+            })
             .catch(function(error) {
                 console.error(error.message);
             });
         } else if(e.target.className === "edit") {
-            // check if there is open editor form// not handled yet
- 
-            // if(!groupFormVisState) {
+            
+            // check if there is open editor form
+            if(popVisib === "" || popVisib === e.currentTarget.id) {
                 e.currentTarget.lastChild.style.display = !groupSwitch ? "block": "none";
+                !groupSwitch ?  setPopVisib(e.currentTarget.id) : setPopVisib("");
                 setGroupSwitch(!groupSwitch);
-            // }
-            // setGroupFormVisState(!groupFormVisState);
-
+            }
         }
     }
 
@@ -206,6 +249,5 @@ export default function AdminGroup() {
             {groupItems}
         </div>
     )
-
 
 }
