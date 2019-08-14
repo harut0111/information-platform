@@ -40,6 +40,7 @@ export default function AdminUser() {
                 <p>Age: {item.age}</p>
                 <p>Email: {item.email}</p>
                 <p>Group: {item.group}</p>
+                <p>ID: {item.id}</p>
           </div>
         )
     })

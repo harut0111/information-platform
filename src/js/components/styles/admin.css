@@ -13,7 +13,6 @@
 .adminCont form input {
     padding: 5px;
     border: 1px solid black;
-    width: 70%;
     border-radius: 0;
 }
 
@@ -82,7 +81,7 @@
 
 .adminProfile {
     width: 30%;
-    /* text-align: center; */
+    padding: 10px;
 }
 
 .adminUserItems {
@@ -135,6 +134,11 @@
 
 .groupPopupForm label {
     display: block;
+}
+
+
+.articleCont {
+    padding: 10px;
 }
 
 
