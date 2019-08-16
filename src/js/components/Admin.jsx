@@ -10,6 +10,7 @@ import { Route, Switch } from "react-router-dom";
 import AdminUser from './AdminUser';
 import AdminGroup from './AdminGroup';
 import AdminHome from './AdminHome';
+import AdminVote from './AdminVote';
 import AdminArticle from './AdminArticle';
 
 function Admin() {
@@ -72,6 +73,9 @@ function Admin() {
                         <Link to = '/Admin/Group'>
                             <li>Groups</li>
                         </Link>
+                        <Link to = '/Admin/Vote'>
+                            <li>Vote</li>
+                        </Link>
                         <Link to = '/Admin/Article'>
                             <li>Articles</li>
                         </Link>
@@ -95,6 +99,7 @@ function Admin() {
                 <Switch>
                     <Route path="/Admin/User" component={AdminUser} />
                     <Route path="/Admin/Group" component={AdminGroup} />
+                    <Route path="/Admin/Vote" component={AdminVote} />
                     <Route path="/Admin/Article" component={AdminArticle} />
                     <Route path="/Admin" component={AdminHome} />
                 </Switch>

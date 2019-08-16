@@ -31,10 +31,10 @@ export default function AdminUser() {
             setUsers(users);
         });
     }
-
+    
     const userItems = users.map(item => {
         return (
-          <div className='adminUserItems' key= {item.id}>  
+          <div className='adminUserItems' key={item.id}>  
                 <p>Name: {item.name}</p>
                 <p>Surname: {item.surname}</p>
                 <p>Age: {item.age}</p>
@@ -53,7 +53,4 @@ export default function AdminUser() {
             {userItems}
         </div>
     )
-
-
-
 }

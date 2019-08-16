@@ -34,6 +34,13 @@
 
 
 /* ----Navbar----- */
+
+.adminNavbar {
+    position: sticky;
+    top: 0;
+
+}
+
 .adminNavbar ul{
     padding: 0;
     margin: 0;
@@ -74,7 +81,7 @@
 
 
 .adminMainCont {
-    min-height: 600px;
+    min-height: 500px;
     border: 3px dotted red;
     display: flex;
 }
@@ -94,15 +101,13 @@
 .adminGroupItems {
     border: 1px solid red;
     border-radius: 20px;
-    width: 370px;
-    margin: 10px;
+    margin: 10px 0;
     padding: 10px;
 
 }
 
 .adminMainCont > div {
     border: 2px dotted black;
-    height: fit-content;
     display: inline-block;
     margin: 10px;
 }
@@ -112,8 +117,10 @@
 }
 
 .adminGroupsCont {
-    padding: 5px;
+    padding: 20px;
     font-size: 15px;
+    height: 500px;
+    overflow: auto;
 }
 
 .groupPopupForm {
@@ -139,8 +146,19 @@
 
 .articleCont {
     padding: 10px;
+    height: 500px;
+    overflow: auto;
 }
 
+.articleCont input {
+    cursor: pointer;
+}
+
+
+.adminUsers {
+    height: 500px;
+    overflow: auto;
+}
 
 
 
