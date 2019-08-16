@@ -1,10 +1,11 @@
 import React from 'react';
-/*eslint-disable*/
+import adminIcon from '../../img/admin.png'
+
+
 export default function AdminHome() {
     return (
         <div>
-            <img src="http://www.sfdcpoint.com/wp-content/uploads/2019/01/Salesforce-Admin-Interview-questions.png"
-                width='700px'></img>
+            <img src={adminIcon} style={{width: "700px"}} alt="admin"/>
         </div>
     )
 }

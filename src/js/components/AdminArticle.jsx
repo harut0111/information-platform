@@ -14,7 +14,7 @@ export default function AdminArticle() {
               
                 </textarea>
                 <br></br>
-                <input type="submit"></input>
+                <input type="submit" value="Publish"></input>
             </form>
         </div>
     )
