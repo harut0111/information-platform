@@ -74,7 +74,7 @@ function Admin() {
                             <li>Groups</li>
                         </Link>
                         <Link to = '/Admin/Vote'>
-                            <li>Vote</li>
+                            <li>Votes</li>
                         </Link>
                         <Link to = '/Admin/Article'>
                             <li>Articles</li>
@@ -90,19 +90,21 @@ function Admin() {
             <div className='adminMainCont'>
                 <div className="adminProfile">
                         <h1 style={{textAlign: "center", padding: "10px"}}>Admin Profile</h1>
-                        <h3>Name: {admin.name}</h3>
-                        <h3>Surname: {admin.surname}</h3>
-                        <h3>Age: {admin.age}</h3>
-                        <h3>email: {admin.email}</h3>
-                        <h3>ID: {admin.id}</h3>
+                        <h5>Name: {admin.name}</h5>
+                        <h5>Surname: {admin.surname}</h5>
+                        <h5>Age: {admin.age}</h5>
+                        <h5>email: {admin.email}</h5>
+                        <h5>ID: {admin.id}</h5>
                 </div>
-                <Switch>
-                    <Route path="/Admin/User" component={AdminUser} />
-                    <Route path="/Admin/Group" component={AdminGroup} />
-                    <Route path="/Admin/Vote" component={AdminVote} />
-                    <Route path="/Admin/Article" component={AdminArticle} />
-                    <Route path="/Admin" component={AdminHome} />
-                </Switch>
+                <div className="dataBaseCont">
+                    <Switch>
+                        <Route path="/Admin/User" component={AdminUser} />
+                        <Route path="/Admin/Group" component={AdminGroup} />
+                        <Route path="/Admin/Vote" component={AdminVote} />
+                        <Route path="/Admin/Article" component={AdminArticle} />
+                        <Route path="/Admin" component={AdminHome} />
+                    </Switch>
+                </div>
             </div>
 
        </div>     

@@ -79,7 +79,6 @@
 /* ------- */
 
 
-
 .adminMainCont {
     min-height: 500px;
     border: 3px dotted red;
@@ -89,21 +88,23 @@
 .adminProfile {
     width: 30%;
     padding: 10px;
+    overflow: auto;
 }
 
-.adminUserItems {
-    border: 1px solid red;
-    border-radius: 20px;
-    margin: 10px;
+.dataBaseCont {
     padding: 10px;
+    overflow: auto;
 }
 
-.adminGroupItems {
-    border: 1px solid red;
-    border-radius: 20px;
+.adminGroupItems, .adminUserItems {
+    border-bottom: 1px solid red;
     margin: 10px 0;
     padding: 10px;
 
+}
+
+.adminUserItems button {
+    width: 180px;
 }
 
 .adminMainCont > div {
@@ -116,11 +117,14 @@
     color: red;
 }
 
-.adminGroupsCont {
-    padding: 20px;
+.adminGroupsCont, 
+.adminUsersCont, 
+.adminVoteCont,
+.adminArticleCont {
+    padding: 0 20px;
     font-size: 15px;
     height: 500px;
-    overflow: auto;
+    overflow-y: auto;
 }
 
 .groupPopupForm {
@@ -144,21 +148,27 @@
 }
 
 
-.articleCont {
-    padding: 10px;
-    height: 500px;
-    overflow: auto;
+.adminArticleCont > div{
+    border: 1px solid green;
+    margin: 5px;
+    padding: 5px;
 }
 
-.articleCont input {
+.publishSide input {
     cursor: pointer;
 }
 
-
-.adminUsers {
-    height: 500px;
-    overflow: auto;
+.publishSide textarea {
+    width: 95%;
+    max-width: 98%;
+    max-height: 300px;
 }
+
+.monSide {
+    max-width: 900px;
+    overflow: auto
+}
+
 
 
 
