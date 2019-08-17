@@ -48,7 +48,7 @@ export default function AdminUser() {
 
 
     return (
-        <div className="adminUsers">
+        <div className="adminUsersCont">
             <h1>Users</h1>
             {userItems}
         </div>

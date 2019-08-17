@@ -11,38 +11,38 @@ export class MainLeftSide extends Component {
         }
       }
 
-      componentDidMount() {
-    
-        this.db = firebase.firestore();
-        this.db.collection("Group").get().then(querySnapshot => {
-          querySnapshot.forEach(doc => {
-             this.setState(state => ({
-              groupList: state.groupList.concat({
-                id: doc.id,
-                value: doc.data().name,
-              }),
-            }));
-          });
+    componentDidMount() {
+  
+      this.db = firebase.firestore();
+      this.db.collection("Group").get().then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+            this.setState(state => ({
+            groupList: state.groupList.concat({
+              id: doc.id,
+              value: doc.data().name,
+            }),
+          }));
         });
-      }
-      render() {
-      
-        const { groupList } = this.state;
-        const items = groupList.map(item => {
-          return (
-            <div className='groups' key= {item.id} name={item.value}><h2> {item.value} </h2></div>
-          )
-        })
+      });
+    }
+
+    render() {
+      const { groupList } = this.state;
+      const items = groupList.map(item => {
+      return (
+        <div className='groups' key= {item.id} name={item.value}><h2> {item.value} </h2></div>
+      )
+    })
     
     return (
         <div className="leftSide">
             <div className="leftSideWrapper">
                 <h1>GROUPS OF OUR COMPANY</h1>
                 <div className="groupsContainer">
-                    {items} 
-                 </div>
+                  {items} 
+                </div>
             </div>
-            </div>
+        </div>
     )
   }
 }

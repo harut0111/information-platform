@@ -24,9 +24,9 @@ export default function AdminGroup() {
 
     function callDB() {
 
-        // get Group Date from DB
+        // get Group Data from DB
         DB.collection("Group").get().then(querySnapshot => {
-            let groups = [];
+            const groups = [];
             querySnapshot.forEach(doc => {
                 groups.push({
                     id: doc.id,
@@ -53,6 +53,7 @@ export default function AdminGroup() {
 
     function handleGroupSubmit(e) {
         e.preventDefault();
+        setGroupName("");
 
         if(groupName.trim()) {
             const date = new Date().toLocaleString();
@@ -66,7 +67,6 @@ export default function AdminGroup() {
                     name: groupName,
                     createdDate: date
                 },...groups])
-                setGroupName("");
             })
             .catch(function(error) {
                 window.alert(error.message);
@@ -192,7 +192,7 @@ export default function AdminGroup() {
           <div className='adminGroupItems' key={item.id} id={item.id}  onClick={handleOnGroupToolClick}>
               <div className="groupItemData">
                 <h4>Name: {item.name}</h4>
-                <p>Create Date: {item.createdDate}</p>
+                <p>Created Date: {item.createdDate}</p>
                 <p>ID: {item.id}</p>
               </div>  
               <div className='groupItemTools'>

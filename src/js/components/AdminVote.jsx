@@ -53,7 +53,7 @@ export default function AdminVote() {
 
 
     return (
-        <div className="adminUsers">
+        <div className="adminVoteCont">
             <h1>Votes</h1>
             {Vote}
         </div>
