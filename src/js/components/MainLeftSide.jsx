@@ -10,10 +10,10 @@ export class MainLeftSide extends Component {
           groupList: [],
         }
       }
-      componentDidMount() {
-    
+      componentDidMount() {    
         this.db = firebase.firestore();
-        this.db.collection("Group").get().then(querySnapshot => {
+        this.db.collection("Group").get()
+        .then(querySnapshot => {
           querySnapshot.forEach(doc => {
              this.setState(state => ({
               groupList: state.groupList.concat({
@@ -22,7 +22,8 @@ export class MainLeftSide extends Component {
               }),
             }));
           });
-        });
+        })
+        .catch((e => console.log(e.message)))
       }
       render() {
       

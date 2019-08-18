@@ -6,7 +6,7 @@ export default function MainRightSide(props) {
     return (
         <div className="rightSide">
             <SignIn />
-            <div className="article">
+            {/* <div className="article">
                 <h1>Articles</h1>
                 <h3><i>Software</i></h3>
                 <p>
@@ -26,7 +26,7 @@ Among web professionals, "web development" usually refers to the main non-design
     For someone who performs medical coding, see Medical coder.
     "Coder" redirects here. For the settlement in Pennsylvania, see Coder, Pennsylvania. For other uses, see Encoder.
                 </p>
-            </div>
+            </div> */}
         </div>
     )
 }

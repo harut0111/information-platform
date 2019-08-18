@@ -10,7 +10,7 @@ body {
 .App {
   max-width: 100%;
   margin: 0 auto;
-  font-family: cursive, sans-serif;
+  font-family: initial, sans-serif;
 }
 
 main {

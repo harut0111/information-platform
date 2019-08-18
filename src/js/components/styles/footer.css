@@ -1,8 +1,68 @@
 footer {
-  text-align: center;
   border: 1px solid grey;
   background-color: #3b5998;
-  padding: 1.5%;
+  padding: 1%;
   color: #fff;
   text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+#subsGit {
+  margin-top: 2px;
+}
+
+footer p {
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+footer button {
+  display: block;
+  padding: 3px;
+  border: 1px solid silver;
+  border-radius: 5px;
+  margin: 1px 2px 2px 0;
+  width: 120px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  color: grey;
+  background-color: #fff;
+}
+
+footer button:hover {
+  background-color: #3B597F;
+  color: #fff;
+}
+
+footer textarea {
+  border: 1px solid silver;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+#github {
+  display: flex;
+  justify-content: space-around;
+  padding: 1%;
+  max-width: 80%;
+  margin: 5px auto 22px auto;
+}
+
+#tickLogo {
+    width: 40px;
+    position: absolute;
+    margin-top: 82px;
+    margin-left: -110px;
+    visibility: hidden;
+}
+
+#cancelLogo {
+    width: 40px;
+    position: absolute;
+    margin-top: 84px;
+    margin-left: -110px;
+    visibility: hidden;
 }
