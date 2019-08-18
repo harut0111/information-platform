@@ -9,7 +9,8 @@ export default function AdminArticle() {
     const DB = firebase.firestore();
 
     const [ textareaVal, setTextareaVal ] = useState("");
-    const  [articles, setArticles ] = useState([]);
+    const [articles, setArticles ] = useState([]);
+    const [ title, setTitle ] = useState("");
 
 
     useEffect(() => {
@@ -25,6 +26,7 @@ export default function AdminArticle() {
             querySnapshot.forEach(doc => {
                 articles.push({
                     id: doc.id,
+                    title: doc.data().title,
                     content: doc.data().content,
                     createdDate: doc.data().createdDate
                 })
@@ -34,32 +36,41 @@ export default function AdminArticle() {
     }
 
 
+    let toggle = true;
 
     function handleArticleSubmit(e) {
         e.preventDefault();
-
-        if(textareaVal.trim()) {
-            setTextareaVal("");
+       
+        if( textareaVal.trim() && title.trim() && toggle ) {
+            toggle = false;
             const date = new Date().toLocaleString();
             DB.collection("Article").add({
+                title: title,
                 content: textareaVal,
                 createdDate: date
             })
-            .then((article) => {
+            .then(article => {
                 setArticles([...articles, {
                     id: article.id,
+                    title: title,
                     content: textareaVal,
                     createdDate: date
                 }]);
+
+                setTextareaVal("");
+                setTitle("");
             })
             .catch(function(error) {
                 window.alert(error.message);
+            }).finally(() => {
+                toggle = true;
             });
         } else {
-            window.alert("please write the article");
+            window.alert("please fill in the inputs");
         }
     }
 
+    
     function onDeleteClick(e) {
 
         const id = e.currentTarget.parentNode.id
@@ -73,7 +84,7 @@ export default function AdminArticle() {
             setArticles(newArticleList);
         })
         .catch(function(error) {
-            console.error(error.message);
+            window.alert(error.message);
         });
     }
 
@@ -87,6 +98,7 @@ export default function AdminArticle() {
         return (
           <div className='adminUserItems' key={item.id} id={item.id}>
               <div className='articleItemData'>
+                <p><b>Title:</b> {item.title}</p>
                 <p><b>Content:</b> {item.content}</p>
                 <p><b>Created Date:</b> {item.createdDate}</p>
                 <p><b>ID:</b> {item.id}</p>
@@ -100,6 +112,13 @@ export default function AdminArticle() {
         <div className="adminArticleCont">
             <div className='publishSide'>
                 <form onSubmit={handleArticleSubmit}>
+                    Title: <br/>
+                    <input 
+                        required
+                        className="articleTitle"
+                        type="text"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)} />
                     <textarea 
                         name="message" 
                         rows="10" 
@@ -107,12 +126,11 @@ export default function AdminArticle() {
                         required
                         value={textareaVal}
                         onChange={(e) => setTextareaVal(e.target.value)} />
-                    <br/>
-                    <input type="submit" value="Publish"></input>
+                    <input type="submit" value="Publish" className="submitButton" />
                 </form>
             </div>
             <div className="monSide">
-                <h1>Articles</h1>
+                <h1>Published Articles</h1>
                 {articleItems}
             </div>
         </div>
