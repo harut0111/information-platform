@@ -4,7 +4,6 @@
 }
 
 body {
-  /* background-image: linear-gradient(#EABF6D, pink); */
   background-color: #dfe3ee;
 }
 .App {
@@ -16,8 +15,6 @@ body {
 main {
   padding: 2%;
   display: table;
-  width: 96%;
   height: -webkit-fill-available;
-  /* background-image: linear-gradient(white, pink); */
   background-color: #dfe3ee
 }

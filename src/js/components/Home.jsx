@@ -13,7 +13,6 @@ import sendText from "../../img/sendText.jpg";
 import DefaultHome from "./DefaultHome";
 
 
-
 export default function Home() {
     useEffect(() => {
         fire.auth().onAuthStateChanged((user) => {

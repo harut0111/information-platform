@@ -1,0 +1,209 @@
+* {
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.adminCont {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.adminCont form input {
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 0;
+}
+
+.adminCont button {
+    padding: 5px;
+    cursor: pointer;
+    margin: 5px 0;
+    display: block;
+    width: 50%;
+}
+
+.adminCont span {
+    padding: 2px;
+    background: forestgreen;
+    margin: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+
+/* ----Navbar----- */
+
+.adminNavbar {
+    position: sticky;
+    top: 0;
+
+}
+
+.adminNavbar ul{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    background: #4CAF50;
+    font-size: 20px;
+}
+
+.adminNavbar ul::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.adminNavbar li {
+    display: block;
+    text-decoration: none;
+    padding: 14px 16px;
+    color: white;
+    float: left;
+    cursor: pointer;
+}
+
+.adminNavbar li:hover {
+    background: #127215;
+}
+
+.NavLeftSide {
+    float: left;
+}
+
+.NavRightSide {
+    float: right;
+}
+
+/* ------- */
+
+
+.adminMainCont {
+    min-height: 500px;
+    border: 3px dotted red;
+    display: flex;
+}
+
+.adminProfile {
+    max-width: 30%;
+    min-width: 30%;
+    padding: 10px;
+    overflow: auto;
+}
+
+.dataBaseCont {
+    padding: 10px;
+    overflow: auto;
+}
+
+.adminGroupItems, .adminUserItems {
+    border-bottom: 1px solid red;
+    margin: 10px 0;
+    padding: 10px;
+
+}
+
+.adminUserItems button {
+    width: 180px;
+}
+
+.adminMainCont > div {
+    border: 2px dotted black;
+    display: inline-block;
+    margin: 10px;
+}
+
+.adminGroupItems h4 {
+    color: red;
+}
+
+.adminGroupsCont, 
+.adminUsersCont, 
+.adminVoteCont,
+.adminArticleCont {
+    padding: 0 20px;
+    font-size: 15px;
+    height: 500px;
+    overflow-y: auto;
+}
+
+.groupPopupForm {
+    border: 1px dotted blue;
+    padding: 5px;
+}
+
+.groupItemData {
+    display: inline-block;
+}
+
+.groupItemTools {
+    border: 1px solid green;
+    margin: 0px 10px;
+    float: right;
+
+}
+
+.groupPopupForm label {
+    display: block;
+}
+
+
+.adminArticleCont > div{
+    border: 1px solid green;
+    margin: 5px;
+    padding: 5px;
+}
+
+.submitButton {
+    cursor: pointer;
+}
+
+.publishSide textarea {
+    width: 95%;
+    max-width: 98%;
+    max-height: 300px;
+    min-width: 138px;
+    display: block;
+}
+
+.articleTitle {
+    width: 70%;
+}
+
+.publishSide input{
+    margin: 5px 0;
+}
+
+.monSide {
+    max-width: 900px;
+    overflow: auto
+}
+
+
+
+
+
+
+
+
+
+
+/* @media screen and (max-width: 850px){
+    div ul{
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    div ul li{
+        float: left;
+    }
+    div.content{
+        margin-left: 2px;
+    }
+    @media screen and (max-width: 520px){
+        div ul li{
+            float: none;
+            text-align: center;
+        }
+    }
+} */

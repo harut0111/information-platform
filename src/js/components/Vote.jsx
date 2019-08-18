@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 // --------------------------------------------------------------
 
 export default function Vote2() {
+
     const [userId, setUserId] = useState(""),
         [allVotes, setAllVotes] = useState([]),
         [isLoaded, setIsLoaded] = useState(false),
