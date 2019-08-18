@@ -2,21 +2,23 @@ import './styles/admin.css';
 import React, { useEffect, useState } from 'react';
 import history from '../routh/history';
 import { Link } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { ADMIN_ID } from "../constants/signIn";
+
 import firebase from '../configs/FireBase';
 import "firebase/firestore";
-import { Route, Switch } from "react-router-dom";
 
 import AdminUser from './AdminUser';
 import AdminGroup from './AdminGroup';
 import AdminHome from './AdminHome';
 import AdminVote from './AdminVote';
 import AdminArticle from './AdminArticle';
+import AdminMessage from './AdminMessage';
 
 function Admin() {
 
     const DB = firebase.firestore();
-    const [admin, setAdmin] = useState({});
+    const [ admin, setAdmin ] = useState({});
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(user => {
@@ -33,7 +35,6 @@ function Admin() {
                             group: doc.data().group
                         })
                     } else {
-                        // doc.data() will be undefined in this case
                         console.log("No such document!");
                     }
                 }).catch(function(error) {
@@ -56,8 +57,6 @@ function Admin() {
         });
     }
 
- 
-
 
     return (
        <div className='adminCont'>
@@ -79,6 +78,9 @@ function Admin() {
                         <Link to = '/Admin/Article'>
                             <li>Articles</li>
                         </Link>
+                        <Link to = '/Admin/Message'>
+                            <li>Messages</li>
+                        </Link>
                     </div>
                     <div className='NavRightSide'>
                         <Link to = '/' onClick={logout}>
@@ -89,12 +91,12 @@ function Admin() {
            </div>
             <div className='adminMainCont'>
                 <div className="adminProfile">
-                        <h1 style={{textAlign: "center", padding: "10px"}}>Admin Profile</h1>
-                        <h5>Name: {admin.name}</h5>
-                        <h5>Surname: {admin.surname}</h5>
-                        <h5>Age: {admin.age}</h5>
-                        <h5>email: {admin.email}</h5>
-                        <h5>ID: {admin.id}</h5>
+                        <h1 style={{textAlign: "center", padding: "10px"}}>Admin Profile </h1>
+                        <h5> Name: {admin.name} </h5>
+                        <h5> Surname: {admin.surname} </h5>
+                        <h5> Age: {admin.age} </h5>
+                        <h5> email: {admin.email} </h5>
+                        <h5> ID: {admin.id} </h5>
                 </div>
                 <div className="dataBaseCont">
                     <Switch>
@@ -102,11 +104,11 @@ function Admin() {
                         <Route path="/Admin/Group" component={AdminGroup} />
                         <Route path="/Admin/Vote" component={AdminVote} />
                         <Route path="/Admin/Article" component={AdminArticle} />
+                        <Route path="/Admin/Message" component={AdminMessage} />
                         <Route path="/Admin" component={AdminHome} />
                     </Switch>
                 </div>
             </div>
-
        </div>     
     );
 }

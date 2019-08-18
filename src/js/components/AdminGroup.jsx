@@ -4,6 +4,8 @@ import "firebase/firestore";
 
 export default function AdminGroup() {
 
+    let toggle = true;
+
     const DB = firebase.firestore();
 
     /* -------- group -------- */
@@ -50,12 +52,13 @@ export default function AdminGroup() {
         }
     }   
 
+    
 
     function handleGroupSubmit(e) {
         e.preventDefault();
-        setGroupName("");
-
-        if(groupName.trim()) {
+        
+        if(groupName.trim() && toggle) {
+            toggle = false;
             const date = new Date().toLocaleString();
             DB.collection("Group").add({
                 name: groupName,
@@ -67,9 +70,13 @@ export default function AdminGroup() {
                     name: groupName,
                     createdDate: date
                 },...groups])
+
+                setGroupName("");
             })
             .catch(function(error) {
                 window.alert(error.message);
+            }).finally(() => {
+                toggle = true;
             });
         } else {
             window.alert("please write group name");
@@ -79,8 +86,9 @@ export default function AdminGroup() {
     function handleGroupEditSubmit(e) {
         e.preventDefault();
         
-        if(groupEditName.trim() && groupEditDate) {
+        if(groupEditName.trim() && groupEditDate && toggle) {
             
+            toggle = false;
             const currentGroupId = e.currentTarget.parentNode.parentNode.id;
             e.currentTarget.parentNode.style.display = "none";
             setGroupSwitch(!groupSwitch);
@@ -126,6 +134,8 @@ export default function AdminGroup() {
             })
             .catch(function(error) {
                 window.alert(error.message);
+            }).finally(() => {
+                toggle = true;
             });
 
         } else {
