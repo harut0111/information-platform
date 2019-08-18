@@ -22,12 +22,16 @@
     color: #fff;
     padding: 10px;
     max-width: 80%;
-    margin: -20px auto 60px auto;
+    margin: -20px auto 30px auto;
     border: 1px solid grey;
     border-radius: 10px;
 }
 #welcomeSection h2 {
     margin-top: -40px;
+}
+
+#welcomeSection h3 {
+    margin-top: -30px;
 }
 
 #welcomeSection #userInfo {  
@@ -46,25 +50,30 @@
     color: #333;
 }
 
+/*  =========================================================================== */
 #refSection a {
-    padding: 20px;
-    background-color: beige;
-    border: 1px solid grey;
+    padding: 6px 5px 2px 5px;
+    background-color: silver;
+    border: 3px solid grey;
     border-radius: 10px;
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
+}
+
+#refSection img {
+    width: 90px;
+    height: 80px;
+    border: 3px solid grey;
+    border-radius: 10px;
 }
 
 #refSection a:hover {
-    background-color: #3B5998;
-    border-color: #fff;
+    background-color: #fff;
+    border-color: grey;
     color: #F5F5DC;
 }
 
 #toReferPage {
-    padding: 10px 10px 25px 10px;
-    background-color: beige; 
+    padding: 20px 10px 30px 10px;
+    background-color: silver; 
     border: 3px solid grey;
     border-radius: 10px;
     max-width: 60%;
@@ -76,19 +85,23 @@
     color: #222;
 }
 
-#toReferPage h1{
+#toReferPage h2{
     padding: 5px;
     margin-bottom: 30px;
+    text-decoration: underline;
 }
 
+#toReferPage h4 {
+    margin-bottom: -10px;
+}
 #toReferPage select {
     padding: 10px;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     font-weight: bold;
     background-color: #fff;
     color: #333;
-    border: 3px solid grey;
+    border: 1px solid grey;
     border-radius: 10px;
     width: max-content;
     margin: 0 auto;
@@ -98,41 +111,169 @@
   border-color: #1453A1;
 }
 
-#textarea {
+#homeWrapper  textarea {
   width: 40%;
   margin: 20px auto;
-  border: 3px solid grey;
+  border: 1px solid grey;
   border-radius: 10px;
   padding: 5px;
-  font-size: 16px;
+  font-size: 14px;
 }
+
+#sendTextLogo {
+    width: 45px;
+    position: absolute;
+    margin-left: 36%;
+    margin-top: -2px;
+    
+}
+
+/*  ====================================================== */
+
 /* ===================  Messages to user  ========================= */
-#messages {
+
+#toReferPageMessToUser {
+    background-color: silver; 
+    border: 3px solid grey;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    max-width: 60%;
+    margin: 50px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #222;
+}
+
+#toReferPageMessToUser h2{
+    margin: 10px auto;
+    text-decoration: underline;
+    font-family: cursive, sans-serif;
+    color: #3B597F;
+}
+
+
+#messagesToUser {
     background-color: #3B597F;
     color: #F5F5DC;
-    padding: 10px;
     border-radius: 10px;
     border: 3px solid grey;
     display: grid;
-    width: 70%;
-    margin: 10px auto;
+    width: 60%;
+    margin: 10px auto 20px auto;
 }
 
-#messages:hover {
+#messagesToUser p {
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-color: aliceblue;
+    font-weight: bold;
+    color: #333;
+    line-height: 20px;
+    word-wrap: break-word;
+    font-size: 14px;
+    font-weight: normal;
+    max-width: 80%;
+    margin: 10px auto 10px auto;
+    text-align: center;
+    padding: 10px;
+}
+
+#messagesToUser h2 {
+    text-decoration: none;
+    margin-bottom: 0;
+    color: #fff;
+}
+
+#messagesToUser:hover {
     background-color: #3B5998;
+}
+
+#messagesToUser h5 {
+    margin: 5px auto;
+}
+
+#messagesToUser hr {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.responseMsg button{
+    padding: 2px;
+    border: 1px solid silver;
+    border-radius: 5px;
+    margin: -2px 0 5px 0;
+    width: 60px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    color: grey;
+    background-color: #fff;
+}
+
+
+.responseMsg button:hover {
+    color: #fff;
+    background-color: #3B597F;
+}
+
+.responseMsg textarea {
+    margin: -10px auto 5px auto !important;
+    width: 30% !important;
+    border-radius: 5px !important;
+    border-width: 2px !important;
+    border-style: solid !important;
+    font-size: 12px !important;
+}
+
+
+.icons {
+    display: flex;
+    justify-content: space-between;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.sendMsgIcon, .deleteMsgIcon {
+    width: 35px;
+    background-color: silver;
+    border: 3px solid grey;
+    border-radius: 5px;
+    padding: 3px;
+    margin-bottom: 10px;
+}
+
+
+.sendMsgIcon:hover, .deleteMsgIcon:hover {
+    cursor: pointer;
+    background-color: #9AD0FF;
+}
+
+.deleteMsgIcon:hover {
+    background-color: #f50057;
 }
 
 #paragWrapper {
     overflow: hidden;
 }
 
+.noMessages h3{
+    margin-left: 40px;
+}
+
+.noMessages img{
+   position: absolute;
+   width: 48px;
+   margin: 3px 15px;
+}
+
 #messages p {
-    padding: 5px;
     border: 1px solid grey;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: #91D3FF;
     font-weight: bold;
-    color: #222;
+    color: #333;
     line-height: 20px;
     word-wrap: break-word;
     font-size: 14px;
@@ -152,9 +293,73 @@
 
 /* ---------------------- vote  -----------------------*/
 
-#voteHead {
-   margin: 10px 0 10px 30px;
+#toReferPageVote {  
+    background-color: silver;
+    border: 3px solid grey;
+    border-radius: 10px;
+    max-width: 70%;
+    margin: 50px auto;
+    display: table;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #222;
 }
+
+#messagesVote {
+    background-color: #3B597F;
+    color: #F5F5DC;
+    padding: 10px;
+    border-radius: 10px;
+    border: 3px solid grey;
+    display: inline-table;
+    width: 38%;
+    margin: 15px 20px;
+}
+
+#messagesVote:hover {
+    background-color: #3B5998;
+}
+
+#voteHead {
+    border: 3px solid grey;
+    max-width: 350px;
+    margin: 10px auto;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #fff;
+    font-family: cursive;
+}
+
+#voteHead:hover {
+    border-color: #fff;
+    background-color: silver;
+}
+
+#messagesVote h5, #messagesVote h6 {
+    margin: 2.5px 0;
+}
+
+#messagesVote hr {
+    margin: 5px 0;
+}
+
+
+#messagesVote p {
+    padding: 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background-color: aliceblue;
+    font-weight: bold;
+    color: #333;
+    line-height: 20px;
+    word-wrap: break-word;
+    font-size: 14px;
+    font-weight: normal;
+    max-width: 80%;
+    margin: 10px auto;
+    overflow-y: auto;
+    max-height: 100px;
+ }
+
 
 .inputTypography {
     padding: 10px;
@@ -177,7 +382,7 @@
 }
 
 #like_unlike_container img {
-    width: 30px;
+    width: 26px;
     cursor: pointer;
     margin-bottom: 5px;
 }
@@ -187,5 +392,42 @@
 }
 
 #like_unlike_container img:active {
-    opacity: 0.9;
+    opacity: 1;
 }
+
+#like_unlike_container button {
+    margin-top: 10px;
+    padding: 5px;
+    background-color: #3B5998;
+    color: #fff;
+    font-weight: bold;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.popupHidden {
+    width: 350px;
+    position: absolute;
+    border: 1px solid #fff;
+    height: 200px;
+    background-color: lightskyblue;
+    visibility: hidden;
+    right: 35%;
+    overflow-y: auto;
+    margin-top: -150px;
+}
+
+.popupHidden h4 {
+    margin: 10px 30px 10px 5px;
+    color: #0067C1;
+    text-decoration: underline;
+}
+
+.popupHidden .closeIcon {
+    position: absolute;
+    right: 2%;
+    margin-top: 6px;
+    padding: 0;
+} 
+

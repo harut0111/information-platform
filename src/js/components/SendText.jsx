@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import fire from "../configs/FireBase";
 import "./styles/home.css";
-
+import  sendMsgLogo  from "../../img/sendMsg.png";
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
@@ -50,7 +50,10 @@ export default function SendText() {
     const onSendClick = e => {
         e.preventDefault();
         if(!text)  {
-            document.getElementById("textarea").style.border = "3px solid red";
+            document.getElementById("textarea").style.border = "2px solid red";
+            setTimeout(() => {
+                document.getElementById("textarea").style.border = "1px solid grey";
+            }, 500);
             return false;
         }
         // Call to Firestore (DataBase)
@@ -62,7 +65,7 @@ export default function SendText() {
         })
         .then(() => {
             alert("Text successfully sended!");
-            console.log("Document successfully written!");
+            console.log("Message successfully written!");
             console.log(data);
         })
         .catch(e => {
@@ -87,8 +90,9 @@ export default function SendText() {
             </div>
         ) : (
             <div id="toReferPage">
-                <h1>Write text to another user</h1>
-                <h2>Select User</h2><br/>
+                <h2>Send message</h2>
+                <img src={sendMsgLogo} id="sendTextLogo" alt="sendMsgLogo" />
+                <h4>Select User</h4> <br/>
                 <select required onChange={onSelectChange} name="aboutUserId">
                     {data.map(item => (
                         <option key={item.id} value={item.id}>
@@ -102,8 +106,8 @@ export default function SendText() {
                     required 
                     placeholder="Write text to selected user."
                     onChange={onTextChange}
-                    onMouseOver={(e) => e.target.style.border = "3px solid #155e80"}
-                    onMouseOut={(e) => e.target.style.border = "3px solid grey"}
+                    onMouseOver={(e) => e.target.style.border = "1px solid #155e80"}
+                    onMouseOut={(e) => e.target.style.border = "1px solid grey"}
                     value={text}
                     name="text">
                 </textarea>

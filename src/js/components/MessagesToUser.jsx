@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import fire from "../configs/FireBase";
 import "./styles/home.css";
-import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
+import noMessages from "../../img/noMessages.png";
+import sendMsgIcon from '../../img/sendMsg.png';
+import deleteMsgIcon from '../../img/deleteMsg.png';
 
 export default function MessagesToUser() {
     const [userId, setUserId] = useState(""),
@@ -41,7 +41,6 @@ export default function MessagesToUser() {
                         tempObj.evenId = doc.id;
                         tempObj.id = doc.data().creatorUserId;
                         tempObj.text = doc.data().theText;
-                        //tempObj.date = new Date(doc.data().dateCreated.seconds * 1000).toLocaleDateString() + " - " + new Date(doc.data().dateCreated.seconds*1000).toLocaleTimeString();
                         tempObj.date = doc.data().dateCreated.seconds;
                         tempArr.push(tempObj);
                     });
@@ -55,16 +54,16 @@ export default function MessagesToUser() {
                             for(let user of arrAllUsers) {
                                 if(user.id === elem.id) {
                                     tempObj = {...user};
-                                    delete tempObj.id;
                                     tempObj.text = elem.text;
-                                    tempObj.date = new Date(elem.date * 1000).toLocaleDateString() + " - " + new Date(elem.date * 1000).toLocaleTimeString();
+                                    tempObj.date = new Date(elem.date * 1000).toLocaleDateString() 
+                                        + " - " + new Date(elem.date * 1000).toLocaleTimeString();
                                     tempObj.evenId = elem.evenId;
                                     tempArr.push(tempObj)
                                     break;
                                 }
                             }
                         }
-                        //console.log(tempArr);
+                        // console.log(tempArr);
                         if (JSON.stringify(data) !== JSON.stringify(tempArr)) {
                             setData([...tempArr]);
                             setIsLoaded(true);
@@ -74,12 +73,12 @@ export default function MessagesToUser() {
             }
         }))
         .catch((e)=>{console.log(e.message)});
-         // eslint-disable-next-line
+        // eslint-disable-next-line
     }, [userId])
 
     const onRemMsg = e => {
         e.preventDefault();
-        let id = e.target.getAttribute("data-id") || e.target.parentNode.getAttribute("data-id"),
+        let id = e.target.getAttribute("data-id"),
             tempArr = [...data],
             index,
             i = 0;
@@ -101,38 +100,79 @@ export default function MessagesToUser() {
         .catch(e => {console.log(e.message)});
     }
 
-    const useStyles = makeStyles(theme => ({
-        button: {
-            margin: theme.spacing(1),
-        },
-    }));
-    
-    const classes = useStyles();
+    const onResponseMsg = e => {
+        let hiddenNode = e.target.parentNode.nextSibling;
+        hiddenNode.style.display === "none" 
+            ? hiddenNode.style.display = "block" 
+            : hiddenNode.style.display = "none";
+    }
+
+    const onResponseSend = e => {
+        e.preventDefault();
+        let responseContainer = e.target.parentNode;
+        let textarea = e.target.previousSibling.previousSibling;
+        let text = textarea.value;
+        textarea.value = "";
+        if (!text) {
+            textarea.style.borderColor = "red";
+            setTimeout(() => {textarea.style.borderColor = "grey"}, 500);
+        } 
+        else {
+           let aboutUserId = e.target.getAttribute("data-id");
+            responseContainer.style.display = "none";
+            //Call to Firestore (DataBase)
+            fire.firestore().collection("User_text").doc().set({
+                creatorUserId: userId,
+                aboutUserId,
+                theText: text,
+                dateCreated: new Date()
+            })
+            .then(() => {
+                alert("Message successfully sended.");
+            })
+            .catch(e => {
+                console.log("Error writing document: ", e);
+            });
+        } 
+        
+    }
 
     return (
         !isLoaded ? (
-            <div id="toReferPage">
-                <h2 style={{marginTop: 20}}>You havn't messages !</h2>
+            <div id="toReferPage" className = "noMessages">
+                <h3 style={{ marginTop: 20, textDecoration: "underline" }}>
+                    You haven't messages !
+                </h3>
+                <img src={noMessages} alt="You haven't messages" />
             </div>
         ) : (
-             <div id="toReferPage">
-                <h1>Аll letters sent to you !</h1>
+             <div id="toReferPageMessToUser">
+                <h2>Аll messages sent to you !</h2>
                     {data.map( val => (
-                        <div id="messages" key={val.evenId}>
+                        <div id="messagesToUser" key={val.evenId}>
                             <h2>{`${val.name} ${val.surname}`}</h2>
-                            <h4>{`(Group: ${val.group}, Age: ${val.age})`}</h4>
+                            <h5>{`(Group: ${val.group}, Age: ${val.age})`}</h5>
+                            <h6>{`${val.date}`}</h6>
                             <hr />
-                            <h4>{`${val.date}`}</h4>
                             <div id="paragWrapper">
-                                <p>
-                                    {val.text}
-                                    <IconButton className={classes.button} 
-                                                aria-label="delete"
-                                                onClick={onRemMsg}
-                                                data-id = {val.evenId}>
-                                        <DeleteIcon color="secondary" data-id={val.evenId} />
-                                    </IconButton>
-                                </p>
+                                <p>{val.text}</p>
+                                <div className="icons">
+                                    <img className="sendMsgIcon" 
+                                        src={sendMsgIcon} 
+                                        alt="SendMsgIcon" 
+                                        onClick={onResponseMsg}/>
+                                    <img className="deleteMsgIcon" src={deleteMsgIcon} 
+                                        alt="DeleteMsgIcon" 
+                                        onClick={onRemMsg} 
+                                        data-id={val.evenId} />
+                                </div>
+                                <div className="responseMsg" style={{ display: "none" }}>
+                                    <textarea rows="3" cols="10" placeholder={`Hi ${val.name} !`}/>
+                                    <br />
+                                    <button onClick={onResponseSend}
+                                            data-id={val.id}> SEND
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     ))}

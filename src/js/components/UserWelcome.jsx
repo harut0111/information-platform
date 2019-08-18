@@ -42,7 +42,7 @@ export default function UserWelcome(props) {
         fire.auth().signOut()
         .then(() => {
             history.push('/');
-            console.log("User was log out !")
+            //console.log("User was log out !")
         }, e => {
             console.log(e.message);
         })
@@ -79,7 +79,7 @@ export default function UserWelcome(props) {
                         <p>Your age: {age}</p>
                     </div>
                 </div>
-            ) : <h1>LOADING . . .</h1>}
+            ) : <h3>LOADING . . .</h3>}
         </div>
     )
 }
