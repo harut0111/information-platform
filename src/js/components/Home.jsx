@@ -5,12 +5,13 @@ import UserWelcome from "./UserWelcome";
 import Vote from "./Vote";
 import SendText from "./SendText";
 import MessagesToYou from "./MessagesToUser";
+import HomeArticle from "./HomeArticle";
 import fire from "../configs/FireBase";
 import history from "../routh/history";
 import voteBG from "../../img/voteBG.jpg";
 import msgToMe from "../../img/msgToMe.jpg";
 import sendText from "../../img/sendText.jpg";
-import DefaultHome from "./DefaultHome";
+import backToHome from "../../img/backToHome.jpg";
 
 
 export default function Home() {
@@ -31,23 +32,25 @@ export default function Home() {
                 <UserWelcome />
                 <div id="refSection">
                     <Link to="/Home/SendText">
-                        {/* <h3>Send Text</h3> */}
-                        <img src={sendText} alt="sendText"/>
+                        <img src={sendText} alt="Send Message"/>
                     </Link>
                     <Link to="/Home/MessagesToYou">
-                        <img src={msgToMe} alt="msgToMe" />
-                        {/* <h3>Message To ME</h3> */}
+                        <img src={msgToMe} alt="Messages To ME" />
                     </Link>
                     <Link to="/Home/Vote">
-                        {/* <h3>Vote</h3> */}
-                        <img src={voteBG} alt ="vote"/>
+                        <img src={voteBG} alt ="Vote"/>
                     </Link>
+                    <Link to="/Home">
+                        <img src={backToHome} alt="Back To Home" />
+                    </Link>
+                    
+
                 </div>
                 <Switch>
                     <Route path="/Home/SendText" component={SendText} />
                     <Route path="/Home/MessagesToYou" component={MessagesToYou} />
                     <Route path="/Home/Vote" component={Vote} />
-                    <Route path="/Home" component={DefaultHome} />
+                    <Route path="/Home" component={HomeArticle} />
                 </Switch>
                 {/* <Route path="/Home/SendText" component={SendText} />
                 <Route path="/Home/MessagesToYou" component={MessagesToYou} />

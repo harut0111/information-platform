@@ -1,4 +1,4 @@
-#defaultHomeWrapper {
+#homeArticle {
     background-color: #fff;
     max-width: 80%;
     margin: 30px auto 0 auto;
@@ -21,8 +21,16 @@
   text-align: left;
   padding: 0 20px;
 }
+
 .article p {
   color: #3b5998;
   text-align: left;
   padding: 0 20px 20px 20px;
+}
+
+.article h5 {
+  color: #278FC7;
+  margin: -15px 0 20px 0;
+  text-align: left;
+  padding: 0 20px;
 }
