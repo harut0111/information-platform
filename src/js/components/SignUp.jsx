@@ -1,208 +1,103 @@
-import React from 'react';
 import './styles/signUp.css';
-import firebase from "../configs/FireBase";
+import React, {useState, useEffect} from 'react';
 import history from '../routh/history';
+import firebase from "../configs/FireBase";
 import "firebase/firestore";
 
-const fieldValues = {
-        firstname: "",
-        lastname: "",
-        emailid: "",
-        password: "",
-        age: "",
-        group: "",
-    }
 
-class SignUp extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        fields: { ...fieldValues},
-        errors: {},
-        groupList: [],
-      }
-    }
+export default function SignUp(props) {
 
-    handleChange = e => {
-      let fields = this.state.fields;
-      fields[e.target.name] = e.target.value;
-      this.setState({
-        fields
-      });
-    }
+    const DB = firebase.firestore();
 
-    submituserRegistrationForm = e => {
+
+    const [firstname, setFirstname] = useState("")
+    const [lastname, setLastname] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [age, setAge] = useState("")
+    const [groupVal, setGroupVal] = useState([])
+    const [groups, setGroups] = useState([])
+
+    
+    useEffect(() =>{
+      callDB() 
+      // eslint-disable-next-line
+    }, [null])
+    
+    function callDB() {
+      DB.collection("Group").get().then(querySnapshot => {
+        const groups = [];
+        querySnapshot.forEach(doc => {
+          groups.push({
+            id: doc.id,
+            value: doc.data().name,
+          })
+        });
+        setGroups(groups);
+        setGroupVal(groups[0].value);
+      })
+    }
+ 
+    function handleOnSubmit(e) {
       e.preventDefault();
 
-      const {
-        firstname,
-        lastname,
-        emailid,
-        password,
-        age,
-        group } = this.state.fields;
-
-      if (this.validateForm() && group) {
-       firebase.auth().createUserWithEmailAndPassword(emailid, password).then(p => {
-          // console.log(p.user.uid);
-          this.db.collection("User").doc(p.user.uid).set({
+      if (firstname.trim() && lastname.trim() ) {
+       firebase.auth().createUserWithEmailAndPassword(email, password).then(p => {
+          DB.collection("User").doc(p.user.uid).set({
             name: firstname,
             surname: lastname,
-            email: emailid,
+            email: email,
             age: age,
-            group: group
+            group: groupVal
           })
           return p.user.uid;
         }).then(userId => {
-          this.db.collection("User_to_group").doc().set({
-            groupId: this.state.groupList.find(item => item.value === group).id,
+          DB.collection("User_to_group").doc().set({
+            groupId: groups.find(item => item.value === groupVal).id,
             userId: userId,
           })
         }).then(() => {
-          // console.log('history pushed');
-          history.push('/');
+          history.push('/Home');
         })
         .catch((error) => {
             window.alert(error.message);
         });
+    } else {
+        window.alert("please fill in the inputs")
     }
   }
   
-    // ================================ validateForm ================================
-    validateForm() {
-      let fields = this.state.fields;
-      let errors = {};
-      let isFormValid = true;
-
-      if (!fields["firstname"]) {
-        isFormValid = false;
-        errors["firstname"] = "*Please enter your First Name.";
-      }
-
-      if (typeof fields["firstname"] !== "undefined") {
-        if (!fields["firstname"].match(/^[a-zA-Z ]*$/)) {
-          isFormValid = false;
-          errors["firstname"] = "*Please enter alphabet characters only.";
-        }
-      }
-      if (!fields["lastname"]) {
-        isFormValid = false;
-        errors["lastname"] = "*Please enter your Last Name.";
-      }
-
-      if (typeof fields["lastname"] !== "undefined") {
-        if (!fields["lastname"].match(/^[a-zA-Z ]*$/)) {
-          isFormValid = false;
-          errors["lastname"] = "*Please enter alphabet characters only.";
-        }
-      }
-
-      if (!fields["emailid"]) {
-        isFormValid = false;
-        errors["emailid"] = "*Please enter your email-ID.";
-      }
-
-      if (typeof fields["emailid"] !== "undefined") {
-        //regular expression for email validation
-        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-        if (!pattern.test(fields["emailid"])) {
-          isFormValid = false;
-          errors["emailid"] = "*Please enter valid email-ID.";
-        }
-      }
-
-      if (!fields["age"]) {
-        isFormValid = false;
-        errors["age"] = "*Please enter your age.";
-      }
-
-      if (typeof fields["age"] !== "undefined") {
-        if (!fields["age"].match(/^[0-9]/)) {
-          isFormValid = false;
-          errors["age"] = "*Please enter valid ge.";
-        }
-      }
-      if(fields["age"] < 18){
-        isFormValid = false;
-        errors["age"] = "*You are very young.";
-      }
-      if(fields["age"] > 80){
-        isFormValid = false;
-        errors["age"] = "*You are very old.";
-      }
-      if (!fields["password"]) {
-        isFormValid = false;
-        errors["password"] = "*Please enter your password.";
-      }
-
-      if (typeof fields["password"] !== "undefined") {
-        if (!fields["password"].match(/^.*(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/)) {
-          isFormValid = false;
-          errors["password"] = "*Password must containe: Uppercase characters (A-Z), Lowercase characters(a-z), Digits(0-9)";
-        }
-      }
-
-      this.setState({
-        errors
-      });
-      return isFormValid;
-    }
-
-    componentDidMount() {
-    
-      this.db = firebase.firestore();
-      this.db.collection("Group").get().then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-           this.setState(state => ({
-            groupList: state.groupList.concat({
-              id: doc.id,
-              value: doc.data().name,
-            }),
-          }));
-        });
-      });
-    }
-
-
-    render() {
-      
-    const { groupList } = this.state;
-    const items = groupList.map(item => {
+    const items = groups.map(item => {
       return (
         <option key= {item.id} name={item.value}> {item.value} </option>
       )
     })
 
+
     return (
-     <div id="register">
-        <h1>SIGN UP</h1>
-        <form name="userRegistrationForm" onSubmit= {this.submituserRegistrationForm} method="POST">
-          <label>First Name</label>
-          <input type="text" name="firstname" value={this.state.fields.firstname} onChange={this.handleChange} />
-          <div className="errorMsg">{this.state.errors.firstname}</div>
-          <label>Last Name</label>
-          <input type="text" name="lastname" value={this.state.fields.lastname} onChange={this.handleChange} />
-          <div className="errorMsg">{this.state.errors.lastname}</div>
-          <label>Email ID:</label>
-          <input type="email" name="emailid" value={this.state.fields.emailid} onChange={this.handleChange} />
-          <div className="errorMsg">{this.state.errors.emailid}</div>
-          <label>Password</label>
-          <input type="password" name="password" value={this.state.fields.password} onChange={this.handleChange} />
-          <div className="errorMsg">{this.state.errors.password}</div>
-          <label>Age</label>
-          <input type="text" name="age" value={this.state.fields.age} onChange={this.handleChange} />
-          <div className="errorMsg">{this.state.errors.age}</div>
-          <label>Group</label>
-            <select required onChange={this.handleChange} name="group" defaultValue={'DEFAULT'}>
-              <option value="DEFAULT" disabled hidden> -- select an option -- </option>
-              {items}
-          </select>
-          <input type="submit" className="button" value="Registre"/>
-        </form>
+     <div id="signInContainer">
+       <div className="signUpContainer">
+
+          <h1>SIGN UP</h1>
+          <form name="userRegistrationForm" onSubmit={handleOnSubmit}>
+
+            <input type="text" required maxLength="32" pattern="[A-Za-z]{1,32}" placeholder="First Name" value={firstname} onChange={(e)=>setFirstname(e.target.value)}/>
+            <p style={{fontSize: 12}}>Must contain only letters</p>
+            <input type="text" required maxLength="32" pattern="[A-Za-z]{1,32}" placeholder="Last Name" value={lastname} onChange={(e)=>setLastname(e.target.value)} />
+            <p style={{fontSize: 12}}>Must contain only letters</p>
+            <input type="email" required placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)} />
+            <input type="password" required maxLength="12" pattern="[A-Za-z0-9]{6,12}"  placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
+            <p style={{fontSize: 12}}>must contain at list <br /> 6 charackters [A-Za-z0-9]</p>
+            <input type="number" required min="18" max="120" placeholder="Age" value={age} onChange={(e)=>setAge(e.target.value)} />
+
+            <select required onChange={(e)=>setGroupVal(e.target.value)} >
+                {items}
+            </select>
+            <input type="submit" value="Registre" />
+            <input type="button" value="Back" onClick={props.swtich}/>
+          </form>
+
+       </div>
     </div>
     );
-  }
 }
-
-
-export default SignUp;

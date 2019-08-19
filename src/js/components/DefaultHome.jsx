@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import fire from "../configs/FireBase";
 import "./styles/defaultHome.css";
-
+/*eslint-disable*/
 export default function DefaultHome() {
     const [userId, setUserId] = useState("");
 
