@@ -1,34 +1,40 @@
 footer {
   border: 1px solid grey;
   background-color: #3b5998;
-  padding: 1%;
   color: #fff;
   text-align: center;
+  font-size: 14px;
+}
+
+
+#footerContent {
   display: flex;
   justify-content: space-around;
+  max-height: 100px;
+  min-height: 80px;
+  padding: 5px 0;
+  max-width: 90%;
+  margin: 0 auto;
 }
 
 #subsGit {
-  margin-top: 2px;
+  margin-top: 5px;
 }
 
 footer p {
   text-transform: uppercase;
-  font-size: 14px;
 }
 
 footer button {
-  display: block;
-  padding: 3px;
-  border: 1px solid silver;
-  border-radius: 5px;
-  margin: 1px 2px 2px 0;
-  width: 120px;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: bold;
-  color: grey;
-  background-color: #fff;
+    display: block;
+    border: 1px solid silver;
+    border-radius: 3px;
+    margin: 1px 2px 2px 0;
+    width: 100px;
+    cursor: pointer;
+    font-size: 14px;
+    color: grey;
+    padding: 1px;
 }
 
 footer button:hover {
@@ -38,31 +44,49 @@ footer button:hover {
 
 footer textarea {
   border: 1px solid silver;
+  box-sizing: border-box;
   border-radius: 5px;
-  padding: 5px;
-  margin-top: 10px;
+  padding: 2px;
+  max-width: 220px;
+  max-height: 40px;
+  min-width: 220px;
+  min-height: 40px;
 }
 
 #github {
   display: flex;
   justify-content: space-around;
-  padding: 1%;
-  max-width: 80%;
-  margin: 5px auto 22px auto;
+  max-width: 70%;
+  margin: 8px auto 10px auto;
 }
 
+#textToAdmin {
+ margin-top: 10px;
+}
+
+
+#github img {
+  width: 25px;
+}
+
+
+#github img:hover {
+  opacity: 0.5;
+}
+
+
 #tickLogo {
-    width: 40px;
+    width: 25px;
     position: absolute;
-    margin-top: 82px;
-    margin-left: -110px;
+    margin-top: 43px;
+    margin-left: -108px;
     visibility: hidden;
 }
 
 #cancelLogo {
-    width: 40px;
+    width: 25px;
     position: absolute;
-    margin-top: 84px;
+    margin-top: 43px;
     margin-left: -110px;
     visibility: hidden;
 }

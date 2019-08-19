@@ -167,7 +167,10 @@ export default function MessagesToUser() {
                                         data-id={val.evenId} />
                                 </div>
                                 <div className="responseMsg" style={{ display: "none" }}>
-                                    <textarea rows="3" cols="10" placeholder={`Hi ${val.name} !`}/>
+                                    <textarea rows="4" 
+                                            cols="10" 
+                                            placeholder={`Hi ${val.name} !`} 
+                                            style={{maxHeight: 35, minHeight: 35}} />
                                     <br />
                                     <button onClick={onResponseSend}
                                             data-id={val.id}> SEND

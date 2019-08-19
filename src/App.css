@@ -1,10 +1,11 @@
 * {
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
 body {
   background-color: #dfe3ee;
+  height: 100%;
 }
 .App {
   max-width: 100%;
@@ -16,5 +17,6 @@ main {
   padding: 2%;
   display: table;
   height: -webkit-fill-available;
-  background-color: #dfe3ee
+  background-color: #dfe3ee;
+  background-image: url("./img/mainBG.jpeg");
 }
