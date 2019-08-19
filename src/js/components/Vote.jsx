@@ -14,7 +14,7 @@ import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 // --------------------------------------------------------------
 
-export default function Vote2() {
+export default function Vote() {
 
     const [userId, setUserId] = useState(""),
         [allVotes, setAllVotes] = useState([]),
@@ -191,7 +191,7 @@ export default function Vote2() {
         e.currentTarget.nextSibling.innerText = +countOfVoters + 1;
         
         for(let el of voteButtons) {
-            el.style.opacity = 0.3;
+            el.style.opacity = 0.5;
             el.style.cursor = "default";
         }
         
@@ -355,7 +355,7 @@ export default function Vote2() {
                                                 <img src={like}
                                                     name="good"
                                                     alt="Like"
-                                                    style={{ opacity: 0.3, cursor: "default" }} />
+                                                    style={{ opacity: 0.5, cursor: "default" }} />
                                                 <span className="countVotes">{val.voteGood}</span>
                                             </span>
                                                 <img src={vote} onClick={onAlreadyVoted}
@@ -369,7 +369,7 @@ export default function Vote2() {
                                                 <img src={unlike}
                                                     name="bad"
                                                     alt="Unlike"
-                                                    style={{ opacity: 0.3, cursor: "default" }} />
+                                                    style={{ opacity: 0.5, cursor: "default" }} />
                                                 <span className="countVotes">{val.voteBad}</span>
                                             </span>
                                         </>

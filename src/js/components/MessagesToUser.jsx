@@ -4,11 +4,13 @@ import "./styles/home.css";
 import noMessages from "../../img/noMessages.png";
 import sendMsgIcon from '../../img/sendMsg.png';
 import deleteMsgIcon from '../../img/deleteMsg.png';
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default function MessagesToUser() {
     const [userId, setUserId] = useState(""),
           [data, setData] = useState([]),
-          [isLoaded, setIsLoaded] = useState(false);
+          [isLoaded, setIsLoaded] = useState("Load");
 
     useEffect(() => {
         fire.auth().onAuthStateChanged(user => {
@@ -63,11 +65,15 @@ export default function MessagesToUser() {
                                 }
                             }
                         }
+                        console.log(tempArr);
                         // console.log(tempArr);
                         if (JSON.stringify(data) !== JSON.stringify(tempArr)) {
                             setData([...tempArr]);
-                            setIsLoaded(true);
-                        }  
+                            setIsLoaded("OK")
+                        }
+                        
+                    } else {
+                        setIsLoaded("Empty");
                     }
                 })
             }
@@ -136,51 +142,118 @@ export default function MessagesToUser() {
         } 
         
     }
+    
+    const useStyles = makeStyles(theme => ({
+        progress: {
+            margin: theme.spacing(2),
+        }
+    }));
+    let classes = useStyles();
 
-    return (
-        !isLoaded ? (
-            <div id="toReferPage" className = "noMessages">
-                <h3 style={{ marginTop: 20, textDecoration: "underline" }}>
-                    You haven't messages !
-                </h3>
-                <img src={noMessages} alt="You haven't messages" />
-            </div>
-        ) : (
-             <div id="toReferPageMessToUser">
+    if(isLoaded === "OK") {
+        return (
+            <div id="toReferPageMessToUser">
                 <h2>Аll messages sent to you !</h2>
-                    {data.map( val => (
-                        <div id="messagesToUser" key={val.evenId}>
-                            <h2>{`${val.name} ${val.surname}`}</h2>
-                            <h5>{`(Group: ${val.group}, Age: ${val.age})`}</h5>
-                            <h6>{`${val.date}`}</h6>
-                            <hr />
-                            <div id="paragWrapper">
-                                <p>{val.text}</p>
-                                <div className="icons">
-                                    <img className="sendMsgIcon" 
-                                        src={sendMsgIcon} 
-                                        alt="SendMsgIcon" 
-                                        onClick={onResponseMsg}/>
-                                    <img className="deleteMsgIcon" src={deleteMsgIcon} 
-                                        alt="DeleteMsgIcon" 
-                                        onClick={onRemMsg} 
-                                        data-id={val.evenId} />
-                                </div>
-                                <div className="responseMsg" style={{ display: "none" }}>
-                                    <textarea rows="4" 
-                                            cols="10" 
-                                            placeholder={`Hi ${val.name} !`} 
-                                            style={{maxHeight: 35, minHeight: 35}} />
-                                    <br />
-                                    <button onClick={onResponseSend}
-                                            data-id={val.id}> SEND
-                                    </button>
-                                </div>
+                {data.map(val => (
+                    <div id="messagesToUser" key={val.evenId}>
+                        <h2>{`${val.name} ${val.surname}`}</h2>
+                        <h5>{`(Group: ${val.group}, Age: ${val.age})`}</h5>
+                        <h6>{`${val.date}`}</h6>
+                        <hr />
+                        <div id="paragWrapper">
+                            <p>{val.text}</p>
+                            <div className="icons">
+                                <img className="sendMsgIcon"
+                                    src={sendMsgIcon}
+                                    alt="SendMsgIcon"
+                                    onClick={onResponseMsg} />
+                                <img className="deleteMsgIcon" src={deleteMsgIcon}
+                                    alt="DeleteMsgIcon"
+                                    onClick={onRemMsg}
+                                    data-id={val.evenId} />
+                            </div>
+                            <div className="responseMsg" style={{ display: "none" }}>
+                                <textarea rows="4"
+                                    cols="10"
+                                    placeholder={`Hi ${val.name} !`}
+                                    style={{ maxHeight: 35, minHeight: 35 }} />
+                                <br />
+                                <button onClick={onResponseSend}
+                                    data-id={val.id}> SEND
+                                </button>
                             </div>
                         </div>
-                    ))}
-            </div> 
+                    </div>
+                ))}
+            </div>
         )
-    )  
+    }
+    else if(isLoaded === "Empty") {
+        return (
+            <div id="toReferPage" className="noMessages">
+                 <h3 style={{ marginTop: 20, textDecoration: "underline" }}>
+                     You haven't messages !
+                 </h3>
+                 <img src={noMessages} alt="You haven't messages" />
+             </div>
+        )
+    }
+    else return (
+        <div id="toReferPage">
+            <div>
+                <CircularProgress className={classes.progress} />
+                <CircularProgress className={classes.progress} color="secondary" />
+                <CircularProgress className={classes.progress} />
+            </div>
+        </div>
+        )
+    
+
+    //return (
+       
+        // !isLoaded ? (
+        //     <div id="toReferPage" className = "noMessages">
+        //         <h3 style={{ marginTop: 20, textDecoration: "underline" }}>
+        //             You haven't messages !
+        //         </h3>
+        //         <img src={noMessages} alt="You haven't messages" />
+        //     </div>
+        // ) : (
+        //     <div id="toReferPageMessToUser">
+        //         <h2>Аll messages sent to you !</h2>
+        //             {data.map( val => (
+        //                 <div id="messagesToUser" key={val.evenId}>
+        //                     <h2>{`${val.name} ${val.surname}`}</h2>
+        //                     <h5>{`(Group: ${val.group}, Age: ${val.age})`}</h5>
+        //                     <h6>{`${val.date}`}</h6>
+        //                     <hr />
+        //                     <div id="paragWrapper">
+        //                         <p>{val.text}</p>
+        //                         <div className="icons">
+        //                             <img className="sendMsgIcon" 
+        //                                 src={sendMsgIcon} 
+        //                                 alt="SendMsgIcon" 
+        //                                 onClick={onResponseMsg}/>
+        //                             <img className="deleteMsgIcon" src={deleteMsgIcon} 
+        //                                 alt="DeleteMsgIcon" 
+        //                                 onClick={onRemMsg} 
+        //                                 data-id={val.evenId} />
+        //                         </div>
+        //                         <div className="responseMsg" style={{ display: "none" }}>
+        //                             <textarea rows="4" 
+        //                                     cols="10" 
+        //                                     placeholder={`Hi ${val.name} !`} 
+        //                                     style={{maxHeight: 35, minHeight: 35}} />
+        //                             <br />
+        //                             <button onClick={onResponseSend}
+        //                                     data-id={val.id}> SEND
+        //                             </button>
+        //                         </div>
+        //                     </div>
+        //                 </div>
+        //             ))}
+        //     </div>
+        // )
+    //)  
 }
 

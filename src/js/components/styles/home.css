@@ -3,7 +3,8 @@
     display: table;
     width: 92%;
     height: -webkit-fill-available;
-    background-color: #3B597F;
+    background-color: initial;
+    background-image: linear-gradient(#A6D9EB, #0090EA);
     text-align: center;
     color: #333;
 }
@@ -18,7 +19,7 @@
 }
 
 #welcomeSection {
-    background-color: #3B5998;
+    background-color: #34BAEB;
     color: #fff;
     padding: 10px;
     max-width: 80%;
@@ -38,22 +39,24 @@
     border: 1px solid grey;
     width: max-content;
     margin: 10px auto;
-    padding: 5px;
+    padding: 2px;
     border-radius: 10px;
     display: none;
-    background-color: #3B597F;
+    background-color: #fff;
     font-size: 14px;
+    color: #444;
 }
 
 #welcomeSection #userInfo:hover {
-    background-color: #fff;
-    color: #333;
+    background-color: #2CA0ED;
+    color: #fff;
+    border-color: #fff;
 }
 
 /*  =========================================================================== */
 #refSection a {
     padding: 6px 5px 2px 5px;
-    background-color: silver;
+    background-color: #91C1EA;
     border: 3px solid grey;
     border-radius: 10px;
 }
@@ -66,14 +69,14 @@
 }
 
 #refSection a:hover {
-    background-color: #fff;
+    background-color: #D3EBFF;
     border-color: grey;
     color: #F5F5DC;
 }
 
 #toReferPage {
     padding: 20px 10px 30px 10px;
-    background-color: silver; 
+    background-color: #BBE0FF; 
     border: 3px solid grey;
     border-radius: 10px;
     max-width: 60%;
@@ -126,7 +129,7 @@
 #sendTextLogo {
     width: 45px;
     position: absolute;
-    margin-left: 36%;
+    margin-left: 38%;
     margin-top: -2px;
     
 }
@@ -136,11 +139,11 @@
 /* ===================  Messages to user  ========================= */
 
 #toReferPageMessToUser {
-    background-color: silver; 
+    background-color: #BBE0FF; 
     border: 3px solid grey;
     border-radius: 10px;
     padding-bottom: 10px;
-    max-width: 60%;
+    max-width: 70%;
     margin: 50px auto;
     text-align: center;
     display: flex;
@@ -158,7 +161,7 @@
 
 
 #messagesToUser {
-    background-color: #3B597F;
+    background-color: #3D82C7;
     color: #F5F5DC;
     border-radius: 10px;
     border: 3px solid grey;
@@ -297,10 +300,10 @@
 /* ---------------------- vote  -----------------------*/
 
 #toReferPageVote {  
-    background-color: silver;
+    background-color: #BBE0FF;
     border: 3px solid grey;
     border-radius: 10px;
-    max-width: 70%;
+    max-width: 100%;
     margin: 50px auto;
     display: table;
     font-family: Arial, Helvetica, sans-serif;
@@ -308,18 +311,20 @@
 }
 
 #messagesVote {
-    background-color: #3B597F;
+    background-color: #3d82c7;
     color: #F5F5DC;
-    padding: 10px;
+    padding-top: 10px;
     border-radius: 10px;
     border: 3px solid grey;
     display: inline-table;
-    width: 38%;
-    margin: 15px 20px;
+    width: 26%;
+    margin: 10px 15px;
+    min-height: 210px;
+    min-width: 220px;
 }
 
 #messagesVote:hover {
-    background-color: #3B5998;
+    background-color: #3B597F;
 }
 
 #voteHead {
@@ -330,11 +335,12 @@
     border-radius: 10px;
     background-color: #fff;
     font-family: cursive;
+    color: #444;
 }
 
 #voteHead:hover {
     border-color: #fff;
-    background-color: silver;
+    background-color: #A0D4FF;
 }
 
 #messagesVote h5, #messagesVote h6 {

@@ -87,7 +87,7 @@ export default function Footer() {
                         <img src={githubLogoDark} alt="GitHub Link" />
                     </Link> 
                 </div>
-                <div><p style={{color: "silver"}}>Copyright &#9400; 2019 | AS.HM.EH.HB | All Rights Reserved.</p></div>
+                    <div><p style={{ color: "silver" }}>Copyright &#9400; 2019 | HB.HM.EH.AS | All Rights Reserved.</p></div>
             </div>
             </div>
         </footer>
