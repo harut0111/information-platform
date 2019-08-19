@@ -9,7 +9,7 @@
 }
 
 .leftSideWrapper {
-  max-width: 100%;
+  max-width: 80%;
   margin: 0 auto;
 }
 
@@ -26,16 +26,16 @@
 }
 
 .groups {
-  margin: 15px auto;
+  margin: 10px auto;
   display: inline-table;
   cursor: pointer;
 }
 
 .groups h2 {
     border: 3px solid slategrey;
-    border-radius: 10px;
+    border-radius: 5px;
     margin: 5px;
-    padding: 30px;
+    padding: 10px;
     background-image:url("../../../img/bg.jpg");
     font-size: 20px;
     color: floralwhite;

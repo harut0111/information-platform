@@ -58,6 +58,7 @@ export default function Footer() {
 
     return (
         <footer>
+            <div id="footerContent">
             <div id="textToAdmin">
                 <textarea placeholder="Send message to Admin."
                         id="textareaAdmin"
@@ -86,7 +87,8 @@ export default function Footer() {
                         <img src={githubLogoDark} alt="GitHub Link" />
                     </Link> 
                 </div>
-                <div><p>Copyright &#9400; 2019 ACA Students. All Rights Reserved.</p></div>
+                <div><p style={{color: "silver"}}>Copyright &#9400; 2019 | AS.HM.EH.HB | All Rights Reserved.</p></div>
+            </div>
             </div>
         </footer>
     )
