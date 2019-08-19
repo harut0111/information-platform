@@ -30,12 +30,12 @@ export const useStyles = makeStyles(theme => ({
     },
     textField: {
         flexBasis: 200,
-        width: 350
+        width: 300
     },
     textFieldEmail: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
-        width: 350
+        width: 300
     },
     rightIcon: {
         marginLeft: 40
@@ -44,7 +44,7 @@ export const useStyles = makeStyles(theme => ({
         fontSize: 18,
         padding: 5,
         textAlign: "center",
-        width: 200,
+        width: 160,
         marginTop: 10,
         fontWeight: "bold",
         color: "#3B5998"
@@ -54,7 +54,7 @@ export const useStyles = makeStyles(theme => ({
         padding: 5,
         marginLeft: 10,
         marginTop: 10,
-        width: 140,
+        width: 130,
     },
 }));
 
@@ -148,13 +148,13 @@ function SignIn (props) {
                     SIGN IN<Icon className={classes.rightIcon}>send</Icon>
                 </Button>
             </Link>
-            <Link to="/SignUp" style={{textDecoration: "none"}}>
-                <Button variant="contained" 
-                        color="primary" size="medium"
-                        className={classes.buttonSignUp}>
-                    SIGN UP
-                </Button>
-            </Link>
+            {/* style={{textDecoration: "none"}} */}
+            <Button variant="contained" 
+                    color="primary" size="medium"
+                    className={classes.buttonSignUp}
+                    onClick={props.swtich}>
+                SIGN UP
+            </Button>
         </div>
     )
 }
