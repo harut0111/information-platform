@@ -112,7 +112,10 @@
 }
 
 #homeWrapper  textarea {
-  width: 40%;
+  max-width: 45%;
+  min-width: 45%;
+  max-height: 100px;
+  min-height: 100px;
   margin: 20px auto;
   border: 1px solid grey;
   border-radius: 10px;
