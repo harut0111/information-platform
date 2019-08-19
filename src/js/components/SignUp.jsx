@@ -67,11 +67,11 @@ export default function SignUp(props) {
     }
   }
   
-    const items = groups.map(item => {
-      return (
-        <option key= {item.id} name={item.value}> {item.value} </option>
-      )
-    })
+  const items = groups.map(item => {
+    return (
+      <option key= {item.id} name={item.value}> {item.value} </option>
+    )
+  })
 
 
     return (
@@ -83,17 +83,23 @@ export default function SignUp(props) {
 
             <input type="text" required maxLength="32" pattern="[A-Za-z]{1,32}" placeholder="First Name" value={firstname} onChange={(e)=>setFirstname(e.target.value)}/>
             <p style={{fontSize: 12}}>Must contain only letters</p>
+            
             <input type="text" required maxLength="32" pattern="[A-Za-z]{1,32}" placeholder="Last Name" value={lastname} onChange={(e)=>setLastname(e.target.value)} />
             <p style={{fontSize: 12}}>Must contain only letters</p>
+            
             <input type="email" required placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)} />
+            
             <input type="password" required maxLength="12" pattern="[A-Za-z0-9]{6,12}"  placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
             <p style={{fontSize: 12}}>must contain at list <br /> 6 charackters [A-Za-z0-9]</p>
+            
             <input type="number" required min="18" max="120" placeholder="Age" value={age} onChange={(e)=>setAge(e.target.value)} />
 
             <select required onChange={(e)=>setGroupVal(e.target.value)} >
                 {items}
             </select>
+            
             <input type="submit" value="Registre" />
+            
             <input type="button" value="Back" onClick={props.swtich}/>
           </form>
 
