@@ -5,6 +5,7 @@ import  sendMsgLogo  from "../../img/sendMsg.png";
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
+import { ADMIN_ID} from "../constants/signIn";
 
 export default function SendText() {
     let [data, setData] = useState(""),
@@ -25,7 +26,7 @@ export default function SendText() {
         .then(querySnapshot => {
             let arrTemp = [];
             querySnapshot.forEach( doc => {
-                if (doc.id !== userId) {
+                if (doc.id !== userId && doc.id !== ADMIN_ID) {
                     let objTemp = { ...doc.data() };
                     objTemp.id = doc.id;
                     arrTemp.push(objTemp); 
