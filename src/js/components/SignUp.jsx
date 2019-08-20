@@ -63,7 +63,7 @@ export default function SignUp(props) {
             window.alert(error.message);
         });
     } else {
-        window.alert("please fill in the inputs")
+        window.alert("Please fill in the inputs")
     }
   }
   
@@ -81,28 +81,52 @@ export default function SignUp(props) {
           <h1>SIGN UP</h1>
           <form name="userRegistrationForm" onSubmit={handleOnSubmit}>
 
-            <input type="text" required maxLength="32" pattern="[A-Za-z]{1,32}" placeholder="First Name" value={firstname} onChange={(e)=>setFirstname(e.target.value)}/>
+            <input type="text" 
+                  required maxLength="32" pattern="[A-Za-z]{1,32}" 
+                  placeholder="First Name" 
+                  value={firstname} 
+                  onChange={(e)=>setFirstname(e.target.value)}/>
+
             <p style={{fontSize: 12}}>Must contain only letters</p>
             
-            <input type="text" required maxLength="32" pattern="[A-Za-z]{1,32}" placeholder="Last Name" value={lastname} onChange={(e)=>setLastname(e.target.value)} />
+            <input type="text" required maxLength="32" pattern="[A-Za-z]{1,32}" 
+                    placeholder="Last Name" 
+                    value={lastname} 
+                    onChange={(e)=>setLastname(e.target.value)} />
+
             <p style={{fontSize: 12}}>Must contain only letters</p>
             
-            <input type="email" required placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)} />
+            <input type="email" required placeholder="Email" 
+                  value={email} 
+                  onChange={(e)=>setEmail(e.target.value)} />
+
+            <p style={{ fontSize: 12 }}>Example@gmail.com</p>
             
-            <input type="password" required maxLength="12" pattern="[A-Za-z0-9]{6,12}"  placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
-            <p style={{fontSize: 12}}>must contain at list <br /> 6 charackters [A-Za-z0-9]</p>
+            <input type="password" required maxLength="12" pattern="[A-Za-z0-9]{6,12}" 
+                  placeholder="Password" 
+                  value={password} 
+                  onChange={(e)=>setPassword(e.target.value)} />
+           
+            <p style={{fontSize: 12}}>Must contain at list 6 charackters [A-Za-z0-9]</p>
             
-            <input type="number" required min="18" max="120" placeholder="Age" value={age} onChange={(e)=>setAge(e.target.value)} />
+            <input type="number" required min="18" max="70" 
+                  placeholder="Age" 
+                  value={age} 
+                  onChange={(e)=>setAge(e.target.value)} />
+
+              <p style={{ fontSize: 12 }}>18 to 70</p>
 
             <select required onChange={(e)=>setGroupVal(e.target.value)} >
                 {items}
             </select>
-            
-            <input type="submit" value="Registre" />
-            
-            <input type="button" value="Back" onClick={props.swtich}/>
-          </form>
 
+            <p style={{ fontSize: 12 }}>Select your group</p>
+        
+            <button type="submit" value="Registre" id="regButton">Registre</button>
+
+            <button type="button" value="Back" onClick={props.swtich} id="backButton">Back</button>
+            
+          </form>
        </div>
     </div>
     );
