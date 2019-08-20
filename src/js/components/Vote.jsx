@@ -108,7 +108,7 @@ export default function Vote() {
                             setIsLoaded(true);
                         }
                     })
-                }
+                } else setIsLoaded("Empty");
             })
             .catch(e => console.log(e.messaage));
         // eslint-disable-next-line
@@ -259,6 +259,49 @@ export default function Vote() {
         //console.log(e.target, e.currentTarget);
         e.currentTarget.style.visibility = "hidden";
     }
+
+    if (isLoaded === "Empty") return (
+        <div id="toReferPageVote" style={{padding: 35}}>
+            <h1 id="voteHead" style={{ padding: 35 }}>
+                Vote List
+                    <Icon className={classes.iconHover}
+                    aria-describedby={id}
+                    variant="contained"
+                    onClick={handleClick}
+                    color="primary"
+                    style={{
+                        fontSize: 45,
+                        margin: "-10px -10px -10px 30px",
+                        cursor: "pointer"
+                    }}>add_circle
+                    </Icon>
+                <div>
+                    <Popover
+                        id={id}
+                        open={open}
+                        anchorEl={anchorEl}
+                        onClose={handleClose}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'center',
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'left',
+                        }}>
+                        <Typography className={classes.typography}>
+                            <input className="inputTypography"
+                                type="text" placeholder="Title"></input> <br />
+                            <input className="inputTypography"
+                                type="text" placeholder="Description"></input> <br />
+                            <button onClick={voteAddClick}
+                                id="buttonTypography" type="button">ADD</button>
+                        </Typography>
+                    </Popover>
+                </div>
+            </h1>
+        </div>    
+    )
 
     return (
         !isLoaded ? (
