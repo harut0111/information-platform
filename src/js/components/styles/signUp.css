@@ -1,4 +1,3 @@
-
 .errorMsg {
   color: #CF4554;
   margin: 2px 0;
@@ -14,5 +13,58 @@
 .signUpContainer input {
   display: block;
   padding: 10px;
+  width: 300px;
+  margin: 5px 8px;
+  font-size: 14px;
+  border: 1px solid grey;
+  border-radius: 3px;
+  background-color: #DEE3EE;
+  color: #333;
+
+}
+
+.signUpContainer select {
+  padding: 10px;
   margin: 5px 0;
+  border: 1px solid grey;
+  border-radius: 3px;
+  background-color: #DEE3EE;
+  color: #333;
+  width: 322px;
+  font-size: 14px;
+}
+
+#regButton {
+  margin-top: 10px;
+  border: 1px solid grey;
+  border-radius: 3px;
+  width: 70%;
+  padding: 8px;
+  font-size: 18px;
+  background-color: #3D61AF;
+  color: #fff;
+}
+
+#backButton {
+  border: 1px solid grey;
+  border-radius: 3px;
+  width: 24%;
+  padding: 8px;
+  font-size: 18px;
+  background-color: lightsteelblue;
+  color: #333;
+  margin-left: 1%;
+}
+
+
+#regButton:hover, #backButton:hover {
+  cursor: pointer;
+}
+
+#regButton:hover {
+  background-color: #1D4BAF;
+}
+
+#backButton:hover {
+  background-color: #CEE2FC;
 }
