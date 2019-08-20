@@ -1,4 +1,4 @@
-* {
+.adminCont {
     -webkit-user-select: none;
     -moz-user-select: -moz-none;
     -ms-user-select: none;
@@ -20,17 +20,20 @@
     cursor: pointer;
     margin: 5px 0;
     display: block;
-    width: 50%;
 }
 
-.adminCont span {
-    padding: 2px;
-    background: forestgreen;
-    margin: 5px;
-    cursor: pointer;
-    display: inline-block;
+.adminGroupsCont button {
+    width: 100px;
+} 
+
+.adminGroupsCont input {
+    width: 300px;
 }
 
+.adminGroupsCont form {
+    padding: 10px;
+    border-bottom: 4px dotted blue;
+}
 
 /* ----Navbar----- */
 
@@ -79,12 +82,16 @@
 
 
 .adminMainCont {
+    background-image: url('../../../img/adminBG.jpg');
     min-height: 500px;
-    border: 3px dotted red;
+    height: 100vh;
     display: flex;
 }
 
+
 .adminProfile {
+    display: inline-block;
+    border-right: 4px dotted blue;
     max-width: 30%;
     min-width: 30%;
     padding: 10px;
@@ -92,6 +99,8 @@
 }
 
 .dataBaseCont {
+    display: inline-block;
+    width: 100%;
     padding: 10px;
     overflow: auto;
 }
@@ -107,12 +116,6 @@
     width: 180px;
 }
 
-.adminMainCont > div {
-    border: 2px dotted black;
-    display: inline-block;
-    margin: 10px;
-}
-
 .adminGroupItems h4 {
     color: red;
 }
@@ -120,11 +123,11 @@
 .adminGroupsCont, 
 .adminUsersCont, 
 .adminVoteCont,
-.adminArticleCont {
-    padding: 0 20px;
+.adminArticleCont,  
+.adminMsgesCont {
+    padding: 10px 20px;
     font-size: 15px;
-    height: 500px;
-    overflow-y: auto;
+    overflow: auto;
 }
 
 .groupPopupForm {
@@ -136,26 +139,23 @@
     display: inline-block;
 }
 
-.groupItemTools {
-    border: 1px solid green;
-    margin: 0px 10px;
-    float: right;
-
+.groupItemTools button {
+    width: 70px;
+    display: inline-block;
+    margin: 5px 5px 5px 0;
 }
 
 .groupPopupForm label {
     display: block;
 }
 
-
-.adminArticleCont > div{
-    border: 1px solid green;
-    margin: 5px;
-    padding: 5px;
-}
-
 .submitButton {
     cursor: pointer;
+}
+
+.publishSide {
+    padding: 10px;
+    border-bottom: 4px dotted blue;
 }
 
 .publishSide textarea {
@@ -167,11 +167,12 @@
 }
 
 .articleTitle {
-    width: 70%;
+    width: 42%;
 }
 
-.publishSide input{
+.publishSide input {
     margin: 5px 0;
+    display: block;
 }
 
 .monSide {
@@ -179,6 +180,20 @@
     overflow: auto
 }
 
+
+.setVotes {
+    border-bottom: 4px dotted blue;
+    padding: 10px;
+}
+
+.setVotes input, textarea {
+    display: block;
+    margin: 5px 0;
+}
+
+.setVotes textarea {
+    resize: none;
+}
 
 
 
