@@ -9,7 +9,6 @@ export default function SignUp(props) {
 
     const DB = firebase.firestore();
 
-
     const [firstname, setFirstname] = useState("")
     const [lastname, setLastname] = useState("")
     const [email, setEmail] = useState("")
@@ -61,6 +60,8 @@ export default function SignUp(props) {
         })
         .catch((error) => {
             window.alert(error.message);
+        }).finally(() => {
+            toggle = true;
         });
     } else {
         window.alert("Please fill in the inputs")
