@@ -56,7 +56,7 @@ export default function Vote() {
             .then((snapshot) => {
                 let tempVotesArr = [];
                 snapshot.forEach((doc) => {
-                    let tempObj = { ...doc.data() };
+                    let tempObj = {...doc.data()};
                     tempObj.date = doc.data().dateCreated.seconds;
                     tempObj.docId = doc.id;
                     tempObj.voted = [];
