@@ -37,11 +37,14 @@ export default function SignUp(props) {
         setGroupVal(groups[0].value);
       })
     }
- 
+    
+    let toggle = true;
+
     function handleOnSubmit(e) {
+      toggle = false;
       e.preventDefault();
 
-      if (firstname.trim() && lastname.trim() ) {
+      if (toggle) {
        firebase.auth().createUserWithEmailAndPassword(email, password).then(p => {
           DB.collection("User").doc(p.user.uid).set({
             name: firstname,
@@ -61,6 +64,8 @@ export default function SignUp(props) {
         })
         .catch((error) => {
             window.alert(error.message);
+        }).finally(() => {
+            toggle = true;
         });
     } else {
         window.alert("please fill in the inputs")
