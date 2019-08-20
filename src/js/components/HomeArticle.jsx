@@ -31,7 +31,7 @@ export default function HomeArticle() {
                     <h1>Articles</h1>
                     {article.map((val, i) => (
                         <div key={i}>
-                            <h3><i>{val.title}</i></h3><hr />
+                            <h3><i>{val.title}</i></h3>
                             <p>{val.content}</p>
                             <h5>{val.createdDate}</h5>
                         </div>
