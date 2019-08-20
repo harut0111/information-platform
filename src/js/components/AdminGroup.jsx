@@ -165,11 +165,11 @@ export default function AdminGroup() {
                     querySnapshot.forEach(doc => {
                         UserToGroup.push(doc.data());
                     });
-
+                     // get the users Id that belcongs to current group
                     let users = UserToGroup.filter(item => { 
                         return item.groupId === id;
                     })
-                    // get the users Id that belcongs to current group
+                   
                     users.forEach(item => (
                         DB.collection("User").doc(item.userId).delete()
                     ))
@@ -206,8 +206,8 @@ export default function AdminGroup() {
                 <p>ID: {item.id}</p>
               </div>  
               <div className='groupItemTools'>
-                    <span className="remove">X</span>
-                    <span className="edit">*</span>
+                    <button className="remove">Remove</button>
+                    <button className="edit">Edit</button>
               </div>
               <div className="groupPopupForm" style={{display: "none"}}>
                 <form onSubmit={handleGroupEditSubmit}>
@@ -239,23 +239,21 @@ export default function AdminGroup() {
 
     return (
         <div className="adminGroupsCont">
-            <h1>Groups</h1>
+           
             <form onSubmit={handleGroupSubmit}>
-                <label>
-                    <input 
-                        type="text" 
-                        name="groupName" 
-                        value={groupName} 
-                        onChange={handleGroupChange} 
-                        placeholder="name"
-                        required />
-
-                </label>
+                <input 
+                    type="text" 
+                    name="groupName" 
+                    value={groupName} 
+                    onChange={handleGroupChange} 
+                    placeholder="name"
+                    required />
                 <button 
                     type="submit" 
                     className="addGroupButton"
                 >  Add </button>
             </form>
+            <h1>Groups</h1>
             {groupItems}
         </div>
     )

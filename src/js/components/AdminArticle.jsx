@@ -7,11 +7,12 @@ export default function AdminArticle() {
 
 
     const DB = firebase.firestore();
-
+    
     const [ textareaVal, setTextareaVal ] = useState("");
     const [articles, setArticles ] = useState([]);
     const [ title, setTitle ] = useState("");
 
+    let toggle = true;
 
     useEffect(() => {
         callDB() ;
@@ -35,9 +36,7 @@ export default function AdminArticle() {
         });
     }
 
-
-    let toggle = true;
-
+ 
     function handleArticleSubmit(e) {
         e.preventDefault();
        
@@ -112,13 +111,14 @@ export default function AdminArticle() {
         <div className="adminArticleCont">
             <div className='publishSide'>
                 <form onSubmit={handleArticleSubmit}>
-                    Title: <br/>
+                    <label>Title:</label>
                     <input 
                         required
                         className="articleTitle"
                         type="text"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)} />
+                    <label>Article:</label>
                     <textarea 
                         name="message" 
                         rows="10" 

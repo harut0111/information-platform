@@ -60,6 +60,8 @@ export default function SignUp(props) {
         })
         .catch((error) => {
             window.alert(error.message);
+        }).finally(() => {
+            toggle = true;
         });
     } else {
         window.alert("Please fill in the inputs")
