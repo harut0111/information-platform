@@ -9,17 +9,18 @@ export default function SignUp(props) {
 
     const DB = firebase.firestore();
 
-    const [firstname, setFirstname] = useState("")
-    const [lastname, setLastname] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [age, setAge] = useState("")
-    const [groupVal, setGroupVal] = useState([])
-    const [groups, setGroups] = useState([])
+    const [firstname, setFirstname] = useState("");
+    const [lastname, setLastname] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [age, setAge] = useState("");
+    const [groupVal, setGroupVal] = useState("");
+    const [groups, setGroups] = useState([]);
 
-    
+    let toggle = true;
+
     useEffect(() =>{
-      callDB() 
+      callDB();
       // eslint-disable-next-line
     }, [null])
     
@@ -33,14 +34,13 @@ export default function SignUp(props) {
           })
         });
         setGroups(groups);
-        setGroupVal(groups[0].value);
       })
     }
  
     function handleOnSubmit(e) {
       e.preventDefault();
 
-      if (firstname.trim() && lastname.trim() ) {
+      if (toggle && groupVal) {
        firebase.auth().createUserWithEmailAndPassword(email, password).then(p => {
           DB.collection("User").doc(p.user.uid).set({
             name: firstname,
@@ -64,7 +64,7 @@ export default function SignUp(props) {
             toggle = true;
         });
     } else {
-        window.alert("Please fill in the inputs")
+        window.alert("Please select group option")
     }
   }
   
@@ -117,8 +117,9 @@ export default function SignUp(props) {
 
               <p style={{ fontSize: 12 }}>18 to 70</p>
 
-            <select required onChange={(e)=>setGroupVal(e.target.value)} >
-                {items}
+            <select defaultValue={'DEFAULT'} required onChange={(e)=>setGroupVal(e.target.value)} >
+              <option value="DEFAULT" disabled hidden> -- select an option -- </option>
+              {items}
             </select>
 
             <p style={{ fontSize: 12 }}>Select your group</p>
