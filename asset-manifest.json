@@ -1,18 +1,24 @@
 {
   "files": {
-    "main.css": "/information-platform/static/css/main.c6e6c6e5.chunk.css",
-    "main.js": "/information-platform/static/js/main.88222b2f.chunk.js",
-    "main.js.map": "/information-platform/static/js/main.88222b2f.chunk.js.map",
-    "runtime~main.js": "/information-platform/static/js/runtime~main.53dfa125.js",
-    "runtime~main.js.map": "/information-platform/static/js/runtime~main.53dfa125.js.map",
-    "static/js/2.b32397b3.chunk.js": "/information-platform/static/js/2.b32397b3.chunk.js",
-    "static/js/2.b32397b3.chunk.js.map": "/information-platform/static/js/2.b32397b3.chunk.js.map",
-    "index.html": "/information-platform/index.html",
-    "precache-manifest.5a26ae4a66ea1fcb992fa505bc11de2c.js": "/information-platform/precache-manifest.5a26ae4a66ea1fcb992fa505bc11de2c.js",
-    "service-worker.js": "/information-platform/service-worker.js",
-    "static/css/main.c6e6c6e5.chunk.css.map": "/information-platform/static/css/main.c6e6c6e5.chunk.css.map",
-    "static/media/admin.png": "/information-platform/static/media/admin.7775fddc.png",
-    "static/media/mainLeftSide.css": "/information-platform/static/media/bg.b11c7feb.jpg",
-    "static/media/logo.png": "/information-platform/static/media/logo.8394ab2b.png"
+    "main.css": "/static/css/main.10d36349.chunk.css",
+    "main.js": "/static/js/main.d6a6fb94.chunk.js",
+    "main.js.map": "/static/js/main.d6a6fb94.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/js/2.c1a26909.chunk.js": "/static/js/2.c1a26909.chunk.js",
+    "static/js/2.c1a26909.chunk.js.map": "/static/js/2.c1a26909.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.2e1d8ac9c576889dd9251d203a968f24.js": "/precache-manifest.2e1d8ac9c576889dd9251d203a968f24.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.10d36349.chunk.css.map": "/static/css/main.10d36349.chunk.css.map",
+    "static/media/admin.png": "/static/media/admin.7775fddc.png",
+    "static/media/admin.css": "/static/media/adminBG.d7901de0.jpg",
+    "static/media/backToHome.jpg": "/static/media/backToHome.c17991b6.jpg",
+    "static/media/mainLeftSide.css": "/static/media/bg.b11c7feb.jpg",
+    "static/media/logo.png": "/static/media/logo.8394ab2b.png",
+    "static/media/App.css": "/static/media/mainBG.dac9ff92.jpeg",
+    "static/media/msgToMe.jpg": "/static/media/msgToMe.d6250fdf.jpg",
+    "static/media/sendText.jpg": "/static/media/sendText.4e2d0a8a.jpg",
+    "static/media/voteBG.jpg": "/static/media/voteBG.9a720297.jpg"
   }
 }
