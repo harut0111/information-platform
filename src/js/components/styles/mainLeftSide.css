@@ -6,10 +6,12 @@
   display: table-cell;
   font-family: cursive;
   color: slategrey;
+  width: 70%;
 }
 
 .leftSideWrapper {
-  max-width: 80%;
+  max-width: 70%;
+  min-width: 70%;
   margin: 0 auto;
 }
 

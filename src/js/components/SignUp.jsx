@@ -16,7 +16,7 @@ export default function SignUp(props) {
     const [age, setAge] = useState("")
     const [groupVal, setGroupVal] = useState([])
     const [groups, setGroups] = useState([])
-
+    let toggle = true;
     
     useEffect(() =>{
       callDB() 
@@ -40,7 +40,7 @@ export default function SignUp(props) {
     function handleOnSubmit(e) {
       e.preventDefault();
 
-      if (firstname.trim() && lastname.trim() ) {
+      if (toggle) {
        firebase.auth().createUserWithEmailAndPassword(email, password).then(p => {
           DB.collection("User").doc(p.user.uid).set({
             name: firstname,

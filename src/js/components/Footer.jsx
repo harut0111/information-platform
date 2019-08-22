@@ -67,9 +67,9 @@ export default function Footer() {
                         value={text}
                         onChange={onTextChange}>
                 </textarea>
+                <button onClick={onSendClick}>SEND</button>
                 <img id="tickLogo" src={tickLogo} alt="OK TickLogo" />
                 <img id="cancelLogo" src={cancelLogo} alt="Cancel CancelLogo" />
-                <button onClick={onSendClick}>SEND</button>
             </div>
             <div>
                 <div id="subsGit"><p>Subscribe Us On GitHub.</p></div>
