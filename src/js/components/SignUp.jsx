@@ -74,6 +74,14 @@ export default function SignUp(props) {
     )
   })
 
+  /* -- PLS DON'T DELETE THIS -- */
+  // function test(e) {
+  //   const IN = e.target;
+  //   IN.setCustomValidity("Please enter at least 5 characters.");
+  //   console.dir(e.target);
+  // }
+  // <inpu onInvalid = {test}/>
+
 
     return (
      <div id="signInContainer">
