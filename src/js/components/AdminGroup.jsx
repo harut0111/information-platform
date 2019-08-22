@@ -241,6 +241,7 @@ export default function AdminGroup() {
         <div className="adminGroupsCont">
            
             <form onSubmit={handleGroupSubmit}>
+                <label><b>Group Name</b></label>
                 <input 
                     type="text" 
                     name="groupName" 
@@ -248,10 +249,10 @@ export default function AdminGroup() {
                     onChange={handleGroupChange} 
                     placeholder="name"
                     required />
-                <button 
+                <input 
                     type="submit" 
-                    className="addGroupButton"
-                >  Add </button>
+                    value="Add" 
+                    style={{width: "120px"}}/>
             </form>
             <h1>Groups</h1>
             {groupItems}

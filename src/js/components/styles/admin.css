@@ -22,15 +22,16 @@
     display: block;
 }
 
-.adminGroupsCont button {
-    width: 100px;
-} 
 
 .adminGroupsCont input {
     width: 300px;
+    display: block;
+    margin: 5px 0px;
+    padding: 10px;
 }
 
-.adminGroupsCont form {
+
+.adminGroupsCont > form {
     padding: 10px;
     border-bottom: 4px dotted blue;
 }
@@ -96,6 +97,7 @@
     min-width: 30%;
     padding: 10px;
     overflow: auto;
+    text-align: center;
 }
 
 .dataBaseCont {
@@ -131,7 +133,6 @@
 }
 
 .groupPopupForm {
-    border: 1px dotted blue;
     padding: 5px;
 }
 
@@ -180,7 +181,6 @@
     overflow: auto
 }
 
-
 .setVotes {
     border-bottom: 4px dotted blue;
     padding: 10px;
@@ -195,8 +195,9 @@
     resize: none;
 }
 
-
-
+.groupOkBtn {
+    width: 100px;
+}
 
 
 

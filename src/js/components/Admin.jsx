@@ -4,6 +4,8 @@ import history from '../routh/history';
 import { Link } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
 import { ADMIN_ID } from "../constants/signIn";
+import adminIcon from '../../img/adminIcon.png'
+
 
 import firebase from '../configs/FireBase';
 import "firebase/firestore";
@@ -91,12 +93,13 @@ function Admin() {
            </div>
             <div className='adminMainCont'>
                 <div className="adminProfile">
-                        <h1 style={{textAlign: "center", padding: "10px"}}>Admin Profile </h1>
-                        <h5> Name: {admin.name} </h5>
-                        <h5> Surname: {admin.surname} </h5>
-                        <h5> Age: {admin.age} </h5>
-                        <h5> email: {admin.email} </h5>
-                        <h5> ID: {admin.id} </h5>
+                    <h1 style={{padding: "10px 0px"}}>Admin Profile </h1>
+                    <img src={adminIcon} alt="adminIcon"/>
+                    <h5> Name: {admin.name} </h5>
+                    <h5> Surname: {admin.surname} </h5>
+                    <h5> Age: {admin.age} </h5>
+                    <h5> email: {admin.email} </h5>
+                    <h5> ID: {admin.id} </h5>
                 </div>
                 <div className="dataBaseCont">
                     <Switch>
