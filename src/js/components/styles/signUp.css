@@ -20,6 +20,7 @@
   border-radius: 3px;
   background-color: #DEE3EE;
   color: #333;
+  box-sizing: border-box;
 
 }
 
@@ -30,8 +31,10 @@
   border-radius: 3px;
   background-color: #DEE3EE;
   color: #333;
-  width: 322px;
+  width: 300px;
   font-size: 14px;
+  box-sizing: border-box;
+
 }
 
 #regButton {
