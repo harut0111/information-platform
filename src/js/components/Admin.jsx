@@ -21,6 +21,7 @@ function Admin() {
 
     const DB = firebase.firestore();
     const [ admin, setAdmin ] = useState({});
+    const [ activeLink, setActiveLink ] = useState([1,0,0,0,0,0,0]);
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(user => {
@@ -59,36 +60,41 @@ function Admin() {
         });
     }
 
+    function handleActiveLink(e) {
+        if(e.target.tagName === 'LI') {
+            const targetID = e.target.id;
+            const newActiveLink = activeLink.map((item, index) => {
+                return index === +targetID ? 1:0
+            })
+            setActiveLink(newActiveLink);
+        }
+    }
 
     return (
        <div className='adminCont'>
-           <div className='adminNavbar'>
+           <div className='adminNavbar' onClick={handleActiveLink}>
                 <ul>
-                    <div className='NavLeftSide'>
-                        <Link to = '/Admin'>
-                            <li>Admin</li>
-                        </Link>
-                        <Link to = '/Admin/User'>
-                            <li>Users</li>
-                        </Link>
-                        <Link to = '/Admin/Group'>
-                            <li>Groups</li>
-                        </Link>
-                        <Link to = '/Admin/Vote'>
-                            <li>Votes</li>
-                        </Link>
-                        <Link to = '/Admin/Article'>
-                            <li>Articles</li>
-                        </Link>
-                        <Link to = '/Admin/Message'>
-                            <li>Messages</li>
-                        </Link>
-                    </div>
-                    <div className='NavRightSide'>
-                        <Link to = '/' onClick={logout}>
-                            <li className="logout">Log Out</li>
-                        </Link>
-                    </div>
+                    <Link to = '/Admin'>
+                        <li id='0' className={activeLink[0] ? "activeLink": ""}>Admin</li>
+                    </Link>
+                    <Link to = '/Admin/User'>
+                        <li id='1' className={activeLink[1] ? "activeLink": ""}>Users</li>
+                    </Link>
+                    <Link to = '/Admin/Group'>
+                        <li id='2' className={activeLink[2] ? "activeLink": ""}>Groups</li>
+                    </Link>
+                    <Link to = '/Admin/Vote'>
+                        <li id='3' className={activeLink[3] ? "activeLink": ""}>Votes</li>
+                    </Link>
+                    <Link to = '/Admin/Article'>
+                        <li id='4' className={activeLink[4] ? "activeLink": ""}>Articles</li>
+                    </Link>
+                    <Link to = '/Admin/Message'>
+                        <li id='5' className={activeLink[5] ? "activeLink": ""}>Messages</li>
+                    </Link>
+                    <Link to = '/' onClick={logout} style={{float: "right"}}>
+                        <li  id='6' className={activeLink[6] ? "logout activeLink": "logout"}>Log Out</li>
+                    </Link>
                 </ul>
            </div>
             <div className='adminMainCont'>

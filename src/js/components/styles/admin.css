@@ -68,19 +68,15 @@
 }
 
 .adminNavbar li:hover {
+    color: black;
+}
+
+.activeLink {
     background: #127215;
 }
 
-.NavLeftSide {
-    float: left;
-}
-
-.NavRightSide {
-    float: right;
-}
 
 /* ------- */
-
 
 .adminMainCont {
     background-image: url('../../../img/adminBG.jpg');
@@ -111,7 +107,6 @@
     border-bottom: 1px solid red;
     margin: 10px 0;
     padding: 10px;
-
 }
 
 .adminUserItems button {
