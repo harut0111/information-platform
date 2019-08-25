@@ -194,6 +194,16 @@
     width: 100px;
 }
 
+.adminUserHead {
+    padding: 10px 0px;
+    border-bottom: 4px dotted blue;
+}
+
+.adminUserHead select {
+    margin: 5px 0;
+    padding: 5px;
+}
+
 
 
 
