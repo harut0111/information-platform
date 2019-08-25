@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
 import { ADMIN_ID } from "../constants/signIn";
 import adminIcon from '../../img/adminIcon.png'
+import Clock from './Clock';
 
 
 import firebase from '../configs/FireBase';
@@ -99,6 +100,7 @@ function Admin() {
            </div>
             <div className='adminMainCont'>
                 <div className="adminProfile">
+                    <Clock />
                     <h1 style={{padding: "10px 0px"}}>Admin Profile </h1>
                     <img src={adminIcon} alt="adminIcon"/>
                     <h5> Name: {admin.name} </h5>

@@ -3,7 +3,7 @@ import "./styles/clock.css";
 
 export default function Clock() {
 
-  const [time, setTime] = useState(new Date());
+  const [ time, setTime ] = useState(new Date());
   
   useEffect(() => {
     const id = setInterval(() => setTime(new Date()), 1000);
