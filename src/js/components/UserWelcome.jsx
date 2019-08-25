@@ -60,6 +60,7 @@ export default function UserWelcome(props) {
                 <Button onClick={handleLogOut}
                         size="small"
                         variant="contained" 
+                        color="primary"
                         style={{ marginLeft: "80%"}}>
                 LOG OUT
                 </Button>
@@ -70,13 +71,16 @@ export default function UserWelcome(props) {
                     <Button onClick={onUserInfo}
                         variant="contained"
                         size="small"
+                        color="primary"
                         style={{ margin: "10px 0"}}>
                         INFO
                     </Button>
                     <div id="userInfo">
-                        <p>Your group: {group}</p>
-                        <p>Your email: {email}</p>
-                        <p>Your age: {age}</p>
+                        <ol type="A">
+                            <li>Your Age: {age}</li>
+                            <li>Your Group: {group}</li>
+                            <li>Your Email: {email}</li>
+                        </ol>
                     </div>
                 </div>
             ) : <h3>LOADING . . .</h3>}

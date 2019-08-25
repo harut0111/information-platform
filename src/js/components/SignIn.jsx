@@ -56,6 +56,20 @@ export const useStyles = makeStyles(theme => ({
         marginTop: 10,
         width: 130,
     },
+    buttonRegistry: {
+        fontSize: 18,
+        padding: 5,
+        marginTop: 10,
+        width: "72%",
+        boxSizing: "border-box"
+    },
+    buttonBack: {
+        fontSize: 18,
+        padding: 5,
+        marginLeft: 10,
+        marginTop: 10,
+        width: "auto",
+    },
 }));
 
 function SignIn (props) {

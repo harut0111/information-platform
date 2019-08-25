@@ -305,7 +305,7 @@ export default function Vote() {
 
     return (
         !isLoaded ? (
-            <div id="toReferPage">
+            <div id="toReferPageVote" style={{width:"90%"}}>
                 <div>
                     <CircularProgress className={classes.progress} />
                     <CircularProgress className={classes.progress} color="secondary" />

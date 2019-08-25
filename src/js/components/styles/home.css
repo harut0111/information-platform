@@ -4,12 +4,12 @@
     width: 92%;
     height: -webkit-fill-available;
     background-color: initial;
-    background-image: linear-gradient(#A6D9EB, #0090EA);
+    background-image: linear-gradient(#cfe4ec, #65a7d0);
     text-align: center;
     color: #333;
 }
 
-#homeWrapper a{
+#homeWrapper a {
     text-decoration: none;
 }
 
@@ -19,16 +19,16 @@
 }
 
 #welcomeSection {
-    background-color: #34BAEB;
-    color: #fff;
+    background-color: #fff;
+    color: #3F51B5;
     padding: 10px;
-    max-width: 80%;
+    max-width: 70%;
     margin: -20px auto 30px auto;
-    border: 1px solid grey;
+    border: 3px solid #3B5998;
     border-radius: 10px;
 }
 #welcomeSection h2 {
-    margin-top: -40px;
+    margin-top: -33px;
 }
 
 #welcomeSection h3 {
@@ -36,102 +36,116 @@
 }
 
 #welcomeSection #userInfo {  
-    border: 1px solid grey;
-    width: max-content;
+    border: 2px solid #3B5998;
     margin: 10px auto;
-    padding: 2px;
     border-radius: 10px;
-    display: none;
     background-color: #fff;
     font-size: 14px;
     color: #444;
+    width: 60%;
+    padding: 10px 30px;
 }
 
-#welcomeSection #userInfo:hover {
-    background-color: #2CA0ED;
-    color: #fff;
-    border-color: #fff;
-}
 
+#welcomeSection li {
+    font-size: 16px;
+}
 /*  =========================================================================== */
 #refSection a {
     padding: 6px 5px 2px 5px;
     background-color: #91C1EA;
-    border: 3px solid grey;
+    border: 3px solid #3B5998;
     border-radius: 10px;
 }
 
 #refSection img {
     width: 90px;
     height: 80px;
-    border: 3px solid grey;
+    border: 2px solid #3B5998;
     border-radius: 10px;
 }
 
 #refSection a:hover {
-    background-color: #D3EBFF;
-    border-color: grey;
-    color: #F5F5DC;
+    background-color: #fff;
+    color: #444;
 }
 
 #toReferPage {
-    padding: 20px 10px 30px 10px;
-    background-color: #BBE0FF; 
-    border: 3px solid grey;
+    padding: 10px 10px 30px 10px;
+    background-color: #fff; 
+    border: 3px solid #3B5998;
     border-radius: 10px;
-    max-width: 60%;
+    max-width: 80%;
     margin: 50px auto;
     text-align: center;
     display: flex;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
     color: #222;
+    position: relative;
+    overflow: auto;
+    box-sizing: border-box;
+
 }
 
 #toReferPage h2{
-    padding: 5px;
     margin-bottom: 30px;
     text-decoration: underline;
+    color: #3B5998;
 }
 
 #toReferPage h4 {
     margin-bottom: -10px;
+    margin-left: 10%;
 }
+
 #toReferPage select {
-    padding: 10px;
-    font-size: 14px;
+    padding: 20px;
+    font-size: 16px;
     cursor: pointer;
     font-weight: bold;
     background-color: #fff;
     color: #333;
-    border: 1px solid grey;
-    border-radius: 10px;
-    width: max-content;
+    border: 1px solid #3B5998;
+    border-radius: 5px;
+    width: 90%;
     margin: 0 auto;
+    box-sizing: border-box;
 }
 
-#toReferPage select:hover {
-  border-color: #1453A1;
+
+#toReferPage #tickLogoSendText {
+    width: 50px;
+    margin-left: 40%;
+    margin-top: -43px;
+    visibility: hidden;
 }
 
-#homeWrapper  textarea {
-  max-width: 45%;
-  min-width: 45%;
-  max-height: 100px;
-  min-height: 100px;
+#toReferPage #cancelLogoSendText {
+    width: 50px;
+    margin-left: 40%;
+    margin-top: -50px;
+    visibility: hidden;
+}
+
+#toReferPage textarea {
+  max-width: 90%;
+  min-width: 90%;
+  max-height: 200px;
+  min-height: 200px;
   margin: 20px auto;
-  border: 1px solid grey;
-  border-radius: 10px;
+  border: 1px solid #3B5998;
+  border-radius: 5px;
   padding: 5px;
-  font-size: 14px;
+  font-size: 16px;
+  box-sizing: border-box;
 }
+
 
 #sendTextLogo {
-    width: 45px;
-    position: absolute;
-    margin-left: 38%;
-    margin-top: -2px;
-    
+    width: 50px;
+    margin-bottom: -15px;
+    padding-left: 20px;
 }
 
 /*  ====================================================== */
@@ -139,21 +153,22 @@
 /* ===================  Messages to user  ========================= */
 
 #toReferPageMessToUser {
-    background-color: #BBE0FF; 
-    border: 3px solid grey;
+    background-color: #fff; 
+    border: 3px solid #3B5998;
     border-radius: 10px;
-    padding-bottom: 10px;
-    max-width: 70%;
+    padding: 10px 0;
+    max-width: 80%;
     margin: 50px auto;
     text-align: center;
     display: flex;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
     color: #222;
+    box-sizing: border-box;
 }
 
 #toReferPageMessToUser h2{
-    margin: 10px auto;
+    margin: 10px auto 15px auto;
     text-decoration: underline;
     font-family: cursive, sans-serif;
     color: #3B597F;
@@ -164,8 +179,7 @@
     background-color: #3D82C7;
     color: #F5F5DC;
     border-radius: 10px;
-    border: 3px solid grey;
-    display: grid;
+    border: 2px solid #3B5998;
     width: 60%;
     margin: 10px auto 20px auto;
 }
@@ -193,7 +207,7 @@
 }
 
 #messagesToUser:hover {
-    background-color: #3B5998;
+    background-color: #4593E1;
 }
 
 #messagesToUser h5 {
@@ -205,12 +219,12 @@
     margin-bottom: 5px;
 }
 
-.responseMsg button{
-    padding: 2px;
-    border: 1px solid silver;
+.responseMsg button {
+    padding: 5px;
+    border: 1px solid #3B5998;
     border-radius: 5px;
-    margin: -2px 0 5px 0;
-    width: 60px;
+    margin: 0 0 5px 0;
+    width: 80px;
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;
@@ -220,17 +234,18 @@
 
 
 .responseMsg button:hover {
-    color: #fff;
-    background-color: #3B597F;
+    
+    background-color: #fff;
 }
 
 .responseMsg textarea {
-    margin: -10px auto 5px auto !important;
-    width: 30% !important;
-    border-radius: 5px !important;
-    border-width: 2px !important;
-    border-style: solid !important;
-    font-size: 12px !important;
+    margin: 0 auto -10px auto !important;
+    width: 60% !important;
+    border: 2px solid #3B5998;
+    border-radius: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 14px !important;
 }
 
 
@@ -243,8 +258,8 @@
 
 .sendMsgIcon, .deleteMsgIcon {
     width: 35px;
-    background-color: silver;
-    border: 3px solid grey;
+    background-color: #fff;
+    border: 3px solid #3B5998;
     border-radius: 5px;
     padding: 3px;
     margin-bottom: 10px;
@@ -266,12 +281,13 @@
 
 .noMessages h3{
     margin-left: 40px;
+    padding: 10px;
 }
 
 .noMessages img{
    position: absolute;
    width: 48px;
-   margin: 3px 15px;
+   margin: 10px 15px;
 }
 
 #messages p {
@@ -300,15 +316,16 @@
 /* ---------------------- vote  -----------------------*/
 
 #toReferPageVote {  
-    background-color: #BBE0FF;
-    border: 3px solid grey;
+    background-color: #fff;
+    border: 3px solid #3B5998;
     border-radius: 10px;
-    max-width: 100%;
+    max-width: 90%;
     margin: 50px auto;
     display: table;
     font-family: Arial, Helvetica, sans-serif;
     color: #222;
     padding: 20px 30px 20px 30px;
+    box-sizing: border-box;
 }
 
 #messagesVote {
@@ -316,7 +333,7 @@
     color: #F5F5DC;
     padding-top: 10px;
     border-radius: 10px;
-    border: 3px solid grey;
+    border: 2px solid #3B5998;
     display: inline-table;
     margin: 10px 5px;
     width: 31%;
@@ -331,19 +348,18 @@
 }
 
 #voteHead {
-    border: 3px solid grey;
+    border: 2px solid #3B5998;
     max-width: 350px;
     margin: 10px auto;
     padding: 10px;
     border-radius: 10px;
     background-color: #fff;
     font-family: cursive;
-    color: #444;
+    color: #3B5998;
 }
 
 #voteHead:hover {
-    border-color: #fff;
-    background-color: #A0D4FF;
+    background-color: #CBE2EB;
 }
 
 #messagesVote h5, #messagesVote h6 {
@@ -369,7 +385,7 @@
     max-width: 80%;
     margin: 10px auto;
     overflow-y: auto;
-    max-height: 100px;
+    max-height: 54px;
  }
 
 

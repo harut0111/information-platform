@@ -4,6 +4,16 @@ import history from '../routh/history';
 import firebase from "../configs/FireBase";
 import "firebase/firestore";
 
+// Material UI packages --------------------------------------
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FilledInput from '@material-ui/core/FilledInput';
+// ------------------------------------------------------------
+import {useStyles} from "./SignIn";
 
 export default function SignUp(props) {
 
@@ -59,18 +69,23 @@ export default function SignUp(props) {
           history.push('/Home');
         })
         .catch((error) => {
-            window.alert(error.message);
+            window.alert(error.message);           
         }).finally(() => {
             toggle = true;
         });
     } else {
-        window.alert("Please select group option")
+        let select = document.getElementById("select");
+        select.style.border = "1px solid #3B5998";
+        setTimeout(() => {
+          select.style.border = "none";
+        }, 500);
     }
   }
   
   const items = groups.map(item => {
     return (
-      <option key= {item.id} name={item.value}> {item.value} </option>
+      // <option key= {item.id} name={item.value}> {item.value} </option>
+      <MenuItem key={item.value} value={item.value}>{item.value}</MenuItem>
     )
   })
 
@@ -80,8 +95,9 @@ export default function SignUp(props) {
   //   IN.setCustomValidity("Please enter at least 5 characters.");
   //   console.dir(e.target);
   // }
-  // <inpu onInvalid = {test}/>
+  // <input onInvalid = {test}/>
 
+  const classes = useStyles();
 
     return (
      <div id="signInContainer">
@@ -89,7 +105,104 @@ export default function SignUp(props) {
 
           <h1>SIGN UP</h1>
           <form name="userRegistrationForm" onSubmit={handleOnSubmit}>
-
+            <div>
+              <TextField
+                label="First Name"
+                className={classes.textFieldEmail}
+                type="text"
+                autoComplete="First Name"
+                margin="normal"
+                required={true}
+                variant="filled"
+                style={{marginBottom: 0}}
+                inputProps={{ pattern: "[A-Za-z]{1,15}",  title: "First Name must contain only letters." }}
+                value={firstname}
+                onChange={(e) => setFirstname(e.target.value)} />
+            </div>
+            <div>
+              <TextField
+                label="Last Name"
+                className={classes.textFieldEmail}
+                type="text"
+                autoComplete="Last Name"
+                margin="normal"
+                required={true}
+                variant="filled"
+                style={{ marginBottom: 0 }}
+                inputProps={{ pattern: "[A-Za-z]{1,15}", title: "Second Name must contain only letters." }}
+                value={lastname}
+                onChange={(e) => setLastname(e.target.value)} />
+            </div>
+            <div>
+              <TextField
+                label="Email"
+                className={classes.textFieldEmail}
+                type="email"
+                autoComplete="Email"
+                margin="normal"
+                required={true}
+                variant="filled"
+                style={{ marginBottom: 0 }}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} />
+            </div>
+            <div>
+              <TextField
+                label="Password"
+                className={classes.textFieldEmail}
+                type="password"
+                autoComplete="password"
+                margin="normal"
+                required={true}
+                variant="filled"
+                style={{ marginBottom: 0 }}
+                inputProps={{
+                  pattern: ".{8,}", 
+                  title: "Password must contain 8 or more characters." 
+        }}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)} />
+            </div>
+            <div>
+              <TextField
+                label="Age"
+                className={classes.textFieldEmail}
+                type="number"
+                autoComplete="Age"
+                margin="normal"
+                required={true}
+                variant="filled"
+                InputProps={{ inputProps: { min: 18, max: 81 } }}
+                style={{ marginBottom: 15 }}
+                value={age}
+                onChange={(e) => setAge(e.target.value)} />
+            </div>
+            {/* <select defaultValue={'DEFAULT'} required onChange={(e) => setGroupVal(e.target.value)} >
+              <option value="DEFAULT" disabled hidden> -- select an option -- </option>
+              {items}
+            </select>
+            <p style={{ fontSize: 12 }}>Select your group</p>
+            <button type="submit" value="Registre" id="regButton">REGISTRY</button>
+            <button type="button" value="Back" onClick={props.swtich} id="backButton">BACK</button>  */}
+            <div>
+              <FormControl id="select"required variant="filled" className={classes.formControl} style={{marginBottom: 5, width: "95%"}}>
+                <InputLabel htmlFor="Select Group">Select Group</InputLabel>
+                <Select
+                  value={groupVal}
+                  onChange={(e) => setGroupVal(e.target.value)}
+                  input={<FilledInput name="group" id="filled-age-simple" />}
+                >
+                  {items}
+                </Select>
+              </FormControl>
+            </div>
+            <Button type="submit" color="primary" variant="contained" className={classes.buttonRegistry}>
+              REGISTRY
+            </Button>
+            <Button color="inherit" onClick={props.swtich} variant="contained" className={classes.buttonBack}>
+              BACK
+            </Button>
+        {/* 
             <input type="text" 
                   required maxLength="32" pattern="[A-Za-z]{1,32}" 
                   placeholder="First Name" 
@@ -97,7 +210,7 @@ export default function SignUp(props) {
                   onChange={(e)=>setFirstname(e.target.value)}/>
 
             <p style={{fontSize: 12}}>Must contain only letters</p>
-            
+           
             <input type="text" required maxLength="32" pattern="[A-Za-z]{1,32}" 
                     placeholder="Last Name" 
                     value={lastname} 
@@ -123,19 +236,7 @@ export default function SignUp(props) {
                   value={age} 
                   onChange={(e)=>setAge(e.target.value)} />
 
-              <p style={{ fontSize: 12 }}>18 to 70</p>
-
-            <select defaultValue={'DEFAULT'} required onChange={(e)=>setGroupVal(e.target.value)} >
-              <option value="DEFAULT" disabled hidden> -- select an option -- </option>
-              {items}
-            </select>
-
-            <p style={{ fontSize: 12 }}>Select your group</p>
-        
-            <button type="submit" value="Registre" id="regButton">Registre</button>
-
-            <button type="button" value="Back" onClick={props.swtich} id="backButton">Back</button>
-            
+              <p style={{ fontSize: 12 }}>18 to 70</p> */}
           </form>
        </div>
     </div>
