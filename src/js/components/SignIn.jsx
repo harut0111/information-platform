@@ -47,7 +47,7 @@ export const useStyles = makeStyles(theme => ({
         width: 160,
         marginTop: 10,
         fontWeight: "bold",
-        color: "#3B5998"
+        color: "#fff",
     },
     buttonSignUp: {
         fontSize: 18,
@@ -55,6 +55,7 @@ export const useStyles = makeStyles(theme => ({
         marginLeft: 10,
         marginTop: 10,
         width: 130,
+        size: "small",
     },
     buttonRegistry: {
         fontSize: 18,
@@ -118,57 +119,59 @@ function SignIn (props) {
     return (
         <div id="signInContainer">
             <h1>SIGN IN</h1>
-            <p id="errorMsg">Wrong Email or Password.</p>
-            <div>
-                <TextField
-                    // id="filled-email-input"
-                    label="Email"
-                    className={classes.textFieldEmail}
-                    type="email"
-                    autoComplete="email"
-                    margin="normal"
-                    variant="filled"
-                    value={email}
-                    onChange={e => {setEmailValue(e.target.value)}}
-                />
-            </div>
-            <div>
-                <TextField
-                    // id="filled-adornment-password"
-                    className={clsx(classes.margin, classes.textField)}
-                    variant="filled"
-                    type={showPassword ? 'text' : 'password'}              
-                    label="Password"
-                    value={password}
-                    onChange={e => {setPasswordValue(e.target.value)}}
-                    InputProps={{
-                        endAdornment: (
-                            <InputAdornment position="end">
-                                <IconButton
-                                    edge="end"
-                                    aria-label="toggle password visibility"
-                                    onClick={() => { handleClickShowPassword(!showPassword)}}
-                                    onMouseDown={handleMouseDownPassword}
-                                >
-                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                        ),
-                    }}
-                />
-            </div>
-            <Link to='/' onClick={login} style={{ textDecoration: "none" }}>
-                <Button variant="contained" color="default"  className={classes.buttonSignIn}>
-                    SIGN IN<Icon className={classes.rightIcon}>send</Icon>
+            <div className="signInMainCont">
+                <p id="errorMsg">Wrong Email or Password.</p>
+                <div>
+                    <TextField
+                        // id="filled-email-input"
+                        label="Email"
+                        className={classes.textFieldEmail}
+                        type="email"
+                        autoComplete="email"
+                        margin="normal"
+                        variant="filled"
+                        value={email}
+                        onChange={e => {setEmailValue(e.target.value)}}
+                    />
+                </div>
+                <div>
+                    <TextField
+                        // id="filled-adornment-password"
+                        className={clsx(classes.margin, classes.textField)}
+                        variant="filled"
+                        type={showPassword ? 'text' : 'password'}              
+                        label="Password"
+                        value={password}
+                        onChange={e => {setPasswordValue(e.target.value)}}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        edge="end"
+                                        aria-label="toggle password visibility"
+                                        onClick={() => { handleClickShowPassword(!showPassword)}}
+                                        onMouseDown={handleMouseDownPassword}
+                                    >
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                </div>
+                <Link to='/' onClick={login} style={{ textDecoration: "none" }}>
+                    <Button variant="contained" color="default"  className={classes.buttonSignIn}>
+                        SIGN IN<Icon className={classes.rightIcon}>send</Icon>
+                    </Button>
+                </Link>
+                {/* style={{textDecoration: "none"}} */}
+                <Button variant="contained" 
+                        color="primary" size="medium"
+                        className={classes.buttonSignUp}
+                        onClick={props.swtich}>
+                    SIGN UP
                 </Button>
-            </Link>
-            {/* style={{textDecoration: "none"}} */}
-            <Button variant="contained" 
-                    color="primary" size="medium"
-                    className={classes.buttonSignUp}
-                    onClick={props.swtich}>
-                SIGN UP
-            </Button>
+            </div>
         </div>
     )
 }

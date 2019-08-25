@@ -3,8 +3,8 @@
     display: table;
     width: 92%;
     height: -webkit-fill-available;
-    background-color: initial;
-    background-image: linear-gradient(#cfe4ec, #65a7d0);
+    background-color: azure;
+    /* background-image: linear-gradient(#cfe4ec, #65a7d0); */
     text-align: center;
     color: #333;
 }
@@ -51,24 +51,28 @@
     font-size: 16px;
 }
 /*  =========================================================================== */
-#refSection a {
+/* #refSection a {
     padding: 6px 5px 2px 5px;
     background-color: #91C1EA;
     border: 3px solid #3B5998;
     border-radius: 10px;
-}
+} */
 
 #refSection img {
-    width: 90px;
-    height: 80px;
+    width: 80px;
+    height: 70px;
     border: 2px solid #3B5998;
     border-radius: 10px;
 }
 
-#refSection a:hover {
+#refSection img:hover {
+    border: 2px solid gold;
+}
+
+/* #refSection a:hover {
     background-color: #fff;
     color: #444;
-}
+} */
 
 #toReferPage {
     padding: 10px 10px 30px 10px;
