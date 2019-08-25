@@ -107,8 +107,6 @@ export default function SendText() {
                             </option>
                         ))}
                     </select>   
-
-             
                 <textarea id="textarea"
                     rows="5"
                     cols="25"

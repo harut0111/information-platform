@@ -82,12 +82,7 @@ export default function SignUp(props) {
     }
   }
   
-  const items = groups.map(item => {
-    return (
-      // <option key= {item.id} name={item.value}> {item.value} </option>
-      <MenuItem key={item.value} value={item.value}>{item.value}</MenuItem>
-    )
-  })
+  const items = groups.map(item => <MenuItem key={item.value} value={item.value}>{item.value}</MenuItem>)
 
   /* -- PLS DON'T DELETE THIS -- */
   // function test(e) {
@@ -129,7 +124,7 @@ export default function SignUp(props) {
                 required={true}
                 variant="filled"
                 style={{ marginBottom: 0 }}
-                inputProps={{ pattern: "[A-Za-z]{1,15}", title: "Second Name must contain only letters." }}
+                inputProps={{ pattern: "[A-Za-z]{1,15}", title: "Last Name must contain only letters." }}
                 value={lastname}
                 onChange={(e) => setLastname(e.target.value)} />
             </div>
@@ -159,7 +154,7 @@ export default function SignUp(props) {
                 inputProps={{
                   pattern: ".{8,}", 
                   title: "Password must contain 8 or more characters." 
-        }}
+                }}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)} />
             </div>
@@ -177,13 +172,6 @@ export default function SignUp(props) {
                 value={age}
                 onChange={(e) => setAge(e.target.value)} />
             </div>
-            {/* <select defaultValue={'DEFAULT'} required onChange={(e) => setGroupVal(e.target.value)} >
-              <option value="DEFAULT" disabled hidden> -- select an option -- </option>
-              {items}
-            </select>
-            <p style={{ fontSize: 12 }}>Select your group</p>
-            <button type="submit" value="Registre" id="regButton">REGISTRY</button>
-            <button type="button" value="Back" onClick={props.swtich} id="backButton">BACK</button>  */}
             <div>
               <FormControl id="select"required variant="filled" className={classes.formControl} style={{marginBottom: 5, width: "95%"}}>
                 <InputLabel htmlFor="Select Group">Select Group</InputLabel>
@@ -202,41 +190,6 @@ export default function SignUp(props) {
             <Button color="inherit" onClick={props.swtich} variant="contained" className={classes.buttonBack}>
               BACK
             </Button>
-        {/* 
-            <input type="text" 
-                  required maxLength="32" pattern="[A-Za-z]{1,32}" 
-                  placeholder="First Name" 
-                  value={firstname} 
-                  onChange={(e)=>setFirstname(e.target.value)}/>
-
-            <p style={{fontSize: 12}}>Must contain only letters</p>
-           
-            <input type="text" required maxLength="32" pattern="[A-Za-z]{1,32}" 
-                    placeholder="Last Name" 
-                    value={lastname} 
-                    onChange={(e)=>setLastname(e.target.value)} />
-
-            <p style={{fontSize: 12}}>Must contain only letters</p>
-            
-            <input type="email" required placeholder="Email" 
-                  value={email} 
-                  onChange={(e)=>setEmail(e.target.value)} />
-
-            <p style={{ fontSize: 12 }}>Example@gmail.com</p>
-            
-            <input type="password" required maxLength="12" pattern="[A-Za-z0-9]{6,12}" 
-                  placeholder="Password" 
-                  value={password} 
-                  onChange={(e)=>setPassword(e.target.value)} />
-           
-            <p style={{fontSize: 12}}>Must contain at list 6 charackters [A-Za-z0-9]</p>
-            
-            <input type="number" required min="18" max="70" 
-                  placeholder="Age" 
-                  value={age} 
-                  onChange={(e)=>setAge(e.target.value)} />
-
-              <p style={{ fontSize: 12 }}>18 to 70</p> */}
           </form>
        </div>
     </div>

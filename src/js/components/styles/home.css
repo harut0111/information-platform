@@ -180,12 +180,12 @@
     color: #F5F5DC;
     border-radius: 10px;
     border: 2px solid #3B5998;
-    width: 60%;
+    width: 50%;
     margin: 10px auto 20px auto;
 }
 
 #messagesToUser p {
-    border: 1px solid grey;
+    border: 1px solid #3B5998;
     border-radius: 5px;
     background-color: aliceblue;
     font-weight: bold;
@@ -219,22 +219,25 @@
     margin-bottom: 5px;
 }
 
+
 .responseMsg button {
     padding: 5px;
-    border: 1px solid #3B5998;
+    border: 2px solid #3B5998;
     border-radius: 5px;
     margin: 0 0 5px 0;
-    width: 80px;
+    width: 100px;
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;
-    color: grey;
+    color: #3B5998;
     background-color: #fff;
 }
 
-
 .responseMsg button:hover {
-    
+    background-color: #9EC8DF;
+}
+
+.responseMsg button:active {
     background-color: #fff;
 }
 
