@@ -5,7 +5,7 @@
 }
 
 .article {
-    border: 1px solid silver;
+    border: 2px solid #3B5998;
     padding-bottom: 20px;
 }
 
@@ -16,7 +16,7 @@
 }
 
 .article h3 {
-  color: grey;
+  color: #3b5998;
   margin: 10px 0;
   text-align: left;
   padding: 0 20px;

@@ -9,33 +9,34 @@
   margin-bottom: 5px;
 }
 
+.signUpContainer h1 {
+  margin-bottom: 18px;
+}
 
-.signUpContainer input {
+/* .signUpContainer input {
   display: block;
-  padding: 10px;
+  padding: 15px;
   width: 300px;
   margin: 5px 8px;
-  font-size: 14px;
+  font-size: 16px;
   border: 1px solid grey;
   border-radius: 3px;
   background-color: #DEE3EE;
   color: #333;
   box-sizing: border-box;
-
-}
+} */
 
 .signUpContainer select {
-  padding: 10px;
+  padding: 15px;
   margin: 5px 0;
   border: 1px solid grey;
   border-radius: 3px;
   background-color: #DEE3EE;
   color: #333;
   width: 300px;
-  font-size: 14px;
+  font-size: 16px;
   box-sizing: border-box;
   cursor: pointer;
-
 }
 
 #regButton {

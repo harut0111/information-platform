@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import fire from "../configs/FireBase";
 import "./styles/home.css";
 import  sendMsgLogo  from "../../img/sendMsg.png";
+import tickLogo from "../../img/tick.png";
+import cancelLogo from "../../img/cancel.png";
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
@@ -52,8 +54,10 @@ export default function SendText() {
         e.preventDefault();
         if(!text)  {
             document.getElementById("textarea").style.border = "2px solid red";
+            document.getElementById("cancelLogoSendText").style.visibility = "visible";
             setTimeout(() => {
                 document.getElementById("textarea").style.border = "1px solid grey";
+                document.getElementById("cancelLogoSendText").style.visibility = "hidden";
             }, 500);
             return false;
         }
@@ -65,9 +69,13 @@ export default function SendText() {
             dateCreated: new Date()
         })
         .then(() => {
-            alert("Text successfully sended!");
-            console.log("Message successfully written!");
-            console.log(data);
+            document.getElementById("tickLogoSendText").style.visibility = "visible";
+            setTimeout(() => {
+                document.getElementById("tickLogoSendText").style.visibility = "hidden";
+            }, 500);
+            //alert("Text successfully sended!");
+            //console.log("Message successfully written!");
+            //console.log(data);
         })
         .catch(e => {
             console.log("Error writing document: ", e);
@@ -91,35 +99,35 @@ export default function SendText() {
             </div>
         ) : (
             <div id="toReferPage">
-                <h2>Send message</h2>
-                <img src={sendMsgLogo} id="sendTextLogo" alt="sendMsgLogo" />
-                <h4>Select User</h4> <br/>
-                <select required onChange={onSelectChange} name="aboutUserId">
-                    {data.map(item => (
-                        <option key={item.id} value={item.id}>
-                            {`${item.name} ${item.surname} (Group: ${item.group}, Age: ${item.age})`}
-                        </option>
-                    ))}
-                </select>
+                    <h2>Send message  <img src={sendMsgLogo} id="sendTextLogo" alt="sendMsgLogo" /></h2>
+                    <select required onChange={onSelectChange} name="aboutUserId">
+                        {data.map(item => (
+                            <option key={item.id} value={item.id}>
+                                {`${item.name} ${item.surname} (Group: ${item.group}, Age: ${item.age})`}
+                            </option>
+                        ))}
+                    </select>   
+
+             
                 <textarea id="textarea"
                     rows="5"
                     cols="25"
                     required 
                     placeholder="Write text to selected user."
                     onChange={onTextChange}
-                    onMouseOver={(e) => e.target.style.border = "1px solid #155e80"}
-                    onMouseOut={(e) => e.target.style.border = "1px solid grey"}
                     value={text}
                     name="text">
                 </textarea>
                 <Button
                     onClick={onSendClick}
                     variant="contained"
-                    size="small"
+                    size="large"
                     color="primary"
-                    style={{ width: "max-content", margin: "0 auto", padding: 5 }}>
-                    SEND TEXT
+                    style={{ width: "35%", marginLeft: "5%", padding: 5 }}>
+                    SEND
                 </Button>
+                <img id="tickLogoSendText" src={tickLogo} alt="OK TickLogo" />
+                <img id="cancelLogoSendText" src={cancelLogo} alt="Cancel CancelLogo" />
             </div>
             )
     )

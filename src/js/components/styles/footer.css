@@ -76,7 +76,7 @@ footer textarea {
 }
 
 
-#tickLogo {
+footer #tickLogo {
     width: 26px;
     position: absolute;
     margin-left: 10px;
@@ -84,7 +84,7 @@ footer textarea {
     visibility: hidden;
 }
 
-#cancelLogo {
+footer #cancelLogo {
     width: 26px;
     position: absolute;
     margin-top: -1px;
