@@ -254,7 +254,7 @@ export default function AdminGroup() {
                     value="Add" 
                     style={{width: "120px"}}/>
             </form>
-            <h1>Groups</h1>
+            <h1 style={{marginTop: "20px"}}>Groups (N{sortedGroupItems.length})</h1>
             {groupItems}
         </div>
     )
