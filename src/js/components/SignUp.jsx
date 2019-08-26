@@ -84,12 +84,7 @@ export default function SignUp(props) {
     }
   }
   
-  const items = groups.map(item => {
-    return (
-      // <option key= {item.id} name={item.value}> {item.value} </option>
-      <MenuItem key={item.value} value={item.value}>{item.value}</MenuItem>
-    )
-  })
+  const items = groups.map(item => <MenuItem key={item.value} value={item.value}>{item.value}</MenuItem>)
 
   /* -- PLS DON'T DELETE THIS -- */
   // function test(e) {
@@ -105,6 +100,101 @@ export default function SignUp(props) {
      <div id="signInContainer">
        <div className="signUpContainer">
 
+{/* <<<<<<< HEAD
+          <h1>SIGN UP</h1>
+          <form name="userRegistrationForm" onSubmit={handleOnSubmit}>
+            <div>
+              <TextField
+                label="First Name"
+                className={classes.textFieldEmail}
+                type="text"
+                autoComplete="First Name"
+                margin="normal"
+                required={true}
+                variant="filled"
+                style={{marginBottom: 0}}
+                inputProps={{ pattern: "[A-Za-z]{1,15}",  title: "First Name must contain only letters." }}
+                value={firstname}
+                onChange={(e) => setFirstname(e.target.value)} />
+            </div>
+            <div>
+              <TextField
+                label="Last Name"
+                className={classes.textFieldEmail}
+                type="text"
+                autoComplete="Last Name"
+                margin="normal"
+                required={true}
+                variant="filled"
+                style={{ marginBottom: 0 }}
+                inputProps={{ pattern: "[A-Za-z]{1,15}", title: "Last Name must contain only letters." }}
+                value={lastname}
+                onChange={(e) => setLastname(e.target.value)} />
+            </div>
+            <div>
+              <TextField
+                label="Email"
+                className={classes.textFieldEmail}
+                type="email"
+                autoComplete="Email"
+                margin="normal"
+                required={true}
+                variant="filled"
+                style={{ marginBottom: 0 }}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} />
+            </div>
+            <div>
+              <TextField
+                label="Password"
+                className={classes.textFieldEmail}
+                type="password"
+                autoComplete="password"
+                margin="normal"
+                required={true}
+                variant="filled"
+                style={{ marginBottom: 0 }}
+                inputProps={{
+                  pattern: ".{8,}", 
+                  title: "Password must contain 8 or more characters." 
+                }}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)} />
+            </div>
+            <div>
+              <TextField
+                label="Age"
+                className={classes.textFieldEmail}
+                type="number"
+                autoComplete="Age"
+                margin="normal"
+                required={true}
+                variant="filled"
+                InputProps={{ inputProps: { min: 18, max: 81 } }}
+                style={{ marginBottom: 15 }}
+                value={age}
+                onChange={(e) => setAge(e.target.value)} />
+            </div>
+            <div>
+              <FormControl id="select"required variant="filled" className={classes.formControl} style={{marginBottom: 5, width: "95%"}}>
+                <InputLabel htmlFor="Select Group">Select Group</InputLabel>
+                <Select
+                  value={groupVal}
+                  onChange={(e) => setGroupVal(e.target.value)}
+                  input={<FilledInput name="group" id="filled-age-simple" />}
+                >
+                  {items}
+                </Select>
+              </FormControl>
+            </div>
+            <Button type="submit" color="primary" variant="contained" className={classes.buttonRegistry}>
+              REGISTRY
+            </Button>
+            <Button color="inherit" onClick={props.swtich} variant="contained" className={classes.buttonBack}>
+              BACK
+            </Button>
+          </form>
+======= */}
           <h1 style={{background: "#3f51b5"}}>SIGN UP</h1>
           <div className="signUpMainCont">
             <form name="userRegistrationForm" onSubmit={handleOnSubmit}>

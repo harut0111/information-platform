@@ -9,9 +9,9 @@ import HomeArticle from "./HomeArticle";
 import fire from "../configs/FireBase";
 import history from "../routh/history";
 import voteBG from "../../img/voteBG.jpg";
-import msgToMe from "../../img/msgToMe.jpg";
+import msgToMe from "../../img/sms.png";
 import sendText from "../../img/sendText.jpg";
-import backToHome from "../../img/backToHome.jpg";
+import backToHome from "../../img/backToHome2.png";
 
 
 export default function Home() {
@@ -35,27 +35,22 @@ export default function Home() {
                         <img src={sendText} alt="Send Message"/>
                     </Link>
                     <Link to="/Home/MessagesToYou">
-                        <img src={msgToMe} alt="Messages To ME" />
+                        <img src={msgToMe} alt="Messages To ME" style={{ backgroundColor: "#fff" }}/>
                     </Link>
                     <Link to="/Home/Vote">
                         <img src={voteBG} alt ="Vote"/>
                     </Link>
                     <Link to="/Home">
-                        <img src={backToHome} alt="Back To Home" />
+                        <img src={backToHome} alt="Back To Home" style={{backgroundColor: "#fff"}}/>
                     </Link>
-                    
-
                 </div>
+                
                 <Switch>
                     <Route path="/Home/SendText" component={SendText} />
                     <Route path="/Home/MessagesToYou" component={MessagesToYou} />
                     <Route path="/Home/Vote" component={Vote} />
                     <Route path="/Home" component={HomeArticle} />
                 </Switch>
-                {/* <Route path="/Home/SendText" component={SendText} />
-                <Route path="/Home/MessagesToYou" component={MessagesToYou} />
-                <Route path="/Home/Vote" component={Vote} />
-                <Route exact path="/Home" component={MessagesToYou} /> */}
             </div>
         </Router>
     )    

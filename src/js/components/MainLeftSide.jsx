@@ -38,7 +38,7 @@ export class MainLeftSide extends Component {
     return (
         <div className="leftSide">
             <div className="leftSideWrapper">
-                <h1>GROUPS OF OUR COMPANY</h1>
+          <h1>GROUPS OF OUR COMPANY</h1>
                 <div className="groupsContainer">
                   {items} 
                 </div>

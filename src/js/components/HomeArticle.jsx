@@ -11,17 +11,21 @@ export default function HomeArticle() {
                 let tempArrArticle = [];
                 snapshot.forEach((doc) => {
                     let tempObj = {};
-                    tempObj = {...doc.data()};
+                    tempObj = { ...doc.data() };
                     tempObj.id = doc.id;
                     tempArrArticle.push(tempObj);
                 })
                 return tempArrArticle;
             }))
             .then((articleArr) => {
-                setArticle(articleArr);
+                const sortedArticleItems = [...articleArr];
+                sortedArticleItems.sort((g1, g2) => (
+                    Date.parse(g2.createdDate) - Date.parse(g1.createdDate)
+                ));
+                setArticle(sortedArticleItems);
             })
             .catch((e) => console.log(e.message));
-    // eslint-disable-next-line
+        // eslint-disable-next-line
     }, [null]);
 
     return (

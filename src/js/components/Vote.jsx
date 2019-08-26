@@ -245,11 +245,10 @@ export default function Vote() {
                 }
             }
         }
-        popup.innerHTML = `<img src=${closeIcon} class="closeIcon" alt="close" />
-                        <h4>Already voted users list</h4><hr />`;
+        popup.innerHTML = `<h4>Already voted users list</h4><hr />`;
         resAllVoters.forEach((val => {
-            popup.innerHTML += `<p>${val.name} ${val.surname}<br />
-                            Email: ${val.email}</p> <hr />`;
+            popup.innerHTML += `<p><b>User: ${val.name} ${val.surname}<br />
+                            Email: ${val.email}</b></p> <hr />`;
         }))
         popup.style.visibility = "visible";
     }
@@ -379,7 +378,7 @@ export default function Vote() {
                                             data-allvoters={val.voted} 
                                             style={{ marginTop: 8, width: 32 }} />
                                         <span className="popupHidden" onClick={onCloseIcon}>
-                                            <img src={closeIcon} alt="close" className="closeIcon" />
+
                                         </span>
                                         <span>
                                             <img src={unlike}

@@ -4,8 +4,12 @@ import "./styles/home.css";
 import noMessages from "../../img/noMessages.png";
 import sendMsgIcon from '../../img/sendMsg.png';
 import deleteMsgIcon from '../../img/deleteMsg.png';
+import tickLogo from "../../img/tick.png";
+import cancelLogo from "../../img/cancel.png";
+// Material UI packages --------------------------------------
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+// -----------------------------------------------------------
 
 export default function MessagesToUser() {
     const [userId, setUserId] = useState(""),
@@ -65,7 +69,7 @@ export default function MessagesToUser() {
                                 }
                             }
                         }
-                        console.log(tempArr);
+                        //console.log(tempArr);
                         // console.log(tempArr);
                         if (JSON.stringify(data) !== JSON.stringify(tempArr)) {
                             setData([...tempArr]);
@@ -101,7 +105,7 @@ export default function MessagesToUser() {
 
         fire.firestore().collection("User_text").doc(id).delete()
         .then(() => {
-            console.log("Successfully removed !");
+            //console.log("Successfully removed !");
         })
         .catch(e => {console.log(e.message)});
     }
@@ -121,7 +125,7 @@ export default function MessagesToUser() {
         textarea.value = "";
         if (!text) {
             textarea.style.borderColor = "red";
-            setTimeout(() => {textarea.style.borderColor = "grey"}, 500);
+            setTimeout(() => { textarea.style.borderColor = "#3B5998"}, 500);
         } 
         else {
            let aboutUserId = e.target.getAttribute("data-id");
@@ -134,7 +138,7 @@ export default function MessagesToUser() {
                 dateCreated: new Date()
             })
             .then(() => {
-                alert("Message successfully sended.");
+                //alert("Message successfully sended.");
             })
             .catch(e => {
                 console.log("Error writing document: ", e);
@@ -206,7 +210,6 @@ export default function MessagesToUser() {
                 <CircularProgress className={classes.progress} />
             </div>
         </div>
-        )
-
+    )
 }
 
