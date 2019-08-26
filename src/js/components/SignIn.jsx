@@ -48,6 +48,10 @@ export const useStyles = makeStyles(theme => ({
         marginTop: 10,
         fontWeight: "bold",
         color: "#fff",
+        backgroundColor: "#4CAF50",
+        '&:hover': {
+            background: "rgb(69, 139, 72)",
+        }
     },
     buttonSignUp: {
         fontSize: 18,
@@ -70,6 +74,10 @@ export const useStyles = makeStyles(theme => ({
         marginLeft: 10,
         marginTop: 10,
         width: "auto",
+        backgroundColor: "#4CAF50",
+        '&:hover': {
+            background: "rgb(69, 139, 72)",
+        }
     },
 }));
 
