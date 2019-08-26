@@ -1,12 +1,12 @@
 #signInContainer {
-    border: 1px solid grey;
+    border: 1px solid #fff;
     border-radius: 20px;
     width: max-content;
-    padding: 10px 40px 30px 40px;
-    background-color: #8b9dc3;
+    /* padding: 10px 40px 30px 40px; */
+    background-color: #f7f7f7;
     text-align: center;
     margin: 5% auto;
-    background-image: linear-gradient(#fff, #8b9dc3); 
+    background-image: linear-gradient(#fff, #f3f3f3); 
 }
 
 #signInContainer {
@@ -14,7 +14,18 @@
     text-decoration-style: solid; 
     text-decoration-color: slategrey;
     margin-bottom: 10px;
-    color: #3B5998;
+    color: white;
+}
+
+#signInContainer h1 {
+    background-color: #4CAF50;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 10px;
+}
+
+.signInMainCont, .signUpMainCont{
+    margin: 20px 30px 40px 30px;
 }
 
 #errorMsg {

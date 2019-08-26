@@ -3,8 +3,8 @@
     display: table;
     width: 92%;
     height: -webkit-fill-available;
-    background-color: initial;
-    background-image: linear-gradient(#cfe4ec, #65a7d0);
+    background-color: #D8BFD8;
+    background-image: linear-gradient(#789ce8, #fff);
     text-align: center;
     color: #333;
 }
@@ -24,7 +24,7 @@
     padding: 10px;
     max-width: 70%;
     margin: -20px auto 30px auto;
-    border: 3px solid #3B5998;
+    border: 1px solid #3B5998;
     border-radius: 10px;
 }
 #welcomeSection h2 {
@@ -36,7 +36,7 @@
 }
 
 #welcomeSection #userInfo {  
-    border: 2px solid #3B5998;
+    border: 1px solid #3B5998;
     margin: 10px auto;
     border-radius: 10px;
     background-color: #fff;
@@ -44,6 +44,7 @@
     color: #444;
     width: 60%;
     padding: 10px 30px;
+    display: none;
 }
 
 
@@ -51,29 +52,33 @@
     font-size: 16px;
 }
 /*  =========================================================================== */
-#refSection a {
+/* #refSection a {
     padding: 6px 5px 2px 5px;
     background-color: #91C1EA;
     border: 3px solid #3B5998;
     border-radius: 10px;
-}
+} */
 
 #refSection img {
-    width: 90px;
-    height: 80px;
+    width: 80px;
+    height: 70px;
     border: 2px solid #3B5998;
     border-radius: 10px;
 }
 
-#refSection a:hover {
+#refSection img:hover {
+    border: 2px solid #202AFF;
+}
+
+/* #refSection a:hover {
     background-color: #fff;
     color: #444;
-}
+} */
 
 #toReferPage {
     padding: 10px 10px 30px 10px;
     background-color: #fff; 
-    border: 3px solid #3B5998;
+    border: 1px solid #3B5998;
     border-radius: 10px;
     max-width: 80%;
     margin: 50px auto;
@@ -154,7 +159,7 @@
 
 #toReferPageMessToUser {
     background-color: #fff; 
-    border: 3px solid #3B5998;
+    border: 1px solid #3B5998;
     border-radius: 10px;
     padding: 10px 0;
     max-width: 80%;
@@ -179,7 +184,7 @@
     background-color: #3D82C7;
     color: #F5F5DC;
     border-radius: 10px;
-    border: 2px solid #3B5998;
+    border: 1px solid #3B5998;
     width: 50%;
     margin: 10px auto 20px auto;
 }
@@ -262,7 +267,7 @@
 .sendMsgIcon, .deleteMsgIcon {
     width: 35px;
     background-color: #fff;
-    border: 3px solid #3B5998;
+    border: 2px solid #3B5998;
     border-radius: 5px;
     padding: 3px;
     margin-bottom: 10px;
@@ -320,7 +325,7 @@
 
 #toReferPageVote {  
     background-color: #fff;
-    border: 3px solid #3B5998;
+    border: 1px solid #3B5998;
     border-radius: 10px;
     max-width: 90%;
     margin: 50px auto;
@@ -336,7 +341,7 @@
     color: #F5F5DC;
     padding-top: 10px;
     border-radius: 10px;
-    border: 2px solid #3B5998;
+    border: 1px solid #3B5998;
     display: inline-table;
     margin: 10px 5px;
     width: 31%;
@@ -351,7 +356,7 @@
 }
 
 #voteHead {
-    border: 2px solid #3B5998;
+    border: 1px solid #3B5998;
     max-width: 350px;
     margin: 10px auto;
     padding: 10px;
@@ -362,7 +367,8 @@
 }
 
 #voteHead:hover {
-    background-color: #CBE2EB;
+    background-color: whitesmoke;
+    border-color: blue;
 }
 
 #messagesVote h5, #messagesVote h6 {
@@ -395,14 +401,14 @@
 .inputTypography {
     padding: 10px;
     margin: 10px;
-    border: 3px solid grey;
+    border: 1px solid grey;
     border-radius: 10px;
 }
 
 #buttonTypography {
     padding: 10px;
     margin-left: 40%;
-    border: 3px solid grey;
+    border: 1px solid grey;
     border-radius: 10px;
     cursor: pointer;
 }

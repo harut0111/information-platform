@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import history from '../routh/history';
 import { Link } from "react-router-dom";
 
-export default function UserWelcome(props) {
+export default function UserWelcome() {
     const [name, setName] = useState(""),
         [surname, setSurname] = useState(""),
         [userId, setUserId] = useState(""),
@@ -18,7 +18,6 @@ export default function UserWelcome(props) {
     useEffect(() => {
         fire.auth().onAuthStateChanged(user => {
             if (user) setUserId(user.uid);
-
         });
     })
 

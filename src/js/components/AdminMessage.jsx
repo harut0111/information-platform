@@ -109,7 +109,7 @@ export default function AdminMessage() {
 
     return (
         <div className="adminMsgesCont">
-            <h1>Admin Messages</h1>
+            <h1>Admin Messages (N{sortedMessages.length})</h1>
             {messageItems}
         </div>
     )
