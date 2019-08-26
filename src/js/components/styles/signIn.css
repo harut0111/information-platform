@@ -35,18 +35,3 @@
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
-
-#signInContainer .makeStyles-buttonSignIn-5 {
-    background: #4CAF50;
-}
-#signInContainer .makeStyles-buttonSignIn-5:hover {
-    background: rgb(69, 139, 72);
-}
-
-#signInContainer .makeStyles-buttonBack-8 {
-    background: #4CAF50;
-}
-
-#signInContainer .makeStyles-buttonBack-8:hover {
-    background: rgb(69, 139, 72);
-}
