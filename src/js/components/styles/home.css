@@ -352,7 +352,7 @@
 
 
 #messagesVote:hover {
-    background-color: #3B597F;
+    background-color: #4593E1;
 }
 
 #voteHead {
@@ -444,20 +444,25 @@
 }
 
 .popupHidden {
-    width: 350px;
+    width: 300px;
     position: absolute;
-    border: 1px solid #fff;
-    height: 200px;
-    background-color: lightskyblue;
+    border: 3px solid blue;
+    border-radius: 5px;
+    height: 300px;
+    background-color: #fff;
     visibility: hidden;
-    right: 35%;
     overflow-y: auto;
     margin-top: -150px;
 }
 
+.popupHidden p {
+    background-color: blue !important;
+    color: #fff !important;
+}
+
 .popupHidden h4 {
-    margin: 10px 30px 10px 5px;
-    color: #0067C1;
+    margin: 15px auto;
+    color: blue;
     text-decoration: underline;
 }
 
