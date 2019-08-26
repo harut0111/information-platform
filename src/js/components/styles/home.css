@@ -36,7 +36,7 @@
 }
 
 #welcomeSection #userInfo {  
-    border: 1px solid #3B5998;
+    border: 1px dashed #3B5998;
     margin: 10px auto;
     border-radius: 10px;
     background-color: #fff;
