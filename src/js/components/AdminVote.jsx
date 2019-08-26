@@ -162,7 +162,7 @@ export default function AdminVote() {
                 </form>
             </div>
             <div className="getVotes">
-                <h1>Created Votes</h1>
+                <h1 style={{marginTop: "20px"}}>Created Votes (N{sortedVotes.length})</h1>
                 {Vote}
             </div>
         </div>

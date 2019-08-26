@@ -83,7 +83,7 @@ export default function AdminUser() {
     return (
         <div className="adminUsersCont">
             <div className="adminUserHead">
-                <h1>Current Users</h1>
+                <h1 style={{marginBottom: "20px"}}>Current Users (N{filteredUserItems.length})</h1>
                 <select value={selectVal} onChange={(e) => setSelectVal(e.target.value)}>
                     <option value="All Users">All Users</option>
                     {selectOptions}

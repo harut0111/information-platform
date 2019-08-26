@@ -130,7 +130,7 @@ export default function AdminArticle() {
                 </form>
             </div>
             <div className="monSide">
-                <h1>Published Articles</h1>
+                <h1 style={{marginTop: "20px"}}>Published Articles (N{sortedArticleItems.length})</h1>
                 {articleItems}
             </div>
         </div>
