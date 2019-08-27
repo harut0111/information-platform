@@ -19,7 +19,8 @@ export default function UserWelcome() {
         fire.auth().onAuthStateChanged(user => {
             if (user) setUserId(user.uid);
         });
-    })
+    // eslint-disable-next-line
+    }, [null])
 
     useEffect(() => {
         if (userId) {
@@ -34,7 +35,8 @@ export default function UserWelcome() {
             })
             .catch(e => { console.log(e.message) })
         }
-    })
+    // eslint-disable-next-line
+    }, [userId])
     
     const handleLogOut = e => {
         e.preventDefault();
@@ -75,11 +77,11 @@ export default function UserWelcome() {
                         INFO
                     </Button>
                     <div id="userInfo">
-                        <ol type="A">
+                        <ul type="none">
                             <li>Your Age: {age}</li>
                             <li>Your Group: {group}</li>
                             <li>Your Email: {email}</li>
-                        </ol>
+                        </ul>
                     </div>
                 </div>
             ) : <h3>LOADING . . .</h3>}

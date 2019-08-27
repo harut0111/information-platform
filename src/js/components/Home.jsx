@@ -31,6 +31,9 @@ export default function Home() {
             <div id="homeWrapper">
                 <UserWelcome />
                 <div id="refSection">
+                    <Link to="/Home">
+                        <img src={backToHome} alt="Back To Home" style={{ backgroundColor: "#fff" }} />
+                    </Link>
                     <Link to="/Home/SendText">
                         <img src={sendText} alt="Send Message"/>
                     </Link>
@@ -40,9 +43,7 @@ export default function Home() {
                     <Link to="/Home/Vote">
                         <img src={voteBG} alt ="Vote"/>
                     </Link>
-                    <Link to="/Home">
-                        <img src={backToHome} alt="Back To Home" style={{backgroundColor: "#fff"}}/>
-                    </Link>
+                
                 </div>
                 
                 <Switch>

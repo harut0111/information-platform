@@ -3,7 +3,6 @@ import fire from "../configs/FireBase";
 import "./styles/home.css";
 import like from "../../img/like.png";
 import unlike from "../../img/unlike.png";
-import closeIcon from "../../img/close.png";
 import vote from "../../img/vote2.png";
 // ----------------- material-UI packages -----------------------
 import { makeStyles } from '@material-ui/core/styles';
@@ -47,7 +46,7 @@ export default function Vote() {
             }
         }))
         .catch((e) => console.log(e.messaage));
-        // eslint-disable-next-line
+    // eslint-disable-next-line
     }, [null])
 
     // Getting Vote list from firestore(db)
@@ -111,35 +110,45 @@ export default function Vote() {
                 } else setIsLoaded("Empty");
             })
             .catch(e => console.log(e.messaage));
-        // eslint-disable-next-line
+    // eslint-disable-next-line
     }, [allUsers, updateVote]);
 
     const voteAddClick = e => {
         e.preventDefault();
-        let inputsTypography = document.getElementsByClassName("inputTypography");
+        let title = e.currentTarget.parentNode.children[1];
+        let desc = e.currentTarget.parentNode.children[2];
 
-        if (!inputsTypography[0].value || !inputsTypography[1].value) {
-            inputsTypography[0].style.border = inputsTypography[1].style.border = "3px solid red";
-            return handleClose();
+        if(!title.value.trim()) {
+            title.style.borderColor = "red";
+            setTimeout(() => {
+                title.style.borderColor = "#FFC44A";
+            }, 500);
         }
-        // =================== Call to Firestore (DataBase) ===================
-        fire.firestore().collection("Vote").doc().set({
-            creatorVoteId: userId,
-            title: inputsTypography[0].value,
-            description: inputsTypography[1].value,
-            voteGood: 0,
-            voteBad: 0,
-            dateCreated: new Date()
-        })
-        .then(() => {
-            handleClose();
-            setUpdateVote(!updateVote);
-            //console.log("Document successfully written!");
-        })
-        .catch(e => {
-            handleClose();
-            console.log("Error writing document: ", e);
-        });
+        else if(!desc.value.trim()) {
+            desc.style.borderColor = "red";
+            setTimeout(() => {
+                desc.style.borderColor = "#FFC44A";
+            }, 500);
+        }
+        else {
+            // =================== Call to Firestore (DataBase) ===================
+            fire.firestore().collection("Vote").doc().set({
+                creatorVoteId: userId,
+                title: title.value,
+                description: desc.value,
+                voteGood: 0,
+                voteBad: 0,
+                dateCreated: new Date()
+            })
+            .then(() => {
+                handleClose();
+                setUpdateVote(!updateVote);
+            })
+            .catch(e => {
+                handleClose();
+                console.log("Error writing document: ", e);
+            });
+        }
     }
     
     // =========================================================================
@@ -163,8 +172,8 @@ export default function Vote() {
         },
         typography: {
             padding: theme.spacing(2),
-            backgroundColor: "#3B5998",
-            border: "3px solid grey",
+            backgroundColor: "#FF8000",
+            border: "2px solid #fff",
             borderRadius: 10
         }
     }));
@@ -286,15 +295,19 @@ export default function Vote() {
                         }}
                         transformOrigin={{
                             vertical: 'top',
-                            horizontal: 'left',
+                            horizontal: 'center',
                         }}>
-                        <Typography className={classes.typography}>
-                            <input className="inputTypography"
-                                type="text" placeholder="Title"></input> <br />
-                            <input className="inputTypography"
-                                type="text" placeholder="Description"></input> <br />
+                        <Typography className={classes.typography} variant="h5">
+                            <h2 className="headTypography">Add New Vote</h2>
+                            <input className="titleTypography"
+                                type="text" placeholder="Title . . .">
+                            </input>
+                            <textarea rows="15" cols="50"
+                                placeholder="Description . . ." className="descTypography">
+                            </textarea>
                             <button onClick={voteAddClick}
-                                id="buttonTypography" type="button">ADD</button>
+                                id="buttonTypography" type="button">ADD
+                            </button>
                         </Typography>
                     </Popover>
                 </div>
@@ -326,30 +339,34 @@ export default function Vote() {
                                 cursor: "pointer"
                             }}>add_circle
                     </Icon>
-                        <div>
-                            <Popover
-                                id={id}
-                                open={open}
-                                anchorEl={anchorEl}
-                                onClose={handleClose}
-                                anchorOrigin={{
-                                    vertical: 'bottom',
-                                    horizontal: 'center',
-                                }}
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'left',
-                                }}>
-                                <Typography className={classes.typography}>
-                                    <input className="inputTypography" 
-                                        type="text" placeholder="Title"></input> <br/>
-                                    <input className="inputTypography" 
-                                        type="text" placeholder="Description"></input> <br/>
-                                    <button onClick={voteAddClick} 
-                                        id="buttonTypography" type="button">ADD</button>
-                                </Typography>
-                            </Popover>
-                        </div>
+                    <div>
+                        <Popover
+                            id={id}
+                            open={open}
+                            anchorEl={anchorEl}
+                            onClose={handleClose}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'center',
+                            }}
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'center',
+                            }}>
+                            <Typography className={classes.typography} variant="h5">
+                                <h2 className="headTypography">Add New Vote</h2>
+                                <input className="titleTypography" 
+                                    type="text" placeholder="Title . . .">
+                                </input>
+                                <textarea rows="15" cols="50" 
+                                        placeholder="Description . . ." className="descTypography">
+                                </textarea>
+                                <button onClick={voteAddClick} 
+                                    id="buttonTypography" type="button">ADD
+                                </button>
+                            </Typography>
+                        </Popover>
+                    </div>
                     </h1>
                     {allVotes.map((val) => (
                         <div id="messagesVote" key={val.docId}>
@@ -359,7 +376,8 @@ export default function Vote() {
                             <h6>{`${val.date}`}</h6>
                             <hr />
                             <h4 style={{ textDecoration: "underline" }}>{val.title}</h4>
-                            <p>{val.description}</p>
+                                <p>{val.description}</p>
+                        </div>
                             <div id="like_unlike_container">
                                 {val.voted.indexOf(userId) === -1 ? (
                                     <>
@@ -373,12 +391,11 @@ export default function Vote() {
                                                 onClick={likeUnlikeHandler} />
                                             <span className="countVotes">{val.voteGood}</span>
                                         </span>
-                                        <img src={vote} onClick={onAlreadyVoted} 
-                                            alt = "Already voted users list"
-                                            data-allvoters={val.voted} 
+                                        <img src={vote} onClick={onAlreadyVoted}
+                                            alt="Already voted users list"
+                                            data-allvoters={val.voted}
                                             style={{ marginTop: 8, width: 32 }} />
                                         <span className="popupHidden" onClick={onCloseIcon}>
-
                                         </span>
                                         <span>
                                             <img src={unlike}
@@ -400,13 +417,11 @@ export default function Vote() {
                                                     style={{ opacity: 0.5, cursor: "default" }} />
                                                 <span className="countVotes">{val.voteGood}</span>
                                             </span>
-                                                <img src={vote} onClick={onAlreadyVoted}
-                                                    alt="Unlike"
-                                                    data-allvoters={val.voted} 
-                                                    style={{marginTop: 8, width: 32}}/>
-                                                <span className="popupHidden" onClick={onCloseIcon}>
-                                                    <img src={closeIcon} alt="close" className="closeIcon" />
-                                                </span>
+                                            <img src={vote} onClick={onAlreadyVoted}
+                                                alt="Unlike"
+                                                data-allvoters={val.voted}
+                                                style={{ marginTop: 8, width: 32 }} />
+                                            <span className="popupHidden" onClick={onCloseIcon}></span>
                                             <span>
                                                 <img src={unlike}
                                                     name="bad"
@@ -418,7 +433,6 @@ export default function Vote() {
                                     )
                                 }
                             </div>
-                        </div>
                     </div>
                     ))}
                 </div>
