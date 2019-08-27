@@ -4,6 +4,8 @@
     margin: 30px auto 0 auto;
     border: 1px solid #3B5998;
     border-radius: 10px;
+    max-height: 3000px;
+    overflow-y: auto;
 }
 
 .article {
@@ -12,8 +14,7 @@
 
 .article h1 {
   color: #3b5998;
-  margin: 10px 0;
-  text-decoration-color: grey;
+  margin: 15px 0;
 }
 
 .article h3 {

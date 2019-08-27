@@ -4,8 +4,6 @@ import "./styles/home.css";
 import noMessages from "../../img/noMessages.png";
 import sendMsgIcon from '../../img/sendMsg.png';
 import deleteMsgIcon from '../../img/deleteMsg.png';
-import tickLogo from "../../img/tick.png";
-import cancelLogo from "../../img/cancel.png";
 // Material UI packages --------------------------------------
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -83,7 +81,7 @@ export default function MessagesToUser() {
             }
         }))
         .catch((e)=>{console.log(e.message)});
-        // eslint-disable-next-line
+    // eslint-disable-next-line
     }, [userId])
 
     const onRemMsg = e => {

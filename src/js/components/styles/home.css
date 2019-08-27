@@ -76,7 +76,7 @@
 } */
 
 #toReferPage {
-    padding: 10px 10px 30px 10px;
+    padding: 30px 10px 50px 10px;
     background-color: #fff; 
     border: 1px solid #3B5998;
     border-radius: 10px;
@@ -94,7 +94,7 @@
 }
 
 #toReferPage h2{
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     text-decoration: underline;
     color: #3B5998;
 }
@@ -161,7 +161,7 @@
     background-color: #fff; 
     border: 1px solid #3B5998;
     border-radius: 10px;
-    padding: 10px 0;
+    padding: 30px 0;
     max-width: 80%;
     margin: 50px auto;
     text-align: center;
@@ -173,7 +173,7 @@
 }
 
 #toReferPageMessToUser h2{
-    margin: 10px auto 15px auto;
+    margin: 10px auto 25px auto;
     text-decoration: underline;
     font-family: cursive, sans-serif;
     color: #3B597F;
@@ -321,7 +321,7 @@
 }
 
 
-/* ---------------------- vote  -----------------------*/
+/* ---------------------- vote  ----------------------- */
 
 #toReferPageVote {  
     background-color: #fff;
@@ -332,7 +332,7 @@
     display: table;
     font-family: Arial, Helvetica, sans-serif;
     color: #222;
-    padding: 20px 30px 20px 30px;
+    padding: 40px 30px;
     box-sizing: border-box;
 }
 
@@ -344,12 +344,11 @@
     border: 1px solid #3B5998;
     display: inline-table;
     margin: 10px 5px;
-    width: 31%;
-    max-height: 225px;
-    min-height: 225px;
+    width: 32%;
+    max-height: 235px;
+    min-height: 235px;
     min-width: 208px;
 }
-
 
 #messagesVote:hover {
     background-color: #4593E1;
@@ -358,7 +357,7 @@
 #voteHead {
     border: 1px solid #3B5998;
     max-width: 350px;
-    margin: 10px auto;
+    margin: 10px auto 25px auto;
     padding: 10px;
     border-radius: 10px;
     background-color: #fff;
@@ -376,12 +375,11 @@
 }
 
 #messagesVote hr {
-    margin: 5px 0;
+    margin: 10px 0 10px 0;
 }
 
-
-#messagesVote p {
-    padding: 10px;
+#messagesVote #paragWrapper p {
+    padding: 20px;
     border: 1px solid #fff;
     border-radius: 5px;
     background-color: aliceblue;
@@ -394,24 +392,53 @@
     max-width: 80%;
     margin: 10px auto;
     overflow-y: auto;
-    max-height: 54px;
- }
+    max-height: 22px;
+}
 
 
-.inputTypography {
+.titleTypography {
     padding: 10px;
-    margin: 10px;
-    border: 1px solid grey;
-    border-radius: 10px;
+    margin: 10px 0;
+    border: 2px solid #FFC44A;
+    border-radius: 5px;
+    width: 94%;
+}
+
+.descTypography {
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #FFC44A;
+    border-radius: 5px;
+}
+
+.headTypography {
+    color: #fff;
+    text-align: center;
 }
 
 #buttonTypography {
     padding: 10px;
-    margin-left: 40%;
-    border: 1px solid grey;
-    border-radius: 10px;
+    border: 2px solid #FFC44A;
+    border-radius: 5px;
     cursor: pointer;
+    width: 60%;
+    color: orange;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #fff;
 }
+
+#buttonTypography:hover {
+    background-color: #FFC44A;
+    color: #fff;
+    border-color: #fff;
+}
+
+#buttonTypography:active {
+    background-color: #FFF377;
+    color: #fff;
+}
+
 
 #like_unlike_container {
     display: flex;
@@ -452,12 +479,19 @@
     background-color: #fff;
     visibility: hidden;
     overflow-y: auto;
-    margin-top: -150px;
+    margin-top: -190px;
 }
 
 .popupHidden p {
-    background-color: blue !important;
-    color: #fff !important;
+    background-color: blue;
+    color: #fff;
+    padding: 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    line-height: 20px;
+    max-width: 80%;
+    margin: 10px auto;
 }
 
 .popupHidden h4 {
