@@ -33,20 +33,20 @@ export default function Vote() {
     // Getting all users list from firestore(db)
     useEffect(() => {
         fire.firestore().collection("User").get()
-        .then((snapshot => {
-            let tempAllUsers = [];
-            snapshot.forEach((doc) => {
-                let tempObj = {};
-                tempObj = { ...doc.data() };
-                tempObj.id = doc.id;
-                tempAllUsers.push(tempObj);
-            })
-            if (JSON.stringify(allUsers) !== JSON.stringify(tempAllUsers)) {
-                setAllUsers(tempAllUsers);
-            }
-        }))
-        .catch((e) => console.log(e.messaage));
-    // eslint-disable-next-line
+            .then((snapshot => {
+                let tempAllUsers = [];
+                snapshot.forEach((doc) => {
+                    let tempObj = {};
+                    tempObj = { ...doc.data() };
+                    tempObj.id = doc.id;
+                    tempAllUsers.push(tempObj);
+                })
+                if (JSON.stringify(allUsers) !== JSON.stringify(tempAllUsers)) {
+                    setAllUsers(tempAllUsers);
+                }
+            }))
+            .catch((e) => console.log(e.messaage));
+        // eslint-disable-next-line
     }, [null])
 
     // Getting Vote list from firestore(db)
@@ -55,7 +55,7 @@ export default function Vote() {
             .then((snapshot) => {
                 let tempVotesArr = [];
                 snapshot.forEach((doc) => {
-                    let tempObj = {...doc.data()};
+                    let tempObj = { ...doc.data() };
                     tempObj.date = doc.data().dateCreated.seconds;
                     tempObj.docId = doc.id;
                     tempObj.voted = [];
@@ -67,50 +67,50 @@ export default function Vote() {
             .then((tempVotesArr) => {
                 if (tempVotesArr.length) {
                     fire.firestore().collection("Vote_result").get()
-                    .then((snapshot) => {
-                        let voteResultArr = [];
-                        snapshot.forEach((doc) => {
-                            let tempObj = { ...doc.data() };
-                            delete tempObj.dateVoted;
-                            tempObj.docId = doc.id;
-                            voteResultArr.push(tempObj);
-                        });
+                        .then((snapshot) => {
+                            let voteResultArr = [];
+                            snapshot.forEach((doc) => {
+                                let tempObj = { ...doc.data() };
+                                delete tempObj.dateVoted;
+                                tempObj.docId = doc.id;
+                                voteResultArr.push(tempObj);
+                            });
 
-                        for (let voteRes of voteResultArr) {
+                            for (let voteRes of voteResultArr) {
+                                for (let vote of tempVotesArr) {
+                                    if (voteRes.voteId === vote.docId) {
+                                        vote.voted.push(voteRes.voteUserId);
+                                        break;
+                                    }
+                                }
+                            }
+                            //console.log(tempVotesArr);
+                            //console.log(voteResultArr);
+                            let finalDataVotes = [];
                             for (let vote of tempVotesArr) {
-                                if (voteRes.voteId === vote.docId) {
-                                    vote.voted.push(voteRes.voteUserId);
-                                    break;
+                                let tempObj = {};
+                                for (let user of allUsers) {
+                                    if (user.id === vote.creatorVoteId) {
+                                        tempObj = { ...user, ...vote };
+                                        tempObj.voted = [...vote.voted];
+                                        tempObj.date = new Date(vote.date * 1000).toLocaleDateString()
+                                            + " - " + new Date(vote.date * 1000).toLocaleTimeString();
+                                        tempObj.docId = vote.docId;
+                                        finalDataVotes.push(tempObj)
+                                        break;
+                                    }
                                 }
                             }
-                        }
-                        //console.log(tempVotesArr);
-                        //console.log(voteResultArr);
-                        let finalDataVotes = [];
-                        for (let vote of tempVotesArr) {
-                            let tempObj = {};
-                            for (let user of allUsers) {
-                                if (user.id === vote.creatorVoteId) {
-                                    tempObj = { ...user, ...vote };
-                                    tempObj.voted = [...vote.voted];
-                                    tempObj.date = new Date(vote.date * 1000).toLocaleDateString() 
-                                                + " - " + new Date(vote.date * 1000).toLocaleTimeString();
-                                    tempObj.docId = vote.docId;
-                                    finalDataVotes.push(tempObj)
-                                    break;
-                                }
+                            if (JSON.stringify(allVotes) !== JSON.stringify(finalDataVotes)) {
+                                //console.log(finalDataVotes);
+                                setAllVotes([...finalDataVotes]);
+                                setIsLoaded(true);
                             }
-                        }
-                        if (JSON.stringify(allVotes) !== JSON.stringify(finalDataVotes)) {
-                            //console.log(finalDataVotes);
-                            setAllVotes([...finalDataVotes]);
-                            setIsLoaded(true);
-                        }
-                    })
+                        })
                 } else setIsLoaded("Empty");
             })
             .catch(e => console.log(e.messaage));
-    // eslint-disable-next-line
+        // eslint-disable-next-line
     }, [allUsers, updateVote]);
 
     const voteAddClick = e => {
@@ -118,13 +118,13 @@ export default function Vote() {
         let title = e.currentTarget.parentNode.children[1];
         let desc = e.currentTarget.parentNode.children[2];
 
-        if(!title.value.trim()) {
+        if (!title.value.trim()) {
             title.style.borderColor = "red";
             setTimeout(() => {
                 title.style.borderColor = "#FFC44A";
             }, 500);
         }
-        else if(!desc.value.trim()) {
+        else if (!desc.value.trim()) {
             desc.style.borderColor = "red";
             setTimeout(() => {
                 desc.style.borderColor = "#FFC44A";
@@ -140,17 +140,17 @@ export default function Vote() {
                 voteBad: 0,
                 dateCreated: new Date()
             })
-            .then(() => {
-                handleClose();
-                setUpdateVote(!updateVote);
-            })
-            .catch(e => {
-                handleClose();
-                console.log("Error writing document: ", e);
-            });
+                .then(() => {
+                    handleClose();
+                    setUpdateVote(!updateVote);
+                })
+                .catch(e => {
+                    handleClose();
+                    console.log("Error writing document: ", e);
+                });
         }
     }
-    
+
     // =========================================================================
     const useStyles = makeStyles(theme => ({
         root: {
@@ -188,53 +188,53 @@ export default function Vote() {
     // Good Or Bad vote handler ===========================================
     const likeUnlikeHandler = e => {
         e.preventDefault();
-        if(votingProcess) return;
+        if (votingProcess) return;
         setVotingProcess(true);
 
         let voteENUM = e.currentTarget.name,
             voteDocId = e.target.getAttribute("data-vote"),
-            countOfVoters = e.currentTarget.getAttribute("data-goodcount") || 
-                            e.currentTarget.getAttribute("data-badcount"),
+            countOfVoters = e.currentTarget.getAttribute("data-goodcount") ||
+                e.currentTarget.getAttribute("data-badcount"),
             classValue = e.target.className,
             voteButtons = document.getElementsByClassName(classValue);
         e.currentTarget.nextSibling.innerText = +countOfVoters + 1;
-        
-        for(let el of voteButtons) {
+
+        for (let el of voteButtons) {
             el.style.opacity = 0.5;
             el.style.cursor = "default";
         }
-        
-        setTimeout(() => {setVotingProcess(false)}, 1000);
-        
+
+        setTimeout(() => { setVotingProcess(false) }, 1000);
+
         if (voteENUM === "good") {
             fire.firestore().collection("Vote").doc(voteDocId).update({
                 voteGood: ++countOfVoters
             })
-            .then(() => {
-                fire.firestore().collection("Vote_result").doc().set({
-                    voteId: voteDocId,
-                    voteResult: "good",
-                    voteUserId: userId,
-                    dateVoted: new Date()
+                .then(() => {
+                    fire.firestore().collection("Vote_result").doc().set({
+                        voteId: voteDocId,
+                        voteResult: "good",
+                        voteUserId: userId,
+                        dateVoted: new Date()
+                    })
+                        .then(() => setUpdateVote(!updateVote))
                 })
-                .then(() => setUpdateVote(!updateVote))
-            })
-            .catch(e => console.log(e.messaage))
-        } 
+                .catch(e => console.log(e.messaage))
+        }
         else {
             fire.firestore().collection("Vote").doc(voteDocId).update({
                 voteBad: ++countOfVoters
             })
-            .then(() => {
-                fire.firestore().collection("Vote_result").doc().set({
-                    voteId: voteDocId,
-                    voteResult: "bad",
-                    voteUserId: userId,
-                    dateVoted: new Date()
+                .then(() => {
+                    fire.firestore().collection("Vote_result").doc().set({
+                        voteId: voteDocId,
+                        voteResult: "bad",
+                        voteUserId: userId,
+                        dateVoted: new Date()
+                    })
+                        .then(() => setUpdateVote(!updateVote))
                 })
-                .then(() => setUpdateVote(!updateVote))
-            })
-            .catch(e => console.log(e.messaage))
+                .catch(e => console.log(e.messaage))
         }
     }
 
@@ -269,7 +269,7 @@ export default function Vote() {
     }
 
     if (isLoaded === "Empty") return (
-        <div id="toReferPageVote" style={{padding: 35}}>
+        <div id="toReferPageVote" style={{ padding: 35 }}>
             <h1 id="voteHead" style={{ padding: 35 }}>
                 Vote List
                     <Icon className={classes.iconHover}
@@ -298,7 +298,7 @@ export default function Vote() {
                             horizontal: 'center',
                         }}>
                         <Typography className={classes.typography} variant="h5">
-                            <h2 className="headTypography">Add New Vote</h2>
+                            <span className="headTypography">Create New Vote</span>
                             <input className="titleTypography"
                                 type="text" placeholder="Title . . .">
                             </input>
@@ -312,12 +312,12 @@ export default function Vote() {
                     </Popover>
                 </div>
             </h1>
-        </div>    
+        </div>
     )
 
     return (
         !isLoaded ? (
-            <div id="toReferPageVote" style={{width:"90%"}}>
+            <div id="toReferPageVote" style={{ width: "90%" }}>
                 <div>
                     <CircularProgress className={classes.progress} />
                     <CircularProgress className={classes.progress} color="secondary" />
@@ -339,45 +339,45 @@ export default function Vote() {
                                 cursor: "pointer"
                             }}>add_circle
                     </Icon>
-                    <div>
-                        <Popover
-                            id={id}
-                            open={open}
-                            anchorEl={anchorEl}
-                            onClose={handleClose}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'center',
-                            }}
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'center',
-                            }}>
-                            <Typography className={classes.typography} variant="h5">
-                                <h2 className="headTypography">Add New Vote</h2>
-                                <input className="titleTypography" 
-                                    type="text" placeholder="Title . . .">
-                                </input>
-                                <textarea rows="15" cols="50" 
+                        <div>
+                            <Popover
+                                id={id}
+                                open={open}
+                                anchorEl={anchorEl}
+                                onClose={handleClose}
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'center',
+                                }}
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'center',
+                                }}>
+                                <Typography className={classes.typography} variant="h5">
+                                    <span className="headTypography">Create New Vote</span>
+                                    <input className="titleTypography"
+                                        type="text" placeholder="Title . . .">
+                                    </input>
+                                    <textarea rows="15" cols="50"
                                         placeholder="Description . . ." className="descTypography">
-                                </textarea>
-                                <button onClick={voteAddClick} 
-                                    id="buttonTypography" type="button">ADD
+                                    </textarea>
+                                    <button onClick={voteAddClick}
+                                        id="buttonTypography" type="button">ADD
                                 </button>
-                            </Typography>
-                        </Popover>
-                    </div>
+                                </Typography>
+                            </Popover>
+                        </div>
                     </h1>
                     {allVotes.map((val) => (
                         <div id="messagesVote" key={val.docId}>
-                        <div id="paragWrapper">
-                            <h3>{`${val.name} ${val.surname}`}</h3>
-                            <h5>{`(Group: ${val.group}, Age: ${val.age})`}</h5>
-                            <h6>{`${val.date}`}</h6>
-                            <hr />
-                            <h4 style={{ textDecoration: "underline" }}>{val.title}</h4>
+                            <div id="paragWrapper">
+                                <h3>{`${val.name} ${val.surname}`}</h3>
+                                <h5>{`(Group: ${val.group}, Age: ${val.age})`}</h5>
+                                <h6>{`${val.date}`}</h6>
+                                <hr />
+                                <h4 style={{ textDecoration: "underline" }}>{val.title}</h4>
                                 <p>{val.description}</p>
-                        </div>
+                            </div>
                             <div id="like_unlike_container">
                                 {val.voted.indexOf(userId) === -1 ? (
                                     <>
@@ -433,7 +433,7 @@ export default function Vote() {
                                     )
                                 }
                             </div>
-                    </div>
+                        </div>
                     ))}
                 </div>
             )
