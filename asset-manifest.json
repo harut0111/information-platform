@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/information-platform/static/css/main.d6209193.chunk.css",
-    "main.js": "/information-platform/static/js/main.2ad5079b.chunk.js",
-    "main.js.map": "/information-platform/static/js/main.2ad5079b.chunk.js.map",
+    "main.css": "/information-platform/static/css/main.825aaac7.chunk.css",
+    "main.js": "/information-platform/static/js/main.4d652a30.chunk.js",
+    "main.js.map": "/information-platform/static/js/main.4d652a30.chunk.js.map",
     "runtime~main.js": "/information-platform/static/js/runtime~main.53dfa125.js",
     "runtime~main.js.map": "/information-platform/static/js/runtime~main.53dfa125.js.map",
-    "static/js/2.bd901c8b.chunk.js": "/information-platform/static/js/2.bd901c8b.chunk.js",
-    "static/js/2.bd901c8b.chunk.js.map": "/information-platform/static/js/2.bd901c8b.chunk.js.map",
+    "static/js/2.9412b5f3.chunk.js": "/information-platform/static/js/2.9412b5f3.chunk.js",
+    "static/js/2.9412b5f3.chunk.js.map": "/information-platform/static/js/2.9412b5f3.chunk.js.map",
     "index.html": "/information-platform/index.html",
-    "precache-manifest.37e20171baae2a7451a9fc1bf5a522ee.js": "/information-platform/precache-manifest.37e20171baae2a7451a9fc1bf5a522ee.js",
+    "precache-manifest.8f95a6be079c24e807be35ac8c22371f.js": "/information-platform/precache-manifest.8f95a6be079c24e807be35ac8c22371f.js",
     "service-worker.js": "/information-platform/service-worker.js",
-    "static/css/main.d6209193.chunk.css.map": "/information-platform/static/css/main.d6209193.chunk.css.map",
+    "static/css/main.825aaac7.chunk.css.map": "/information-platform/static/css/main.825aaac7.chunk.css.map",
     "static/media/admin.png": "/information-platform/static/media/admin.7775fddc.png",
     "static/media/admin.css": "/information-platform/static/media/adminBG.d7901de0.jpg",
-    "static/media/backToHome.jpg": "/information-platform/static/media/backToHome.c17991b6.jpg",
+    "static/media/backToHome2.png": "/information-platform/static/media/backToHome2.89b04cfe.png",
     "static/media/mainLeftSide.css": "/information-platform/static/media/bg.b11c7feb.jpg",
     "static/media/logo.png": "/information-platform/static/media/logo.8394ab2b.png",
     "static/media/App.css": "/information-platform/static/media/mainBG.dac9ff92.jpeg",
-    "static/media/msgToMe.jpg": "/information-platform/static/media/msgToMe.d6250fdf.jpg",
     "static/media/sendText.jpg": "/information-platform/static/media/sendText.4e2d0a8a.jpg",
+    "static/media/sms.png": "/information-platform/static/media/sms.5175e937.png",
     "static/media/voteBG.jpg": "/information-platform/static/media/voteBG.9a720297.jpg"
   }
 }
