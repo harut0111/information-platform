@@ -26,34 +26,6 @@ footer p {
   text-transform: uppercase;
 }
 
-footer button {
-    display: inline-block;
-    border: 1px solid silver;
-    border-radius: 3px;
-    margin: 1px 2px 2px -115px;
-    width: 100px;
-    cursor: pointer;
-    font-size: 14px;
-    color: grey;
-    padding: 1px;
-}
-
-footer button:hover {
-  background-color: #3B597F;
-  color: #fff;
-}
-
-footer textarea {
-  border: 1px solid silver;
-  box-sizing: border-box;
-  border-radius: 5px;
-  padding: 2px;
-  max-width: 220px;
-  max-height: 40px;
-  min-width: 220px;
-  min-height: 40px;
-}
-
 #github {
   display: flex;
   justify-content: space-around;
@@ -73,21 +45,4 @@ footer textarea {
 
 #github img:hover {
   opacity: 0.5;
-}
-
-
-footer #tickLogo {
-    width: 26px;
-    position: absolute;
-    margin-left: 10px;
-    margin-top: -1px;
-    visibility: hidden;
-}
-
-footer #cancelLogo {
-    width: 26px;
-    position: absolute;
-    margin-top: -1px;
-    margin-left: 10px;
-    visibility: hidden;
 }

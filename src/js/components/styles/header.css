@@ -5,18 +5,73 @@ header {
   color: #fff;
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-content: center;
 }
 
-header h1 {
-  margin: 0px 0px 0px -78px;
-}
-
 header img {
-  position: absolute;
   width: 80px;
-  top: 7px;
-  left: 30px;
 }
 
+header button {
+  display: inline-block;
+  border: 1px solid silver;
+  border-radius: 3px;
+  width: 110px;
+  cursor: pointer;
+  font-size: 14px;
+  color: grey;
+  padding: 5px;
+}
+
+header button:hover {
+background-color: #3B597F;
+color: #fff;
+}
+
+
+.contactForm {
+  position: absolute;
+  top: 0; 
+  width: 99%;
+  z-index: 554;
+}
+
+.contactFormCont {
+  padding: 30px 30px;
+  border-radius: 20px;  
+  position: relative;
+  background: oldlace;
+  border: 1px solid black;
+  width: 30%;
+  margin: auto;
+  top: 50px;
+  z-index: 555;
+}
+
+.contactFormContent {
+  padding: 10px;
+  margin: auto;
+  width: 90%;
+}
+
+.contactFormContent p {
+  color: black;
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+
+.contactBtn {
+  margin-top: 20px;
+}
+
+.formCloseIcon {
+  color: black;
+  float: right;
+  cursor: pointer;
+}
+
+.formCloseIcon:hover {
+  color: #3B597F;
+}
