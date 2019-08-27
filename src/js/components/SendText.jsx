@@ -52,7 +52,7 @@ export default function SendText() {
     
     const onSendClick = e => {
         e.preventDefault();
-        if(!text)  {
+        if(!text.trim())  {
             document.getElementById("textarea").style.border = "2px solid red";
             document.getElementById("cancelLogoSendText").style.visibility = "visible";
             setTimeout(() => {
