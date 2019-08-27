@@ -38,7 +38,7 @@ export default function SendText() {
             setIsLoaded(true);
         })
         .catch(e => {console.log(e.message, "Catch error.")});
-    }, [userId]);
+    });
 
     const onSelectChange = e => {
         e.preventDefault();
