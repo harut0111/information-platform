@@ -7,7 +7,6 @@ export default function AdminMessage() {
     const DB = firebase.firestore();
 
     const [ messages, setMessages ] = useState([]);
-    const [ users, setUsers ] = useState([]);
 
     useEffect(() =>{
         callDB() 
@@ -22,29 +21,15 @@ export default function AdminMessage() {
             querySnapshot.forEach(doc => {
                 messages.push({
                     id: doc.id,
-                    creatorUserId: doc.data().creatorUserId,
-                    dateCreated: doc.data().dateCreated,
-                    theText: doc.data().theText,
+                    name: doc.data().name,
+                    email: doc.data().email,
+                    subject: doc.data().subject,
+                    message: doc.data().message,
+                    date: doc.data().date
                 })
             });
             setMessages(messages);
         });
-
-        DB.collection("User").get().then(querySnapshot => {
-            let users = [];
-            querySnapshot.forEach(doc => {
-                users.push({
-                    id: doc.id,
-                    name: doc.data().name,
-                    surname: doc.data().surname,
-                    age: doc.data().age,
-                    email: doc.data().email,
-                    group: doc.data().group
-                })
-            });
-            setUsers(users);
-        });
-
     }
 
     
@@ -54,8 +39,6 @@ export default function AdminMessage() {
     function onDeleteClick(e) {
 
         const id = e.currentTarget.parentNode.id
-        console.log(id);
-        
 
         DB.collection("Admin").doc(id).delete()
         .then(() => {
@@ -75,34 +58,13 @@ export default function AdminMessage() {
     ));
 
     const messageItems = sortedMessages.map(message => {
-
-        if(message.creatorUserId !== "Unknown") {
-            for (const userItem of users) {
-                if(userItem.id === message.creatorUserId) {
-
-                    return (
-                        <div className='adminUserItems' key={message.id} id={message.id} >
-                            <p><b>Name:</b> {userItem.name} </p>
-                            <p><b>Surname:</b> {userItem.surname} </p>
-                            <p><b>Age:</b> {userItem.age} </p>
-                            <p><b>Email:</b> {userItem.email} </p>
-                            <p><b>Group:</b> {userItem.group} </p>
-                            <p><b>Sender ID:</b> {userItem.id} </p>
-                            <p><b>Send Date:</b> {message.dateCreated} </p>
-                            <p><b>Message:</b> {message.theText} </p>
-                            <button onClick={onDeleteClick}>Delete</button>
-                        </div>
-                    )
-                }
-            }
-        }
-
         return (
-            <div className='adminUserItems' key={message.id} id={message.id} >  
-                  <p><b>User:</b> {message.creatorUserId} </p>
-                  <p><b>Send Date:</b> {message.dateCreated} </p>
-                  <p><b>Message:</b> {message.theText} </p>
-                  <button onClick={onDeleteClick}>Delete</button>
+            <div className='adminUserItems' key={message.id} id={message.id} >
+                <p><b>Name:</b> {message.name} </p>
+                <p><b>Email:</b> {message.email} </p>
+                <p><b>Message:</b> {message.message} </p>
+                <p><b>Send Date:</b> {message.date} </p>
+                <button onClick={onDeleteClick}>Delete</button>
             </div>
         )
     })
