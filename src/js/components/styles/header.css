@@ -16,37 +16,52 @@ header img {
 header button {
   display: inline-block;
   border: 1px solid silver;
+  background-color: #3B597F;
   border-radius: 3px;
   width: 110px;
   cursor: pointer;
   font-size: 14px;
-  color: grey;
+  color: #fff;
   padding: 5px;
 }
 
 header button:hover {
-background-color: #3B597F;
-color: #fff;
+  border-color: #fff;
 }
 
 
 .contactForm {
   position: absolute;
+  /* background-color: rgba(0, 0, 0, 0.3); */
   top: 0; 
-  width: 99%;
-  z-index: 554;
+  left: 0;
+  height: 100vh;
+  width: 100%;
 }
 
 .contactFormCont {
   padding: 30px 30px;
   border-radius: 20px;  
   position: relative;
-  background: oldlace;
+  background: white;
   border: 1px solid black;
-  width: 30%;
+  width: 25%;
   margin: auto;
   top: 50px;
-  z-index: 555;
+  z-index: 200;
+  /* -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0,0.5);
+  -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+  box-shadow: 10px 10px 4px rgba(0, 0, 0, .5); */
+  -webkit-animation: mymove 5s infinite; /* Safari 4.0 - 8.0 */
+  animation: mymove 5s infinite;
+}
+
+@-webkit-keyframes mymove {
+  50% {box-shadow: 10px 20px 30px red;}
+}
+
+@keyframes mymove {
+  50% {box-shadow: 10px 20px 30px red;}
 }
 
 .contactFormContent {

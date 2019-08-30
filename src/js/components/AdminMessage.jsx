@@ -7,37 +7,46 @@ export default function AdminMessage() {
     const DB = firebase.firestore();
 
     const [ messages, setMessages ] = useState([]);
+    const [display, setDisplay] = useState(false);
+    const [infmes, setInfmes] = useState(false);
 
-    useEffect(() =>{
-        callDB() 
+    useEffect(() => {
+        callDB();
      // eslint-disable-next-line
     }, [null])
 
-
+    
     function callDB() {
-          // get User Date from DB
-          DB.collection("Admin").get().then(querySnapshot => {
-            let messages = [];
-            querySnapshot.forEach(doc => {
-                messages.push({
-                    id: doc.id,
-                    name: doc.data().name,
-                    email: doc.data().email,
-                    subject: doc.data().subject,
-                    message: doc.data().message,
-                    date: doc.data().date
-                })
-            });
-            setMessages(messages);
+
+        DB.collection("Admin").onSnapshot(querySnapshot => {
+            const listArr = querySnapshot.docChanges()[0];
+            if(listArr && listArr.type === "added") {
+                const messages = [];
+                querySnapshot.forEach(function(doc) {
+                    messages.push({
+                        id: doc.id,
+                        name: doc.data().name,
+                        email: doc.data().email,
+                        subject: doc.data().subject,
+                        message: doc.data().message,
+                        date: doc.data().date
+                    });
+                });
+                setMessages(messages);
+                if(querySnapshot.docChanges().length === 1) {
+                    setDisplay(true);
+                    setTimeout(() => setDisplay(false), 2000);
+                }
+
+            }
+        },function(error) {
+            window.alert(error.message);
         });
+
     }
 
-    
-
-    
-
     function onDeleteClick(e) {
-
+        
         const id = e.currentTarget.parentNode.id
 
         DB.collection("Admin").doc(id).delete()
@@ -46,10 +55,14 @@ export default function AdminMessage() {
                 return item.id !== id;
             }); 
             setMessages(filteredMsges);
+        }).then(() => {
+            setInfmes(true);
+            setTimeout(() => setInfmes(false), 2000);
         })
         .catch(function(error) {
             window.alert(error.message);
         });
+        
     }
     
     const sortedMessages = [...messages];
@@ -71,7 +84,9 @@ export default function AdminMessage() {
 
     return (
         <div className="adminMsgesCont">
-            <h1>Admin Messages (N{sortedMessages.length})</h1>
+            <h1 style={{ margin: "20px 0px 10px 0", textAlign: "center" }}>Admin Messages (N{sortedMessages.length})</h1>
+            <p className="AddDoneInf" style={{display: display ? "block" : "none" }}>New Message</p>
+            <p className="DeleteDoneInf" style={{display: infmes ? "block" : "none" }}>Successfully Deleted</p>
             {messageItems}
         </div>
     )

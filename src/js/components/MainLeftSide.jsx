@@ -4,6 +4,7 @@ import "firebase/firestore";
 import React, { Component } from 'react';
 
 export class MainLeftSide extends Component {
+  
     constructor(props) {
         super(props);
         this.state = {
@@ -11,21 +12,26 @@ export class MainLeftSide extends Component {
         }
       }
       
-      componentDidMount() {    
-        this.db = firebase.firestore();
-        this.db.collection("Group").get()
-        .then(querySnapshot => {
-          querySnapshot.forEach(doc => {
-             this.setState(state => ({
-              groupList: state.groupList.concat({
-                id: doc.id,
-                value: doc.data().name,
-              }),
-            }));
-          });
-        })
-        .catch((e => console.log(e.message)))
-      }
+    componentDidMount() {   
+
+      const groupList = [];
+      const DB = firebase.firestore();
+
+      DB.collection("Group").get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          groupList.push({
+            id: doc.id,
+            value: doc.data().name,
+          })
+        });
+        this.setState(state => ({
+          groupList: state.groupList.concat(groupList)
+        }))
+      })
+      .catch((e => console.log(e.message)))
+    }
+
     render() {
       
     const { groupList } = this.state;
@@ -38,7 +44,7 @@ export class MainLeftSide extends Component {
     return (
         <div className="leftSide">
             <div className="leftSideWrapper">
-          <h1>GROUPS OF OUR COMPANY</h1>
+            <h1>GROUPS OF OUR COMPANY</h1>
                 <div className="groupsContainer">
                   {items} 
                 </div>
