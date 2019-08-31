@@ -109,10 +109,10 @@ export default function AdminArticle() {
                 <div className='articleItemData'>
                     <p><b>Title:</b> {item.title}</p>
                     <p><b>Content:</b> {item.content}</p>
-                    <p><b>Created Date:</b> {item.createdDate}</p>
-                    <p><b>ID:</b> {item.id}</p>
+                    <p><b>Date:</b> {item.createdDate}</p>
+                    {/* <p><b>ID:</b> {item.id}</p> */}
                 </div>
-                <button onClick={onDeleteClick}>Delete</button>
+                <span className="adminDeleteBtn" onClick={onDeleteClick}>Delete</span>
             </div>
         )
     })
@@ -121,14 +121,14 @@ export default function AdminArticle() {
         <div className="adminArticleCont">
             <div className='publishSide'>
                 <form onSubmit={handleArticleSubmit}>
-                    <label>Title:</label>
+                    <label><b>Title:</b></label>
                     <input
                         required
                         className="articleTitle"
                         type="text"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)} />
-                    <label>Article:</label>
+                    <label><b>Article:</b></label>
                     <textarea
                         name="message"
                         rows="10"
@@ -137,7 +137,9 @@ export default function AdminArticle() {
                         value={textareaVal}
                         onChange={(e) => setTextareaVal(e.target.value)} />
                     <div style={{display: "flex"}}>
-                    <input type="submit" value="Publish" className="submitButton" />
+                        <button className="groupOkBtn" type="submit">
+                            <span className="adminAddBtn"> Publish </span>
+                        </button>
                         <div style={{display: display ? "block" : "none"}}>
                             <DoneIcon fontSize="large" className="AdminDoneIcon" />
                         </div>

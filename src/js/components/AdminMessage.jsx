@@ -77,7 +77,7 @@ export default function AdminMessage() {
                 <p><b>Email:</b> {message.email} </p>
                 <p><b>Message:</b> {message.message} </p>
                 <p><b>Send Date:</b> {message.date} </p>
-                <button onClick={onDeleteClick}>Delete</button>
+                <span className="adminDeleteBtn" onClick={onDeleteClick}>Delete</span>
             </div>
         )
     })

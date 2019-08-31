@@ -136,14 +136,14 @@ export default function AdminVote() {
     const Vote = sortedVotes.map((item,index )=> {
         return (
           <div className='adminUserItems' key={index} id={item.id}>  
-                <p><b>creatorVoteId:</b> {item.creatorVoteId}</p>
-                <p><b>dateCreated: </b>{item.dateCreated}</p>
-                <p><b>description: </b>{item.description}</p>
-                <p><b>title:</b> {item.title}</p>
+                <p><b>Title:</b> {item.title}</p>
+                <p><b>Description: </b>{item.description}</p>
                 <p><b>Like:</b> {item.voteBad}</p>
                 <p><b>Unlike:</b> {item.voteGood}</p>
+                <p><b>Date: </b>{item.dateCreated}</p>
                 {/* <p>ID: {item.id}</p> */}
-                <button onClick={onDeleteClick}>Delete</button>
+                {/* <p><b>creatorVoteId:</b> {item.creatorVoteId}</p> */}
+                <span className="adminDeleteBtn" onClick={onDeleteClick}>Delete</span>
           </div>
         )
     })
@@ -168,7 +168,9 @@ export default function AdminVote() {
                         value={description} 
                         onChange={(e) => setDescription(e.target.value)}/>
                     <div style={{display: "flex"}}>
-                        <input type="submit" value="Create" className="submitButton" />
+                        <button className="groupOkBtn" type="submit">
+                            <span className="adminAddBtn"> Create </span>
+                        </button>
                         <div style={{display: display ? "block" : "none"}}>
                             <DoneIcon fontSize="large" className="AdminDoneIcon" />
                         </div>

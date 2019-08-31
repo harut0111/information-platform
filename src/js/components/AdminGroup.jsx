@@ -158,7 +158,7 @@ export default function AdminGroup() {
 
     function handleOnGroupToolClick(e) {
 
-        if(e.target.className === "remove") {
+        if(e.target.className === "adminDeleteBtn") {
 
             const id = e.currentTarget.id
             const newGroupList = groups.filter(item => {
@@ -194,7 +194,7 @@ export default function AdminGroup() {
             .catch(function(error) {
                 console.error(error.message);
             });
-        } else if(e.target.className === "edit") {
+        } else if(e.target.className === "adminEditBtn") {
             
             // check if there is open editor form
             if(popVisib === "" || popVisib === e.currentTarget.id) {
@@ -217,12 +217,12 @@ export default function AdminGroup() {
           <div className='adminGroupItems' key={item.id} id={item.id}  onClick={handleOnGroupToolClick}>
               <div className="groupItemData">
                 <p><b>Name:</b> {item.name}</p>
-                <p><b>Created Date:</b> {item.createdDate}</p>
+                <p><b>Date:</b> {item.createdDate}</p>
                 {/* <p>ID: {item.id}</p> */}
               </div>  
               <div className='groupItemTools'>
-                    <button className="remove">Remove</button>
-                    <button className="edit">Edit</button>
+                <span className="adminDeleteBtn">Remove</span>
+                <span className="adminEditBtn">Edit</span>
               </div>
               <div className="groupPopupForm" style={{display: "none"}}>
                 <form onSubmit={handleGroupEditSubmit}>
@@ -242,10 +242,9 @@ export default function AdminGroup() {
                         onChange={handleGroupChange}
                         value={groupEditDate}
                     ></input>
-                    <button 
-                        type="submit"
-                        className="groupOkBtn"
-                    > Ok </button>
+                    <button className="groupOkBtn" type="submit">
+                        <span className="adminOkBtn"> Ok </span>
+                    </button>
                 </form>
               </div>
           </div>
@@ -262,14 +261,12 @@ export default function AdminGroup() {
                     name="groupName" 
                     value={groupName} 
                     onChange={handleGroupChange} 
-                    placeholder="name"
                     required 
                     style={{width: "200px"}}/>
                     <div style={{display: "flex"}}>
-                        <input 
-                            type="submit" 
-                            value="Add" 
-                            style={{width: "70px", cursor: "pointer", display: "inline-block"}}/>
+                        <button className="groupOkBtn" type="submit">
+                            <span className="adminAddBtn"> Add </span>
+                        </button>
                         <div style={{display: display ? "block" : "none"}}>
                             <DoneIcon fontSize="large" className="AdminDoneIcon" />
                         </div>
