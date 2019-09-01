@@ -454,6 +454,7 @@
 #like_unlike_container {
     display: flex;
     justify-content: space-around;
+    position: relative;
 }
 
 #like_unlike_container img {
@@ -484,19 +485,20 @@
 .popupHidden {
     width: 300px;
     position: absolute;
-    border: 3px solid blue;
-    border-radius: 5px;
-    height: 300px;
+    border: 3px solid #FF8000;
+    border-radius: 20px;
+    height: 280px;
     background-color: #fff;
     visibility: hidden;
     overflow-y: auto;
-    /* margin-top: -190px; */
-    bottom: -50px;
-
+    bottom: -20px;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 1s;
 }
 
 .popupHidden p {
-    background-color: blue;
+    background-color: #FF8000;
     color: #fff;
     padding: 10px;
     border: 1px solid #fff;
@@ -505,11 +507,12 @@
     line-height: 20px;
     max-width: 80%;
     margin: 10px auto;
+    font-size: 14px;
 }
 
 .popupHidden h4 {
-    margin: 15px auto;
-    color: blue;
+    margin: 15px auto !important;
+    color: #FF8000;
     text-decoration: underline;
 }
 

@@ -271,14 +271,15 @@ export default function Vote() {
         resAllVoters.forEach((val => {
             popup.innerHTML += `<p><b>User: ${val.name} ${val.surname}<br />
                             Email: ${val.email}</b></p> <hr />`;
-        }))
-        popup.style.visibility = "visible";
+        }));
+        popup.style.opacity = 1;
+        popup.style = "opacity: 1; visibility: visible";
+
     }
 
-    const onCloseIcon = e => {
+    const onPopupClose = e => {
         e.preventDefault();
-        //console.log(e.target, e.currentTarget);
-        e.currentTarget.style.visibility = "hidden";
+        e.currentTarget.style = "opacity: 0; visibility: hidden";
     }
 
     if (isLoaded === "Empty") return (
@@ -408,7 +409,7 @@ export default function Vote() {
                                             alt="Already voted users list"
                                             data-allvoters={val.voted}
                                             style={{ marginTop: 8, width: 32 }} />
-                                        <span className="popupHidden" onClick={onCloseIcon}>
+                                        <span className="popupHidden" onClick={onPopupClose}>
                                         </span>
                                         <span>
                                             <img src={unlike}
@@ -433,8 +434,10 @@ export default function Vote() {
                                             <img src={vote} onClick={onAlreadyVoted}
                                                 alt="Unlike"
                                                 data-allvoters={val.voted}
-                                                style={{ marginTop: 8, width: 32 }} />
-                                            <span className="popupHidden" onClick={onCloseIcon}></span>
+                                                style={{ marginTop: 8, width: 32}} />
+
+                                            <span className="popupHidden" onClick={onPopupClose}></span>
+                                            
                                             <span>
                                                 <img src={unlike}
                                                     name="bad"
