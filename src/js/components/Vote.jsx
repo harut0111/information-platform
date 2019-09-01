@@ -6,7 +6,6 @@ import unlike from "../../img/unlike.png";
 import vote from "../../img/vote2.png";
 // ----------------- material-UI packages -----------------------
 import { makeStyles } from '@material-ui/core/styles';
-import { red } from '@material-ui/core/colors';
 import Icon from '@material-ui/core/Icon';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Popover from '@material-ui/core/Popover';
@@ -21,6 +20,7 @@ export default function Vote() {
         [anchorEl, setAnchorEl] = useState(null),
         [allUsers, setAllUsers] = useState([]),
         [votingProcess, setVotingProcess] = useState(false),
+        [realTimeUpdate, setRealTimeUpdate] = useState(false),
         [updateVote, setUpdateVote] = useState(false);
 
     useEffect(() => {
@@ -46,9 +46,10 @@ export default function Vote() {
                 }
             }))
             .catch((e) => console.log(e.messaage));
-        // eslint-disable-next-line
-    }, [null])
+    // eslint-disable-next-line
+    }, [userId])
 
+   
     // Getting Vote list from firestore(db)
     useEffect(() => {
         fire.firestore().collection("Vote").get()
@@ -93,8 +94,7 @@ export default function Vote() {
                                     if (user.id === vote.creatorVoteId) {
                                         tempObj = { ...user, ...vote };
                                         tempObj.voted = [...vote.voted];
-                                        tempObj.date = new Date(vote.date * 1000).toLocaleDateString()
-                                            + " - " + new Date(vote.date * 1000).toLocaleTimeString();
+                                        tempObj.date = (new Date(tempObj.date * 1000)).toLocaleString();
                                         tempObj.docId = vote.docId;
                                         finalDataVotes.push(tempObj)
                                         break;
@@ -110,8 +110,20 @@ export default function Vote() {
                 } else setIsLoaded("Empty");
             })
             .catch(e => console.log(e.messaage));
-        // eslint-disable-next-line
-    }, [allUsers, updateVote]);
+    // eslint-disable-next-line
+    }, [allUsers, updateVote, realTimeUpdate]);
+
+    useEffect(() => {
+        fire.firestore().collection("Vote").onSnapshot(querySnapshot => {
+            const listArr = querySnapshot.docChanges()[0];
+            if (listArr && querySnapshot.docChanges().length === 1) {
+                    setRealTimeUpdate(true);
+                    setTimeout(() => setRealTimeUpdate(false), 2000);
+            }
+        })
+     // eslint-disable-next-line
+    }, [null]);
+   
 
     const voteAddClick = e => {
         e.preventDefault();
@@ -163,8 +175,9 @@ export default function Vote() {
         },
         iconHover: {
             margin: theme.spacing(2),
+            color: "#773BB2",
             '&:hover': {
-                color: red[800],
+                color: "#4D009A",
             },
         },
         progress: {
@@ -200,7 +213,7 @@ export default function Vote() {
         e.currentTarget.nextSibling.innerText = +countOfVoters + 1;
 
         for (let el of voteButtons) {
-            el.style.opacity = 0.5;
+            el.style.opacity = 0.3;
             el.style.cursor = "default";
         }
 
@@ -225,16 +238,16 @@ export default function Vote() {
             fire.firestore().collection("Vote").doc(voteDocId).update({
                 voteBad: ++countOfVoters
             })
-                .then(() => {
-                    fire.firestore().collection("Vote_result").doc().set({
-                        voteId: voteDocId,
-                        voteResult: "bad",
-                        voteUserId: userId,
-                        dateVoted: new Date()
-                    })
-                        .then(() => setUpdateVote(!updateVote))
+            .then(() => {
+                fire.firestore().collection("Vote_result").doc().set({
+                    voteId: voteDocId,
+                    voteResult: "bad",
+                    voteUserId: userId,
+                    dateVoted: new Date()
                 })
-                .catch(e => console.log(e.messaage))
+                .then(() => setUpdateVote(!updateVote));
+            })
+            .catch(e => console.log(e.messaage));
         }
     }
 
@@ -276,12 +289,12 @@ export default function Vote() {
                     aria-describedby={id}
                     variant="contained"
                     onClick={handleClick}
-                    color="primary"
                     style={{
                         fontSize: 45,
                         margin: "-10px -10px -10px 30px",
                         cursor: "pointer"
-                    }}>add_circle
+                    }}
+                   >add_circle
                     </Icon>
                 <div>
                     <Popover
@@ -414,7 +427,7 @@ export default function Vote() {
                                                 <img src={like}
                                                     name="good"
                                                     alt="Like"
-                                                    style={{ opacity: 0.5, cursor: "default" }} />
+                                                    style={{ opacity: 0.3, cursor: "default" }} />
                                                 <span className="countVotes">{val.voteGood}</span>
                                             </span>
                                             <img src={vote} onClick={onAlreadyVoted}
@@ -426,7 +439,7 @@ export default function Vote() {
                                                 <img src={unlike}
                                                     name="bad"
                                                     alt="Unlike"
-                                                    style={{ opacity: 0.5, cursor: "default" }} />
+                                                    style={{ opacity: 0.3, cursor: "default" }} />
                                                 <span className="countVotes">{val.voteBad}</span>
                                             </span>
                                         </>

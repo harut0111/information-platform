@@ -13,7 +13,7 @@ export default function SendText() {
     let [data, setData] = useState(""),
         [isLoaded, setIsLoaded] = useState(false),
         [userId, setUserId] = useState(""),
-        [aboutUserId, setAboutUserId] = useState(""),
+        [aboutUserId, setAboutUserId] = useState(),
         [text, setText] = useState("");
     
     useEffect(() => {
@@ -34,15 +34,28 @@ export default function SendText() {
                     arrTemp.push(objTemp); 
                 }
             });
+            arrTemp.sort((a, b) => {
+                let groupA = a.group.toLowerCase(), 
+                    groupB = b.group.toLowerCase();
+                if (groupA < groupB) 
+                    return -1;
+                if (groupA > groupB)
+                    return 1;
+                return 0;
+            });
             setData([...arrTemp]);
+            setAboutUserId(arrTemp[0]["id"])
             setIsLoaded(true);
         })
         .catch(e => {console.log(e.message, "Catch error.")});
-    });
+    // eslint-disable-next-line
+    }, [null, userId]);
 
     const onSelectChange = e => {
         e.preventDefault();
-        setAboutUserId(e.target.value);
+        console.log(data)
+        let aboutUserId = e.currentTarget.value;
+        setAboutUserId(aboutUserId);
     };
 
     const onTextChange = e => {
@@ -58,7 +71,7 @@ export default function SendText() {
             setTimeout(() => {
                 document.getElementById("textarea").style.border = "1px solid grey";
                 document.getElementById("cancelLogoSendText").style.visibility = "hidden";
-            }, 500);
+            }, 1000);
             return false;
         }
         // Call to Firestore (DataBase)
@@ -72,8 +85,7 @@ export default function SendText() {
             document.getElementById("tickLogoSendText").style.visibility = "visible";
             setTimeout(() => {
                 document.getElementById("tickLogoSendText").style.visibility = "hidden";
-            }, 500);
-            //alert("Text successfully sended!");
+            }, 1000);
             //console.log("Message successfully written!");
             //console.log(data);
         })
@@ -103,7 +115,7 @@ export default function SendText() {
                     <select required onChange={onSelectChange} name="aboutUserId">
                         {data.map(item => (
                             <option key={item.id} value={item.id}>
-                                {`${item.name} ${item.surname} (Group: ${item.group}, Age: ${item.age})`}
+                                {`${item.group} (${item.name} ${item.surname}, Age: ${item.age})`}
                             </option>
                         ))}
                     </select>   
