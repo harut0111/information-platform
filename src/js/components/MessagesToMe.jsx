@@ -4,15 +4,18 @@ import "./styles/home.css";
 import noMessages from "../../img/noMessages.png";
 import sendMsgIcon from '../../img/sendMsg.png';
 import deleteMsgIcon from '../../img/deleteMsg.png';
+import msgToMe from "../../img/sms.png";
 // Material UI packages --------------------------------------
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { ADMIN_ID } from '../constants/signIn';
 // -----------------------------------------------------------
 
-export default function MessagesToUser() {
+export default function MessagesToMe() {
     const [userId, setUserId] = useState(""),
           [data, setData] = useState([]),
-          [isLoaded, setIsLoaded] = useState("Load");
+          [realTimeUpdate, setRealTimeUpdate] = useState(false),
+          [isLoaded, setIsLoaded] = useState("Loading");
 
     useEffect(() => {
         fire.auth().onAuthStateChanged(user => {
@@ -27,10 +30,12 @@ export default function MessagesToUser() {
         .then((snapshot => {
             let tempArr = [];
             snapshot.forEach((doc) => {
-                let tempObj = {};
-                tempObj = {...doc.data()};
-                tempObj.id = doc.id;
-                tempArr.push(tempObj);
+                if (doc.id !== userId && doc.id !== ADMIN_ID) {
+                    let tempObj = {};
+                    tempObj = { ...doc.data() };
+                    tempObj.id = doc.id;
+                    tempArr.push(tempObj);
+                }
             })
             return tempArr;
         }))
@@ -59,8 +64,7 @@ export default function MessagesToUser() {
                                 if(user.id === elem.id) {
                                     tempObj = {...user};
                                     tempObj.text = elem.text;
-                                    tempObj.date = new Date(elem.date * 1000).toLocaleDateString() 
-                                        + " - " + new Date(elem.date * 1000).toLocaleTimeString();
+                                    tempObj.date = (new Date(elem.date * 1000)).toLocaleString();
                                     tempObj.evenId = elem.evenId;
                                     tempArr.push(tempObj)
                                     break;
@@ -82,7 +86,21 @@ export default function MessagesToUser() {
         }))
         .catch((e)=>{console.log(e.message)});
     // eslint-disable-next-line
-    }, [userId])
+    }, [userId, realTimeUpdate])
+
+    useEffect(() => {
+        fire.firestore().collection("User_text").onSnapshot(querySnapshot => {
+            const listArr = querySnapshot.docChanges()[0];
+            // listArr.type === "removed"
+            if (listArr && listArr.type === "added" && querySnapshot.docChanges().length === 1) {
+                setRealTimeUpdate(true);
+                setTimeout(() => setRealTimeUpdate(false), 2000);
+            }
+        })
+    // eslint-disable-next-line
+    }, [null]);
+
+
 
     const onRemMsg = e => {
         e.preventDefault();
@@ -154,13 +172,16 @@ export default function MessagesToUser() {
 
     if(isLoaded === "OK") {
         return (
-            <div id="toReferPageMessToUser">
-                <h2>Аll messages sent to you !</h2>
+            <div id="toReferPageMsgToUser">
+                <h2 style={{marginLeft: 45, marginTop: -25}}>Аll messages sent to you !
+                    <img src={msgToMe} alt="MsgToMe" 
+                        style={{ marginBottom: -10, width: 80, marginLeft: 25 }} />
+                </h2>
                 {data.map(val => (
                     <div id="messagesToUser" key={val.evenId}>
                         <h2>{`${val.name} ${val.surname}`}</h2>
-                        <h5>{`(Group: ${val.group}, Age: ${val.age})`}</h5>
-                        <h6>{`${val.date}`}</h6>
+                        <h4>{`(Group: ${val.group}, Age: ${val.age})`}</h4>
+                        <h5>{`${val.date}`}</h5>
                         <hr />
                         <div id="paragWrapper">
                             <p>{val.text}</p>
@@ -192,16 +213,16 @@ export default function MessagesToUser() {
     }
     else if(isLoaded === "Empty") {
         return (
-            <div id="toReferPageMessToUser" className="noMessages" style={{padding:10}}>
+            <div id="toReferPageMsgToUser" className="noMessages" style={{padding: 25}}>
                  <h2 style={{ marginTop: 20, textDecoration: "underline" }}>
-                     You haven't messages !
+                     You haven't messages.
                  </h2>
                  <img src={noMessages} alt="You haven't messages" />
              </div>
         )
     }
-    else return (
-        <div id="toReferPageMessToUser">
+    return (
+        <div id="toReferPageMsgToUser">
             <div>
                 <CircularProgress className={classes.progress} />
                 <CircularProgress className={classes.progress} color="secondary" />
