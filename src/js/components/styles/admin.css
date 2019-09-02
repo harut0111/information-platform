@@ -12,29 +12,19 @@
 
 .adminCont form input {
     padding: 5px;
-    border: 1px solid black;
-    border-radius: 0;
 }
-
-.adminCont button {
-    padding: 5px;
-    cursor: pointer;
-    margin: 5px 0;
-    display: block;
-}
-
 
 .adminGroupsCont input {
-    width: 300px;
+    width: 200px;
     display: block;
     margin: 5px 0px;
-    padding: 10px;
 }
 
 
 .adminGroupsCont > form {
     padding: 10px;
     border-bottom: 4px dotted blue;
+    height: 100px;
 }
 
 /* ----Navbar----- */
@@ -42,10 +32,10 @@
 .adminNavbar {
     position: sticky;
     top: 0;
-
+    z-index: 0;
 }
 
-.adminNavbar ul{
+.adminNavbar ul {
     padding: 0;
     margin: 0;
     list-style-type: none;
@@ -90,6 +80,7 @@
 .adminProfile {
     display: inline-block;
     border-right: 4px dotted blue;
+    color: navy;
     max-width: 30%;
     min-width: 30%;
     padding: 10px;
@@ -97,11 +88,18 @@
     text-align: center;
 }
 
+.adminProfile > p {
+    margin: 3px 0;
+    font-size: 18px;
+}
+
 .dataBaseCont {
     display: inline-block;
     width: 100%;
     padding: 10px;
     overflow: auto;
+    background-color: white;
+    color: navy;
 }
 
 .adminGroupItems, .adminUserItems {
@@ -110,12 +108,12 @@
     padding: 10px;
 }
 
-.adminUserItems button {
-    width: 180px;
+.adminUserItems > p {
+    margin: 3px 0px;
 }
 
-.adminGroupItems h4 {
-    color: red;
+.articleItemData > p {
+    margin: 10px 0px;
 }
 
 .adminGroupsCont, 
@@ -136,22 +134,16 @@
     display: inline-block;
 }
 
-.groupItemTools button {
-    width: 70px;
-    display: inline-block;
-    margin: 5px 5px 5px 0;
+.groupItemData > p {
+    margin: 10px 0px;
 }
 
 .groupPopupForm label {
     display: block;
 }
 
-.submitButton {
-    cursor: pointer;
-}
-
 .publishSide {
-    padding: 10px;
+    padding: 10px 10px 30px 10px;
     border-bottom: 4px dotted blue;
 }
 
@@ -179,7 +171,7 @@
 
 .setVotes {
     border-bottom: 4px dotted blue;
-    padding: 10px;
+    padding: 10px 10px 30px 10px;
 }
 
 .setVotes input, textarea {
@@ -192,7 +184,11 @@
 }
 
 .groupOkBtn {
-    width: 100px;
+    background: none; 
+    border: none;
+}
+.groupOkBtn:focus {
+    outline: none;
 }
 
 .adminUserHead {
@@ -203,9 +199,34 @@
 .adminUserHead select {
     margin: 5px 0;
     padding: 5px;
+    cursor: pointer;
 }
 
 
+.AdminDoneIcon {
+    margin-left: 10px;
+    color: green;
+}
+
+.Hidden {
+    display: none;
+}
+
+.DeleteDoneInf {
+    text-align: center;
+    padding: 20px;
+    color: red;
+    background: gold;
+    font-size: 25px;
+}
+
+.AddDoneInf {
+    text-align: center;
+    padding: 20px;
+    color: rgb(255, 255, 255);
+    background: rgb(9, 255, 0);
+    font-size: 25px;
+}
 
 
 

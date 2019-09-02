@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import DoneIcon from '@material-ui/icons/Done';
 import firebase from '../configs/FireBase';
 import "firebase/firestore";
 
@@ -11,6 +12,9 @@ export default function AdminArticle() {
     const [textareaVal, setTextareaVal] = useState("");
     const [articles, setArticles] = useState([]);
     const [title, setTitle] = useState("");
+
+    const [display, setDisplay] = useState(false);
+    const [infmes, setInfmes] = useState(false);
 
     let toggle = true;
 
@@ -58,6 +62,9 @@ export default function AdminArticle() {
 
                     setTextareaVal("");
                     setTitle("");
+                }).then(() => {
+                    setDisplay(true);
+                    setTimeout(() => setDisplay(false), 2000);
                 })
                 .catch(function (error) {
                     window.alert(error.message);
@@ -81,6 +88,9 @@ export default function AdminArticle() {
         DB.collection("Article").doc(id).delete()
             .then(() => {
                 setArticles(newArticleList);
+            }).then(() => {
+                setInfmes(true);
+                setTimeout(() => setInfmes(false), 2000);
             })
             .catch(function (error) {
                 window.alert(error.message);
@@ -99,10 +109,10 @@ export default function AdminArticle() {
                 <div className='articleItemData'>
                     <p><b>Title:</b> {item.title}</p>
                     <p><b>Content:</b> {item.content}</p>
-                    <p><b>Created Date:</b> {item.createdDate}</p>
-                    <p><b>ID:</b> {item.id}</p>
+                    <p><b>Date:</b> {item.createdDate}</p>
+                    {/* <p><b>ID:</b> {item.id}</p> */}
                 </div>
-                <button onClick={onDeleteClick}>Delete</button>
+                <span className="adminDeleteBtn" onClick={onDeleteClick}>Delete</span>
             </div>
         )
     })
@@ -111,14 +121,14 @@ export default function AdminArticle() {
         <div className="adminArticleCont">
             <div className='publishSide'>
                 <form onSubmit={handleArticleSubmit}>
-                    <label>Title:</label>
+                    <label><b>Title:</b></label>
                     <input
                         required
                         className="articleTitle"
                         type="text"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)} />
-                    <label>Article:</label>
+                    <label><b>Article:</b></label>
                     <textarea
                         name="message"
                         rows="10"
@@ -126,11 +136,21 @@ export default function AdminArticle() {
                         required
                         value={textareaVal}
                         onChange={(e) => setTextareaVal(e.target.value)} />
-                    <input type="submit" value="Publish" className="submitButton" />
+                    <div style={{display: "flex"}}>
+                        <button className="groupOkBtn" type="submit">
+                            <span className="adminAddBtn"> Publish </span>
+                        </button>
+                        <div style={{display: display ? "block" : "none"}}>
+                            <DoneIcon fontSize="large" className="AdminDoneIcon" />
+                        </div>
+                    </div>
+                    
                 </form>
             </div>
             <div className="monSide">
-                <h1 style={{ marginTop: "20px" }}>Published Articles (N{sortedArticleItems.length})</h1>
+                <h1 style={{ margin: "20px 0px 10px 0", textAlign: "center" }}>Published Articles (N{sortedArticleItems.length})</h1>
+                <p className="AddDoneInf" style={{display: display ? "block" : "none" }}>New Article Published</p>
+                <p className="DeleteDoneInf" style={{display: infmes ? "block" : "none" }}>Successfully Deleted</p>
                 {articleItems}
             </div>
         </div>

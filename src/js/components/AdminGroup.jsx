@@ -1,6 +1,7 @@
 import React, { useState, useEffect  } from 'react';
 import firebase from '../configs/FireBase';
 import "firebase/firestore";
+import DoneIcon from '@material-ui/icons/Done';
 
 export default function AdminGroup() {
 
@@ -18,6 +19,9 @@ export default function AdminGroup() {
     // edit part
     const [groupEditName, setGroupEditName] = useState("")
     const [groupEditDate, setGroupEditDate] = useState("");
+    const [display, setDisplay] = useState(false);
+    const [infmes, setInfmes] = useState(false);
+    const [editInfMsg, setEditInfMsg] = useState(false);
     
     useEffect(() => {
             callDB();
@@ -72,6 +76,9 @@ export default function AdminGroup() {
                 },...groups])
 
                 setGroupName("");
+            }).then(() => {
+                setDisplay(true);
+                setTimeout(() => setDisplay(false), 2000);
             })
             .catch(function(error) {
                 window.alert(error.message);
@@ -131,6 +138,11 @@ export default function AdminGroup() {
                 setGroups(tempGroups);
                 setGroupEditName("");
                 setGroupEditDate("");
+            }).then(() => {
+                setEditInfMsg(true);
+                setTimeout(() => {
+                    setEditInfMsg(false);
+                }, 2000);
             })
             .catch(function(error) {
                 window.alert(error.message);
@@ -146,7 +158,7 @@ export default function AdminGroup() {
 
     function handleOnGroupToolClick(e) {
 
-        if(e.target.className === "remove") {
+        if(e.target.className === "adminDeleteBtn") {
 
             const id = e.currentTarget.id
             const newGroupList = groups.filter(item => {
@@ -174,12 +186,15 @@ export default function AdminGroup() {
                         DB.collection("User").doc(item.userId).delete()
                     ))
                 });
-                
+            }).then(() => {
+
+                setInfmes(true);
+                setTimeout(() => setInfmes(false), 2000);
             })
             .catch(function(error) {
                 console.error(error.message);
             });
-        } else if(e.target.className === "edit") {
+        } else if(e.target.className === "adminEditBtn") {
             
             // check if there is open editor form
             if(popVisib === "" || popVisib === e.currentTarget.id) {
@@ -201,13 +216,13 @@ export default function AdminGroup() {
         return (
           <div className='adminGroupItems' key={item.id} id={item.id}  onClick={handleOnGroupToolClick}>
               <div className="groupItemData">
-                <h4>Name: {item.name}</h4>
-                <p>Created Date: {item.createdDate}</p>
-                <p>ID: {item.id}</p>
+                <p><b>Name:</b> {item.name}</p>
+                <p><b>Date:</b> {item.createdDate}</p>
+                {/* <p>ID: {item.id}</p> */}
               </div>  
               <div className='groupItemTools'>
-                    <button className="remove">Remove</button>
-                    <button className="edit">Edit</button>
+                <span className="adminDeleteBtn">Remove</span>
+                <span className="adminEditBtn">Edit</span>
               </div>
               <div className="groupPopupForm" style={{display: "none"}}>
                 <form onSubmit={handleGroupEditSubmit}>
@@ -227,34 +242,41 @@ export default function AdminGroup() {
                         onChange={handleGroupChange}
                         value={groupEditDate}
                     ></input>
-                    <button 
-                        type="submit"
-                        className="groupOkBtn"
-                    > Ok </button>
+                    <button className="groupOkBtn" type="submit">
+                        <span className="adminOkBtn"> Ok </span>
+                    </button>
                 </form>
               </div>
           </div>
         )
     })
-
+    
     return (
         <div className="adminGroupsCont">
            
             <form onSubmit={handleGroupSubmit}>
-                <label><b>Group Name</b></label>
+                <label><b>Group Name: </b></label>
                 <input 
                     type="text" 
                     name="groupName" 
                     value={groupName} 
                     onChange={handleGroupChange} 
-                    placeholder="name"
-                    required />
-                <input 
-                    type="submit" 
-                    value="Add" 
-                    style={{width: "120px"}}/>
+                    required 
+                    style={{width: "200px"}}/>
+                    <div style={{display: "flex"}}>
+                        <button className="groupOkBtn" type="submit">
+                            <span className="adminAddBtn"> Add </span>
+                        </button>
+                        <div style={{display: display ? "block" : "none"}}>
+                            <DoneIcon fontSize="large" className="AdminDoneIcon" />
+                        </div>
+                    </div>
+               
             </form>
-            <h1 style={{marginTop: "20px"}}>Groups (N{sortedGroupItems.length})</h1>
+            <h1 style={{ margin: "20px 0px 10px 0", textAlign: "center"}}>Current Groups (N{sortedGroupItems.length})</h1>
+            <p className="AddDoneInf" style={{display: display ? "block" : "none" }}>New Group Added</p>
+            <p className="DeleteDoneInf" style={{display: infmes ? "block" : "none" }}>Successfully Removed</p>
+            <p className="DeleteDoneInf" style={{display: editInfMsg ? "block" : "none" }}>Successfully Edited</p>
             {groupItems}
         </div>
     )
