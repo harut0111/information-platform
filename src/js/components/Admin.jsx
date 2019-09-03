@@ -1,4 +1,5 @@
 import './styles/admin.css';
+import './styles/adminBtn.css';
 import React, { useEffect, useState } from 'react';
 import history from '../routh/history';
 import { Link } from "react-router-dom";
@@ -103,11 +104,11 @@ function Admin() {
                     <Clock />
                     <h1 style={{ padding: "10px 0px" }}>Admin Profile </h1>
                     <img src={adminIcon} alt="adminIcon" />
-                    <h5> Name: {admin.name} </h5>
-                    <h5> Surname: {admin.surname} </h5>
-                    <h5> Age: {admin.age} </h5>
-                    <h5> email: {admin.email} </h5>
-                    <h5> ID: {admin.id} </h5>
+                    <p> <b>Name:</b> {admin.name} </p>
+                    <p> <b>Surname:</b> {admin.surname} </p>
+                    <p> <b>Email:</b> {admin.email} </p>
+                    {/* <p> ID: {admin.id} </p> */}
+                    {/* <p> Age: {admin.age} </p> */}
                 </div>
                 <div className="dataBaseCont">
                     <Switch>

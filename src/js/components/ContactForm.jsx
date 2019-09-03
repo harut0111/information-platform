@@ -77,7 +77,7 @@ export default function TextFields(props) {
             <div className="formCloseIcon">
                 <CloseIcon onClick={props.swtich}/>
             </div>
-            <p>Write to us</p>
+            <p style={{color: "navy"}}>Write to us</p>
             <div className="contactName">
                 <TextField
                     required

@@ -1,5 +1,6 @@
 import React, { useState, useEffect  } from 'react';
 import { ADMIN_ID } from "../constants/signIn";
+import DoneIcon from '@material-ui/icons/Done';
 import firebase from '../configs/FireBase';
 import "firebase/firestore";
 
@@ -12,6 +13,9 @@ export default function AdminVote() {
     const [ votes, setVotes ] = useState([]);
     const [ title, setTitle ] = useState("");
     const [ description, setDescription ] = useState("");
+
+    const [display, setDisplay] = useState(false);
+    const [infmes, setInfmes] = useState(false);
 
     let toggle = true;
 
@@ -71,6 +75,9 @@ export default function AdminVote() {
                 ))
             });
 
+        }).then(() => {
+            setInfmes(true);
+            setTimeout(() => setInfmes(false), 2000);
         })
         .catch(function(error) {
             window.alert(error.message);
@@ -107,6 +114,9 @@ export default function AdminVote() {
 
                 setTitle("");
                 setDescription("");
+            }).then(() => {
+                setDisplay(true);
+                setTimeout(() => setDisplay(false), 2000);
             })
             .catch(function(error) {
                 window.alert(error.message);
@@ -126,14 +136,14 @@ export default function AdminVote() {
     const Vote = sortedVotes.map((item,index )=> {
         return (
           <div className='adminUserItems' key={index} id={item.id}>  
-                <p>creatorVoteId: {item.creatorVoteId}</p>
-                <p>dateCreated: {item.dateCreated}</p>
-                <p>description: {item.description}</p>
-                <p>title: {item.title}</p>
-                <p>voteBad: {item.voteBad}</p>
-                <p>voteGood: {item.voteGood}</p>
-                <p>ID: {item.id}</p>
-                <button onClick={onDeleteClick}>Delete</button>
+                <p><b>Title:</b> {item.title}</p>
+                <p><b>Description: </b>{item.description}</p>
+                <p><b>Like:</b> {item.voteBad}</p>
+                <p><b>Unlike:</b> {item.voteGood}</p>
+                <p><b>Date: </b>{item.dateCreated}</p>
+                {/* <p>ID: {item.id}</p> */}
+                {/* <p><b>creatorVoteId:</b> {item.creatorVoteId}</p> */}
+                <span className="adminDeleteBtn" onClick={onDeleteClick}>Delete</span>
           </div>
         )
     })
@@ -143,13 +153,13 @@ export default function AdminVote() {
         <div className="adminVoteCont">
             <div className='setVotes'>
                 <form onSubmit={handleOnSubmit}>
-                    <label>Title:</label>
+                    <label><b>Title:</b></label>
                     <input 
                         type="text" 
                         required value={title} 
                         onChange={(e) => setTitle(e.target.value)}/>
 
-                    <label>Description:</label>
+                    <label><b>Description:</b></label>
                     <textarea 
                         type="text"
                         rows="7" 
@@ -157,12 +167,20 @@ export default function AdminVote() {
                         required 
                         value={description} 
                         onChange={(e) => setDescription(e.target.value)}/>
-                    
-                    <input type="submit" value="Create" className="submitButton" />
+                    <div style={{display: "flex"}}>
+                        <button className="groupOkBtn" type="submit">
+                            <span className="adminAddBtn"> Create </span>
+                        </button>
+                        <div style={{display: display ? "block" : "none"}}>
+                            <DoneIcon fontSize="large" className="AdminDoneIcon" />
+                        </div>
+                    </div>
                 </form>
             </div>
             <div className="getVotes">
-                <h1 style={{marginTop: "20px"}}>Created Votes (N{sortedVotes.length})</h1>
+                <h1 style={{ margin: "20px 0px 10px 0", textAlign: "center"}}>Created Votes (N{sortedVotes.length})</h1>
+                <p className="AddDoneInf" style={{display: display ? "block" : "none" }}>New Vote Added</p>
+                <p className="DeleteDoneInf" style={{display: infmes ? "block" : "none" }}>Successfully Deleted</p>
                 {Vote}
             </div>
         </div>
