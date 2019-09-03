@@ -1,14 +1,18 @@
 import React, { useState, useEffect  } from 'react';
+import Swal from 'sweetalert2';
 import firebase from '../configs/FireBase';
 import "firebase/firestore";
 
+
+
 export default function AdminMessage() {
+
 
     const DB = firebase.firestore();
 
     const [ messages, setMessages ] = useState([]);
     const [display, setDisplay] = useState(false);
-    const [infmes, setInfmes] = useState(false);
+    // const [infmes, setInfmes] = useState(false);
 
     useEffect(() => {
         callDB();
@@ -46,22 +50,43 @@ export default function AdminMessage() {
     }
 
     function onDeleteClick(e) {
-        
-        const id = e.currentTarget.parentNode.id
-
-        DB.collection("Admin").doc(id).delete()
-        .then(() => {
-            const filteredMsges = messages.filter(item => {
-                return item.id !== id;
-            }); 
-            setMessages(filteredMsges);
-        }).then(() => {
-            setInfmes(true);
-            setTimeout(() => setInfmes(false), 2000);
+      
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              );
+              doRemove();
+            }
         })
-        .catch(function(error) {
-            window.alert(error.message);
-        });
+
+        const id = e.currentTarget.parentNode.id;
+        function doRemove() {
+
+            DB.collection("Admin").doc(id).delete()
+            .then(() => {
+                const filteredMsges = messages.filter(item => {
+                    return item.id !== id;
+                }); 
+                setMessages(filteredMsges);
+            }).then(() => {
+                // setInfmes(true);
+                // setTimeout(() => setInfmes(false), 2000);
+            })
+            .catch(function(error) {
+                window.alert(error.message);
+            });
+        }
         
     }
     
@@ -86,7 +111,7 @@ export default function AdminMessage() {
         <div className="adminMsgesCont">
             <h1 style={{ margin: "20px 0px 10px 0", textAlign: "center" }}>Admin Messages (N{sortedMessages.length})</h1>
             <p className="AddDoneInf" style={{display: display ? "block" : "none" }}>New Message</p>
-            <p className="DeleteDoneInf" style={{display: infmes ? "block" : "none" }}>Successfully Deleted</p>
+            {/* <p className="DeleteDoneInf" style={{display: infmes ? "block" : "none" }}>Successfully Deleted</p> */}
             {messageItems}
         </div>
     )

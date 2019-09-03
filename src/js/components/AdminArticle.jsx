@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DoneIcon from '@material-ui/icons/Done';
+import Swal from 'sweetalert2';
 import firebase from '../configs/FireBase';
 import "firebase/firestore";
 
@@ -14,7 +15,7 @@ export default function AdminArticle() {
     const [title, setTitle] = useState("");
 
     const [display, setDisplay] = useState(false);
-    const [infmes, setInfmes] = useState(false);
+    // const [infmes, setInfmes] = useState(false);
 
     let toggle = true;
 
@@ -79,22 +80,45 @@ export default function AdminArticle() {
 
     function onDeleteClick(e) {
 
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              );
+              doRemove();
+            }
+        })
+
+        
         const id = e.currentTarget.parentNode.id
-
-        const newArticleList = articles.filter(item => {
-            return item.id !== id;
-        });
-
-        DB.collection("Article").doc(id).delete()
+        function doRemove() {
+            const newArticleList = articles.filter(item => {
+                return item.id !== id;
+            });
+    
+            DB.collection("Article").doc(id).delete()
             .then(() => {
                 setArticles(newArticleList);
             }).then(() => {
-                setInfmes(true);
-                setTimeout(() => setInfmes(false), 2000);
+                // setInfmes(true);
+                // setTimeout(() => setInfmes(false), 2000);
             })
             .catch(function (error) {
                 window.alert(error.message);
             });
+        }
+
     }
 
     const sortedArticleItems = [...articles];
@@ -150,7 +174,7 @@ export default function AdminArticle() {
             <div className="monSide">
                 <h1 style={{ margin: "20px 0px 10px 0", textAlign: "center" }}>Published Articles (N{sortedArticleItems.length})</h1>
                 <p className="AddDoneInf" style={{display: display ? "block" : "none" }}>New Article Published</p>
-                <p className="DeleteDoneInf" style={{display: infmes ? "block" : "none" }}>Successfully Deleted</p>
+                {/* <p className="DeleteDoneInf" style={{display: infmes ? "block" : "none" }}>Successfully Deleted</p> */}
                 {articleItems}
             </div>
         </div>
