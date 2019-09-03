@@ -113,9 +113,9 @@ export default function MessagesFromMe() {
         </div>
     )
     else if(isLoaded === "Empty") return (
-        <div id="toReferPageMsgFromMe" className="noMessages" style={{padding: 25}}>
+        <div id="toReferPageMsgFromMe" className="noMessages" style={{padding: 40}}>
             <h2 style={{ color: '#3B5998' }}>No active message sent from you !</h2>
-            <img src={noMessages} alt="No active message" />
+            <img src={noMessages} alt="No active message" style={{marginTop: -12}}/>
         </div>
     )
     return (
@@ -125,7 +125,7 @@ export default function MessagesFromMe() {
             </h2>
             {data.map((val) => (
                 <div id="messagesFromUser" key={val.evenId}>
-                    <h2>{`To ---> ${val.name} ${val.surname}`}</h2>
+                    <h2>{`${val.name} ${val.surname}`}</h2>
                     <h4>{`(Group: ${val.group}, Age: ${val.age})`}</h4>
                     <h5>{`${val.date}`}</h5>  
                     <img className="deleteMsgIcon2" src={deleteMsgIcon}

@@ -408,9 +408,10 @@ export default function Vote() {
                                         <img src={vote} onClick={onAlreadyVoted}
                                             alt="Already voted users list"
                                             data-allvoters={val.voted}
-                                            style={{ marginTop: 8, width: 32 }} />
-                                        <span className="popupHidden" onClick={onPopupClose}>
-                                        </span>
+                                            style={{width: 32 }} />
+                                        
+                                        <span className="popupHidden" onClick={onPopupClose}></span>
+
                                         <span>
                                             <img src={unlike}
                                                 className={val.docId}
@@ -434,7 +435,7 @@ export default function Vote() {
                                             <img src={vote} onClick={onAlreadyVoted}
                                                 alt="Unlike"
                                                 data-allvoters={val.voted}
-                                                style={{ marginTop: 8, width: 32}} />
+                                                style={{width: 32}} />
 
                                             <span className="popupHidden" onClick={onPopupClose}></span>
                                             

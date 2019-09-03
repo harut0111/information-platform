@@ -290,6 +290,7 @@
     overflow: hidden;
 }
 
+
 .noMessages h3{
     margin-left: 40px;
     padding: 10px;
@@ -297,7 +298,7 @@
 
 .noMessages img{
    position: absolute;
-   width: 48px;
+   width: 60px;
    margin: 10px 15px;
 }
 
@@ -380,7 +381,8 @@
 #messagesVote h4 {
     max-width: 90%;
     margin: 0 auto;
-    text-overflow: ellipsis;
+    max-height: 40px;
+    overflow: auto;
 }
 
 #messagesVote hr {
@@ -486,7 +488,7 @@
     width: 300px;
     position: absolute;
     border: 3px solid #FF8000;
-    border-radius: 20px;
+    border-radius: 10px;
     height: 280px;
     background-color: #fff;
     visibility: hidden;
