@@ -15,6 +15,10 @@ import FilledInput from '@material-ui/core/FilledInput';
 // ------------------------------------------------------------
 import {useStyles} from "./SignIn";
 
+import Swal from 'sweetalert2';
+//import withReactContent from 'sweetalert2-react-content';
+//const MySwal = withReactContent(Swal);
+
 export default function SignUp(props) {
 
     const DB = firebase.firestore();
@@ -69,9 +73,24 @@ export default function SignUp(props) {
           })
         }).then(() => {
           history.push('/Home');
+          Swal.fire({
+            position: 'top-end',
+            type: 'success',
+            title: 'Congratulations',
+            footer: "You have successfully registered",
+            showConfirmButton: false,
+            timer: 2500
+          })
         })
         .catch((error) => {
-            window.alert(error.message);           
+          Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: error.message,
+          }).then(() => {
+            //return MySwal.fire(<p>Shorthand works too</p>)
+          })
+            //window.alert(error.message);           
         }).finally(() => {
             toggle = true;
         });

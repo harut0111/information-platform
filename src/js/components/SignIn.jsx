@@ -23,6 +23,9 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 // ------------------------------------------------------------
+import Swal from 'sweetalert2';
+//import withReactContent from 'sweetalert2-react-content';
+//const MySwal = withReactContent(Swal);
 
 export const useStyles = makeStyles(theme => ({
     margin: {
@@ -106,16 +109,23 @@ function SignIn (props) {
     
     useEffect(() => {
         updateAuth();
-         // eslint-disable-next-line
+    // eslint-disable-next-line
     }, [null]);
 
     function login (e) {
         e.preventDefault();
-        firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+        firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(() => {
             // updateAuth();
         })
         .catch((error) => {
-            window.alert(error.message);
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: error.message,
+            }).then(() => {
+                //return MySwal.fire(<p>Shorthand works too</p>)
+            }).catch((e)=>console.log(e.message));
         });
     }
 

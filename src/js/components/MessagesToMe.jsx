@@ -213,7 +213,7 @@ export default function MessagesToMe() {
     }
     else if(isLoaded === "Empty") {
         return (
-            <div id="toReferPageMsgToUser" className="noMessages" style={{padding: 25}}>
+            <div id="toReferPageMsgToUser" className="noMessages">
                  <h2 style={{ marginTop: 20, textDecoration: "underline" }}>
                      You haven't messages.
                  </h2>

@@ -57,7 +57,6 @@ export default function UserWelcome() {
 
     return (
         <div id="welcomeSection">
-            <Link to="/">
                 <Button onClick={handleLogOut}
                         size="small"
                         variant="contained" 
@@ -65,7 +64,6 @@ export default function UserWelcome() {
                         style={{ marginLeft: "80%"}}>
                 LOG OUT
                 </Button>
-            </Link>
             {isLoaded ? (
                 <div>
                     <h2>Welcome {name + " " + surname}</h2>
