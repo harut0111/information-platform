@@ -1,7 +1,8 @@
 import React, { useState, useEffect  } from 'react';
+import DoneIcon from '@material-ui/icons/Done';
+import Swal from 'sweetalert2';
 import firebase from '../configs/FireBase';
 import "firebase/firestore";
-import DoneIcon from '@material-ui/icons/Done';
 
 export default function AdminGroup() {
 
@@ -20,7 +21,7 @@ export default function AdminGroup() {
     const [groupEditName, setGroupEditName] = useState("")
     const [groupEditDate, setGroupEditDate] = useState("");
     const [display, setDisplay] = useState(false);
-    const [infmes, setInfmes] = useState(false);
+    // const [infmes, setInfmes] = useState(false);
     const [editInfMsg, setEditInfMsg] = useState(false);
     
     useEffect(() => {
@@ -158,9 +159,42 @@ export default function AdminGroup() {
 
     function handleOnGroupToolClick(e) {
 
+
+        const id = e.currentTarget.id;
+
         if(e.target.className === "adminDeleteBtn") {
 
-            const id = e.currentTarget.id
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                  Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                  );
+                  doRemove();
+                }
+            })
+
+        } else if(e.target.className === "adminEditBtn") {
+            
+            // check if there is open editor form
+            if(popVisib === "" || popVisib === id) {
+                e.currentTarget.lastChild.style.display = !groupSwitch ? "block": "none";
+                !groupSwitch ?  setPopVisib(e.currentTarget.id) : setPopVisib("");
+                setGroupSwitch(!groupSwitch);
+            }
+        }
+
+
+        function doRemove() {
             const newGroupList = groups.filter(item => {
                 return item.id !== id;
             });
@@ -187,21 +221,12 @@ export default function AdminGroup() {
                     ))
                 });
             }).then(() => {
-
-                setInfmes(true);
-                setTimeout(() => setInfmes(false), 2000);
+                // setInfmes(true);
+                // setTimeout(() => setInfmes(false), 2000);
             })
             .catch(function(error) {
-                console.error(error.message);
+                window.alert(error.message);
             });
-        } else if(e.target.className === "adminEditBtn") {
-            
-            // check if there is open editor form
-            if(popVisib === "" || popVisib === e.currentTarget.id) {
-                e.currentTarget.lastChild.style.display = !groupSwitch ? "block": "none";
-                !groupSwitch ?  setPopVisib(e.currentTarget.id) : setPopVisib("");
-                setGroupSwitch(!groupSwitch);
-            }
         }
     }
 
@@ -275,7 +300,7 @@ export default function AdminGroup() {
             </form>
             <h1 style={{ margin: "20px 0px 10px 0", textAlign: "center"}}>Current Groups (N{sortedGroupItems.length})</h1>
             <p className="AddDoneInf" style={{display: display ? "block" : "none" }}>New Group Added</p>
-            <p className="DeleteDoneInf" style={{display: infmes ? "block" : "none" }}>Successfully Removed</p>
+            {/* <p className="DeleteDoneInf" style={{display: infmes ? "block" : "none" }}>Successfully Removed</p> */}
             <p className="DeleteDoneInf" style={{display: editInfMsg ? "block" : "none" }}>Successfully Edited</p>
             {groupItems}
         </div>

@@ -1,13 +1,12 @@
-.adminCont {
+/* .adminCont {
     -webkit-user-select: none;
     -moz-user-select: -moz-none;
     -ms-user-select: none;
      user-select: none;
-}
+} */
 
 .adminCont {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    overflow-x: auto;
 }
 
 .adminCont form input {
@@ -100,6 +99,8 @@
     overflow: auto;
     background-color: white;
     color: navy;
+    max-width: 900px;
+    overflow-wrap: break-word;
 }
 
 .adminGroupItems, .adminUserItems {

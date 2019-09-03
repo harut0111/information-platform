@@ -1,6 +1,7 @@
 import React, { useState, useEffect  } from 'react';
 import { ADMIN_ID } from "../constants/signIn";
 import DoneIcon from '@material-ui/icons/Done';
+import Swal from 'sweetalert2';
 import firebase from '../configs/FireBase';
 import "firebase/firestore";
 
@@ -15,7 +16,7 @@ export default function AdminVote() {
     const [ description, setDescription ] = useState("");
 
     const [display, setDisplay] = useState(false);
-    const [infmes, setInfmes] = useState(false);
+    // const [infmes, setInfmes] = useState(false);
 
     let toggle = true;
 
@@ -46,42 +47,65 @@ export default function AdminVote() {
 
     function onDeleteClick(e) {
 
-        const id = e.currentTarget.parentNode.id
-
-        const newVoteList = votes.filter(item => {
-            return item.id !== id;
-        });
-
-        DB.collection("Vote").doc(id).delete()
-        .then(() => {
-            setVotes(newVoteList);
-        }).then(() => {
-
-            DB.collection("Vote_result").get().then(querySnapshot => {
-                const Vote_reulst = [];
-                querySnapshot.forEach(doc => {
-                    Vote_reulst.push({
-                        id: doc.id,
-                        voteId: doc.data().voteId
-                    });
-                });
-
-                let filteredRes = Vote_reulst.filter(item => { 
-                    return item.voteId === id;
-                })
-
-                filteredRes.forEach(item => (
-                    DB.collection("Vote_result").doc(item.id).delete()
-                ))
-            });
-
-        }).then(() => {
-            setInfmes(true);
-            setTimeout(() => setInfmes(false), 2000);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              );
+              doRemove();
+            }
         })
-        .catch(function(error) {
-            window.alert(error.message);
-        });
+
+
+        const id = e.currentTarget.parentNode.id
+        function doRemove() {
+
+            const newVoteList = votes.filter(item => {
+                return item.id !== id;
+            });
+    
+            DB.collection("Vote").doc(id).delete()
+            .then(() => {
+                setVotes(newVoteList);
+            }).then(() => {
+    
+                DB.collection("Vote_result").get().then(querySnapshot => {
+                    const Vote_reulst = [];
+                    querySnapshot.forEach(doc => {
+                        Vote_reulst.push({
+                            id: doc.id,
+                            voteId: doc.data().voteId
+                        });
+                    });
+    
+                    let filteredRes = Vote_reulst.filter(item => { 
+                        return item.voteId === id;
+                    })
+    
+                    filteredRes.forEach(item => (
+                        DB.collection("Vote_result").doc(item.id).delete()
+                    ))
+                });
+    
+            }).then(() => {
+                // setInfmes(true);
+                // setTimeout(() => setInfmes(false), 2000);
+            })
+            .catch(function(error) {
+                window.alert(error.message);
+            });
+        }
+
     }
     
     function handleOnSubmit(e) {
@@ -180,7 +204,7 @@ export default function AdminVote() {
             <div className="getVotes">
                 <h1 style={{ margin: "20px 0px 10px 0", textAlign: "center"}}>Created Votes (N{sortedVotes.length})</h1>
                 <p className="AddDoneInf" style={{display: display ? "block" : "none" }}>New Vote Added</p>
-                <p className="DeleteDoneInf" style={{display: infmes ? "block" : "none" }}>Successfully Deleted</p>
+                {/* <p className="DeleteDoneInf" style={{display: infmes ? "block" : "none" }}>Successfully Deleted</p> */}
                 {Vote}
             </div>
         </div>
