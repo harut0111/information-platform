@@ -107,7 +107,7 @@ export default function AdminGroup() {
                 createdDate: new Date(groupEditDate).toLocaleString()
             })
             .then(function() {//also make chanages on users
-              
+                
                 DB.collection("User_to_group").get().then(querySnapshot => {
                     const UserToGroup = [];
                     querySnapshot.forEach(doc => {

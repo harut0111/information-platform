@@ -31,7 +31,7 @@ export default function SignUp(props) {
     const [groupVal, setGroupVal] = useState("");
     const [groups, setGroups] = useState([]);
 
-    console.log(groupVal);
+    // console.log(groupVal);
 
     let toggle = true;
 
