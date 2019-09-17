@@ -199,7 +199,6 @@ const mapStateToProps = state => {
         email: state.email,
         password: state.password,
         showPassword: state.showPassword,
-        signin: state.signin
     }
 }
 
