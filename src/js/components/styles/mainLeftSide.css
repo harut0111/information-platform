@@ -1,5 +1,4 @@
 .leftSide {
-  width: auto;
   padding: 10px;
   margin-right: 2%;
   text-align: center;
@@ -13,6 +12,7 @@
   max-width: 70%;
   min-width: 70%;
   margin: 0 auto;
+  min-height: 700px;
 }
 
 .leftSideWrapper h1{

@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import "./styles/home.css";
 import { BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
+import { ADMIN_ID } from "../constants/signIn";
 import UserWelcome from "./UserWelcome";
 import Vote from "./Vote";
 import SendText from "./SendText";
@@ -18,12 +19,10 @@ import backToHome from "../../img/backToHome2.png";
 
 export default function Home() {
     useEffect(() => {
-        fire.auth().onAuthStateChanged((user) => {
-            if (!user) {
-                //console.log("user doesn't exist !");
+        fire.auth().onAuthStateChanged(user => {
+            if (!user && user.uid === ADMIN_ID) {
                 return history.push("/");
             }
-            //console.log("user exist !");
         });
     // eslint-disable-next-line
     }, [null]);

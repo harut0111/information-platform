@@ -100,7 +100,7 @@ function SignIn (props) {
 
             if (user) {
                 user.uid === ADMIN_ID ? 
-                history.push('/Admin') : history.push('/Home');
+                history.push('/Admin/Home') : history.push('/Home');
             } else {
                 //console.log("No user is signed in.", user);
             }
@@ -186,7 +186,7 @@ function SignIn (props) {
                 <Button variant="contained" 
                         color="primary" size="medium"
                         className={classes.buttonSignUp}
-                        onClick={props.swtich}>
+                        onClick={props.switch}>
                     SIGN UP
                 </Button>
             </div>

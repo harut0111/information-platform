@@ -23,7 +23,7 @@ function Admin() {
 
     const DB = firebase.firestore();
     const [admin, setAdmin] = useState({});
-    const [activeLink, setActiveLink] = useState([1, 0, 0, 0, 0, 0, 0]);
+    const [activeLink, setActiveLink] = useState([]);
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(user => {
@@ -42,7 +42,10 @@ function Admin() {
                     } else {
                         console.log("No such document!");
                     }
-                }).catch(function (error) {
+                }).then(() => {
+                    handleActiveLink();
+                })
+                .catch(function (error) {
                     console.log("Error getting document:", error.message);
                 });
             } else {
@@ -62,13 +65,30 @@ function Admin() {
         });
     }
 
-    function handleActiveLink(e) {
-        if (e.target.tagName === 'LI') {
-            const targetID = e.target.id;
-            const newActiveLink = activeLink.map((item, index) => {
-                return index === +targetID ? 1 : 0
-            })
-            setActiveLink(newActiveLink);
+    function handleActiveLink() {
+        
+        switch (history.location.pathname) {
+            case "/Admin/Home":
+                setActiveLink([1, 0, 0, 0, 0, 0, 0])
+                break;
+            case "/Admin/User":
+                setActiveLink([0, 1, 0, 0, 0, 0, 0])
+                break;
+            case "/Admin/Group":
+                setActiveLink([0, 0, 1, 0, 0, 0, 0])
+                break;
+            case "/Admin/Vote":
+                setActiveLink([0, 0, 0, 1, 0, 0, 0])
+                break;
+            case "/Admin/Article":
+                setActiveLink([0, 0, 0, 0, 1, 0, 0])
+                break;
+            case "/Admin/Message":
+                setActiveLink([0, 0, 0, 0, 0, 1, 0])
+                break;
+            default:
+                setActiveLink([0, 0, 0, 0, 0, 0, 1])
+                break;
         }
     }
 
@@ -76,26 +96,26 @@ function Admin() {
         <div className='adminCont'>
             <div className='adminNavbar' onClick={handleActiveLink}>
                 <ul>
-                    <Link to='/Admin'>
-                        <li id='0' className={activeLink[0] ? "activeLink" : ""}>Admin</li>
+                    <Link to='/Admin/Home'>
+                        <li className={activeLink[0] ? "activeLink" : ""}>Admin</li>
                     </Link>
                     <Link to='/Admin/User'>
-                        <li id='1' className={activeLink[1] ? "activeLink" : ""}>Users</li>
+                        <li className={activeLink[1] ? "activeLink" : ""}>Users</li>
                     </Link>
                     <Link to='/Admin/Group'>
-                        <li id='2' className={activeLink[2] ? "activeLink" : ""}>Groups</li>
+                        <li className={activeLink[2] ? "activeLink" : ""}>Groups</li>
                     </Link>
                     <Link to='/Admin/Vote'>
-                        <li id='3' className={activeLink[3] ? "activeLink" : ""}>Votes</li>
+                        <li className={activeLink[3] ? "activeLink" : ""}>Votes</li>
                     </Link>
                     <Link to='/Admin/Article'>
-                        <li id='4' className={activeLink[4] ? "activeLink" : ""}>Articles</li>
+                        <li className={activeLink[4] ? "activeLink" : ""}>Articles</li>
                     </Link>
-                    <Link to='/Admin/Message'>
-                        <li id='5' className={activeLink[5] ? "activeLink" : ""}>Messages</li>
+                 <Link to='/Admin/Message'>
+                        <li className={activeLink[5] ? "activeLink" : ""}>Messages</li>
                     </Link>
                     <Link to='/' onClick={logout} style={{ float: "right" }}>
-                        <li id='6' className={activeLink[6] ? "logout activeLink" : "logout"}>Log Out</li>
+                        <li className={activeLink[6] ? "logout activeLink" : "logout"}>Log Out</li>
                     </Link>
                 </ul>
             </div>
@@ -117,7 +137,7 @@ function Admin() {
                         <Route path="/Admin/Vote" component={AdminVote} />
                         <Route path="/Admin/Article" component={AdminArticle} />
                         <Route path="/Admin/Message" component={AdminMessage} />
-                        <Route path="/Admin" component={AdminHome} />
+                        <Route path="/Admin/Home" component={AdminHome} />
                     </Switch>
                 </div>
             </div>
