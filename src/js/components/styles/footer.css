@@ -22,10 +22,6 @@ footer {
   margin-top: 5px;
 }
 
-footer p {
-  text-transform: uppercase;
-}
-
 #github {
   display: flex;
   justify-content: space-around;

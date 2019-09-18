@@ -7,13 +7,13 @@ export default function MainRightSide() {
 
     const [toggle, setToggle] = useState(true);
 
-    function swtichToggle() {
+    function switchToggle() {
         setToggle(!toggle);
     }
 
     return (
         <div className="rightSide">
-            {toggle ? <SignIn swtich={swtichToggle} /> : <SignUp swtich={swtichToggle}/>}
+            {toggle ? <SignIn switch={switchToggle} /> : <SignUp switch={switchToggle}/>}
         </div>
     )
 }

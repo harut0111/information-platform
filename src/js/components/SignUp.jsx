@@ -199,7 +199,7 @@ export default function SignUp(props) {
               </select>
               <p style={{ fontSize: 12 }}>Select your group</p>
               <button type="submit" value="Registre" id="regButton">REGISTRY</button>
-              <button type="button" value="Back" onClick={props.swtich} id="backButton">BACK</button>  */}
+              <button type="button" value="Back" onClick={props.switch} id="backButton">BACK</button>  */}
               <div>
                 <FormControl id="select"required variant="filled" className={classes.formControl} style={{marginBottom: 5, width: "95%"}}>
                   <InputLabel htmlFor="Select Group">Select Group</InputLabel>
@@ -215,10 +215,9 @@ export default function SignUp(props) {
               <Button type="submit" color="primary" variant="contained" className={classes.buttonRegistry}>
                 REGISTER
               </Button>
-              <Button color="inherit" onClick={props.swtich} variant="contained" className={classes.buttonBack}>
+              <Button color="inherit" onClick={props.switch} variant="contained" className={classes.buttonBack}>
                 BACK
               </Button>
-  
             </form>
           </div>
        </div>

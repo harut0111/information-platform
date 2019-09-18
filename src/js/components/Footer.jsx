@@ -11,7 +11,7 @@ export default function Footer() {
         <footer>
             <div id="footerContent">
             <div>
-                <div id="subsGit"><p>Subscribe Us On GitHub.</p></div>
+                <div id="subsGit"><p>Follow us on GitHub</p></div>
                 <div id="github">
                     <Link to="//github.com/BaghdasaryanHayk" target="_blank">
                         <img src={githubLogoLight} alt="GitHub Link" />
@@ -26,7 +26,7 @@ export default function Footer() {
                         <img src={githubLogoDark} alt="GitHub Link" />
                     </Link> 
                 </div>
-                    <div><p style={{ color: "silver" }}>Copyright &#9400; 2019 | HB.HM.EH.AS | All Rights Reserved.</p></div>
+                    <div><p style={{ color: "silver" }}>All Rights Reserved. | HB.HM.EH.AS | Copyright &#9400; {new Date().getFullYear()}</p></div>
             </div>
             </div>
         </footer>
