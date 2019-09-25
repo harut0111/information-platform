@@ -19,8 +19,10 @@ import backToHome from "../../img/backToHome2.png";
 
 export default function Home() {
     useEffect(() => {
+       
         fire.auth().onAuthStateChanged(user => {
-            if (!user && user.uid === ADMIN_ID) {
+        
+            if (!(user && user.uid !== ADMIN_ID)) {
                 return history.push("/");
             }
         });
