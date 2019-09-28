@@ -1,6 +1,6 @@
 
 # Information Platform
-This project designed for different companies. It collects and analyzes all information about employees, provides communication between them and other opportunities.
+This project designed for different companies. It collects and analyzes all information about employees, provides communication and other opportunities.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
