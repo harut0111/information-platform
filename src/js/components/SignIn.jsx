@@ -137,6 +137,7 @@ function SignIn (props) {
     return (
         <div id="signInContainer">
             <h1>SIGN IN</h1>
+            <p>for signing in as an administrator please contact to me</p>
             <div className="signInMainCont">
                 <p id="errorMsg">Wrong Email or Password.</p>
                 <div>

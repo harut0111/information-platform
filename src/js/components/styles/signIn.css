@@ -17,6 +17,13 @@
     color: white;
 }
 
+#signInContainer > p {
+    color: red;
+    padding-top: 20px;
+    width: 80%;
+    margin: auto;
+}
+
 #signInContainer h1 {
     background-color: #4CAF50;
     border-top-left-radius: 20px;
@@ -25,7 +32,7 @@
 }
 
 .signInMainCont, .signUpMainCont{
-    margin: 20px 30px 40px 30px;
+    margin: 10px 30px 40px 30px;
 }
 
 #errorMsg {
