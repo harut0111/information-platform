@@ -3,22 +3,21 @@ footer {
   background-color: #3b5998;
   color: #fff;
   text-align: center;
-  font-size: 14px;
-  padding-bottom: 5px;
+  font-size: 18px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
 #footerContent {
-  display: flex;
+
   justify-content: space-around;
-  max-height: 100px;
-  min-height: 80px;
-  padding: 5px 0;
-  max-width: 90%;
-  margin: 0 auto;
+  
 }
 
-#subsGit {
+/* #subsGit {
   margin-top: 5px;
 }
 
@@ -41,4 +40,4 @@ footer {
 
 #github img:hover {
   opacity: 0.5;
-}
+} */
