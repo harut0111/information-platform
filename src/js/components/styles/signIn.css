@@ -20,7 +20,8 @@
 #signInContainer > p {
     color: red;
     padding-top: 20px;
-    width: 80%;
+    display: inline-block;
+    width: 300px;
     margin: auto;
 }
 

@@ -57,11 +57,11 @@ header button:hover {
 }
 
 @-webkit-keyframes mymove {
-  50% {box-shadow: 10px 20px 30px red;}
+  50% {box-shadow: 10px 20px 30px #4caf50;}
 }
 
 @keyframes mymove {
-  50% {box-shadow: 10px 20px 30px red;}
+  50% {box-shadow: 10px 20px 30px #4caf50;}
 }
 
 .contactFormContent {

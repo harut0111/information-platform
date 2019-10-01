@@ -1,6 +1,6 @@
 import React, { useState }  from "react";
 import "./styles/header.css";
-import logo from "../../img/logo.png";
+import logo from "../../img/logo2.png";
 import { Link } from "react-router-dom";
 import FormPage from '../components/ContactForm';
 
