@@ -53,7 +53,6 @@ export default function SendText() {
 
     const onSelectChange = e => {
         e.preventDefault();
-        console.log(data)
         let aboutUserId = e.currentTarget.value;
         setAboutUserId(aboutUserId);
     };

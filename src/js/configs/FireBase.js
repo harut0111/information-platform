@@ -4,13 +4,14 @@ import * as firebase from "firebase/app";
 // import "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyD4y4NXU_iYEokPKRcW-0oHku7hKEKUeME",
-    authDomain: "information-platform-4cfb3.firebaseapp.com",
-    databaseURL: "https://information-platform-4cfb3.firebaseio.com",
-    projectId: "information-platform-4cfb3",
-    storageBucket: "information-platform-4cfb3.appspot.com",
-    messagingSenderId: "312250622176",
-    appId: "1:312250622176:web:61c3c0923c27e6ab"
+    apiKey: "AIzaSyDCDrytYjA17NVvzEUT0NZadgfLLmN_aHw",
+    authDomain: "harut0111-infplat.firebaseapp.com",
+    databaseURL: "https://harut0111-infplat.firebaseio.com",
+    projectId: "harut0111-infplat",
+    storageBucket: "harut0111-infplat.appspot.com",
+    messagingSenderId: "138367174066",
+    appId: "1:138367174066:web:8a2fb1c145ec3b49a190ab",
+    measurementId: "G-Y5P1VS0TF5"
 };
 
 // Initialize Firebase
